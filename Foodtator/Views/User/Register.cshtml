@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LandingPageLayout.cshtml";
+}
+
+<div class="userbg">
+
+    <div class="registerWindow col-sm-offset-1 col-sm-10 col-lg-offset-4 col-lg-4">
+        <h2 class="text-center">Sign me up!</h2>
+        <form>
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName">
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password">
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-raised btn-primary">Submit</button>
+            </div>
+        </form>
+
+        <hr />
+
+        <p class="text-muted text-center" style="color: #ffffff;">Sign In with your Facebook account</p>
+        <div class="clearfix">
+            <div>
+                <div class="text-center">
+                    <button type="button" class="btn btn-raised btn-primary" ng-click="fbc.fblogin()"><i class="ti-facebook mr-5"></i> Facebook</button>
+                </div>
+
+                <div id="status">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+

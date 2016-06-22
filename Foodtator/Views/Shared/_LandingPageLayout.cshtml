@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "_LandingPageLayout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+    <title>Foodtator</title>
+   
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
+    <link href="~/Content/foodtator.css" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    @RenderSection("Styles", required: false)
+
+
+</head>
+
+
+
+<body class="user-page">
+    <div class="main-content container-fluid" data-ng-app="FoodtatorApp">
+        @RenderBody()
+    </div>
+
+    <script type="text/javascript">
+        var APPNAME = 'FoodtatorApp';
+    </script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    
+    @RenderSection("pageInitScripts", required: false)
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+
+
