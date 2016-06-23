@@ -1,10 +1,10 @@
-﻿using BoilerPlate.Web.Classes.Exceptions;
-using BoilerPlate.Web.Models;
+﻿using Foodtator.Classes.Exceptions;
+using Foodtator.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Sabio.Web.Services;
+using Foodtator.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,7 +13,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Web;
 
-namespace BoilerPlate.Web.Services
+
+namespace Foodtator.Services
 {
     public class UserService:BaseService
     {
