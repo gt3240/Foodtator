@@ -4,7 +4,10 @@
     margin: 0;
     padding: 0;
     background-color: antiquewhite;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Mobile devices */
 
 @media (min-width: 0px) and (max-width: 767px) {
 
@@ -24,6 +27,8 @@
     }
 }
 
+/* Desktop */
+
 @media (min-width: 768px) {
     .userbg {
         width: 100%;
@@ -35,7 +40,7 @@
     .registerWindow {
         color: #fff;
         background-color: rgba(0,0,0,0.5);
-        margin-top: 50px;
+        margin-top: 10%;
         padding: 30px;
         border-radius: 10px;
     }
@@ -43,4 +48,9 @@
     .indexLogo {
         margin-top: -70px;
     }
+}
+
+/* All */
+label{
+    font-weight:normal;
 }
