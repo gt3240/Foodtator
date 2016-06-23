@@ -9,6 +9,26 @@
     <div class="registerWindow col-sm-offset-1 col-sm-10 col-lg-offset-4 col-lg-4 text-center">
         <img src="~/Content/images/logo.png" alt="logo" width="80" class="indexLogo" />
         <h2 class="text-center">Sign me up!</h2>
+        <hr />
+
+        @* Facebook login*@
+        <p class="text-muted text-center" style="color: #ffffff;">Sign In with your Facebook account</p>
+        <div class="clearfix">
+            <div>
+                <div class="text-center">
+                    <button type="button" class="btn btn-raised btn-primary" ng-click="fbc.fblogin()"><i class="ti-facebook mr-5"></i> Facebook</button>
+                </div>
+
+                <div id="status">
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr />
+
+        @* Regular register*@
         <form>
             <div class="form-group">
                 <label for="firstName">First Name</label>
@@ -31,25 +51,11 @@
             </div>
 
             <div class="text-center">
-                <button type="submit" class="btn btn-raised btn-primary">Submit</button>
+                <button type="submit" class="btn btn-raised btn-success">Register</button>
             </div>
         </form>
 
-        <hr />
-
-        <p class="text-muted text-center" style="color: #ffffff;">Sign In with your Facebook account</p>
-        <div class="clearfix">
-            <div>
-                <div class="text-center">
-                    <button type="button" class="btn btn-raised btn-primary" ng-click="fbc.fblogin()"><i class="ti-facebook mr-5"></i> Facebook</button>
-                </div>
-
-                <div id="status">
-                </div>
-
-            </div>
-
-        </div>
+       
 
     </div>
 
