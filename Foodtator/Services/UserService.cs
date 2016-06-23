@@ -1,92 +1,93 @@
-﻿//using BoilerPlate.Web.Classes.Exceptions;
-//using BoilerPlate.Web.Models;
-//using Microsoft.AspNet.Identity;
-//using Microsoft.AspNet.Identity.EntityFramework;
-//using Microsoft.AspNet.Identity.Owin;
-//using Microsoft.Owin.Security;
-//using Sabio.Web.Services;
-//using System;
-//using System.Collections.Generic;
-//using System.Data;
-//using System.Data.SqlClient;
-//using System.Linq;
-//using System.Security.Claims;
-//using System.Web;
-
-//namespace BoilerPlate.Web.Services
-//{
-//    public class UserService:BaseService
-//    {
-//        private static ApplicationUserManager GetUserManager()
-//        {
-//            return HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
-//        }
-
-//        public static IdentityUser CreateUser(string email, string password)
-//        {
-//            ApplicationUserManager userManager = GetUserManager();
-
-//            ApplicationUser newUser = new ApplicationUser { UserName = email, Email = email, LockoutEnabled = false };
-//            IdentityResult result = null;
-//            try
-//            {
-//                result = userManager.Create(newUser, password);
-
-//            }
-//            catch
-//            {
-//                new IdentityResultException(result);
-//            }
-
-//            if (result.Succeeded)
-//            {
-//                return newUser;
-//            }
-//            else
-//            {
-//                throw new IdentityResultException(result);
-//            }
-//        }
-
-//        public static IdentityUser InsertUser(RegistrationModel model)
-//        {
-//            int uid = 0;
-//            IdentityUser newUser = UserService.CreateUser(model.email, model.confirmPassword);
-
-//            DataProvider.ExecuteNonQuery(GetConnection, "dbo.Users_Insert"
-//               , inputParamMapper: delegate (SqlParameterCollection paramCollection)
-//               {
-//                   paramCollection.AddWithValue("@UserId", newUser.Id);
-//                   paramCollection.AddWithValue("@FirstName", model.firstName);
-//                   paramCollection.AddWithValue("@LastName", model.lastName);
-
-//                   SqlParameter p = new SqlParameter("@Id", System.Data.SqlDbType.Int);
-//                   p.Direction = System.Data.ParameterDirection.Output;
-//                   paramCollection.Add(p);
-
-//               }, returnParameters: delegate (SqlParameterCollection param)
-//               {
-//                   int.TryParse(param["@UserId"].Value.ToString(), out uid);
-//               }
-//               );
-
-//            //TokenRequest Request = new TokenRequest();
-
-//            //Request.UserId = new Guid(newUser.Id);
-
-//            //// assign Buyer role to new users
-//            //userInitialRoleInsert(newUser.Id, "e1a6b7f6-7b8c-4205-bd93-c0c2af0ef103");
-
-//            //Request.TokenType = 1;
-
-//            //Guid Token = TokenService.InsertToken(Request);
+﻿using Foodtator.Classes.Exceptions;
+using Foodtator.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using Foodtator.Services;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Security.Claims;
+using System.Web;
 
 
-//            //ConfirmationRequestModel RequestEmail = new ConfirmationRequestModel();
+namespace Foodtator.Services
+{
+    public class UserService:BaseService
+    {
+        private static ApplicationUserManager GetUserManager()
+        {
+            return HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        }
 
-//            //RequestEmail.Email = model.email;
+        public static IdentityUser CreateUser(string email, string password)
+        {
+            ApplicationUserManager userManager = GetUserManager();
 
-//            //RequestEmail.Token = Token;
+            ApplicationUser newUser = new ApplicationUser { UserName = email, Email = email, LockoutEnabled = false };
+            IdentityResult result = null;
+            try
+            {
+                result = userManager.Create(newUser, password);
+
+            }
+            catch
+            {
+                new IdentityResultException(result);
+            }
+
+            if (result.Succeeded)
+            {
+                return newUser;
+            }
+            else
+            {
+                throw new IdentityResultException(result);
+            }
+        }
+
+        public static IdentityUser InsertUser(RegistrationModel model)
+        {
+            int uid = 0;
+            IdentityUser newUser = UserService.CreateUser(model.email, model.confirmPassword);
+
+            DataProvider.ExecuteNonQuery(GetConnection, "dbo.Users_Insert"
+               , inputParamMapper: delegate (SqlParameterCollection paramCollection)
+               {
+                   paramCollection.AddWithValue("@UserId", newUser.Id);
+                   paramCollection.AddWithValue("@FirstName", model.firstName);
+                   paramCollection.AddWithValue("@LastName", model.lastName);
+
+                   SqlParameter p = new SqlParameter("@Id", System.Data.SqlDbType.Int);
+                   p.Direction = System.Data.ParameterDirection.Output;
+                   paramCollection.Add(p);
+
+               }, returnParameters: delegate (SqlParameterCollection param)
+               {
+                   int.TryParse(param["@UserId"].Value.ToString(), out uid);
+               }
+               );
+
+            //TokenRequest Request = new TokenRequest();
+
+            //Request.UserId = new Guid(newUser.Id);
+
+            //// assign Buyer role to new users
+            //userInitialRoleInsert(newUser.Id, "e1a6b7f6-7b8c-4205-bd93-c0c2af0ef103");
+
+            //Request.TokenType = 1;
+
+            //Guid Token = TokenService.InsertToken(Request);
+
+
+            //ConfirmationRequestModel RequestEmail = new ConfirmationRequestModel();
+
+            //RequestEmail.Email = model.email;
+
+            //RequestEmail.Token = Token;
 
 //            //RequestEmail.Name = model.firstName;
 

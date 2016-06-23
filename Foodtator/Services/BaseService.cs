@@ -1,11 +1,11 @@
-﻿using Sabio.Data.Providers;
+﻿using Tkj.Data.Providers;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace Sabio.Web.Services
+namespace Foodtator.Services
 {
     /// <summary>
     /// 
@@ -15,7 +15,7 @@ namespace Sabio.Web.Services
         protected static IDao DataProvider
         {
 
-            get { return Sabio.Data.DataProvider.Instance; }
+            get { return Tkj.Data.DataProvider.Instance; }
         }
 
         protected static SqlConnection GetConnection()

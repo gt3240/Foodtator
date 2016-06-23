@@ -1,8 +1,8 @@
-﻿using BoilerPlate.Web.Domain;
-using BoilerPlate.Web.Interfaces;
-using BoilerPlate.Web.Models.RequestModel;
-using Sabio.Data;
-using Sabio.Web.Services;
+﻿using Foodtator.Domain;
+using Foodtator.Interfaces;
+using Foodtator.Models.RequestModel;
+using Tkj.Data;
+using Foodtator.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace BoilerPlate.Web.Services
+namespace Foodtator.Services
 {
     public class SearchService:BaseService,ISearchService
     {
