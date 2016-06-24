@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_LandingPageLayout.cshtml";
 }
 
@@ -8,11 +8,11 @@
 
     <div class="registerWindow col-sm-offset-1 col-sm-10 col-lg-offset-4 col-lg-4 text-center">
         <img src="~/Content/images/logo.png" alt="logo" width="80" class="indexLogo" />
-        <h2 class="text-center">Sign me up!</h2>
+        <h2 class="text-center">Log me in!</h2>
         <hr />
 
         @* Facebook login*@
-        <p class="text-muted text-center" style="color: #ffffff;">Sign up with your Facebook account</p>
+        <p class="text-muted text-center" style="color: #ffffff;">Login with your Facebook account</p>
         <div class="clearfix">
             <div>
                 <div class="text-center">
@@ -21,22 +21,15 @@
 
                 <div id="status">
                 </div>
+
             </div>
+
         </div>
 
         <hr />
 
         @* Regular register*@
         <form>
-            <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input type="text" class="form-control" id="firstName">
-            </div>
-
-            <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input type="text" class="form-control" id="lastName">
-            </div>
 
             <div class="form-group">
                 <label for="email">Email address</label>
@@ -49,24 +42,12 @@
             </div>
 
             <div class="text-center">
-                <button type="submit" class="btn btn-raised btn-success">Register</button>
+                <button type="submit" class="btn btn-raised btn-success">Login</button>
             </div>
         </form>
         <br />
-        <p>I have an account - <a href="/user/login">Login</a></p>
+        <p>I don't have an account - <a href="/user/register">Register</a></p>
 
     </div>
+
 </div>
-
-@section scripts{
-    <script type="text/javascript">
-
-        tkj.page.startUp = function () {
-
-            console.log("register page");
-
-        };
-
-    </script>
-}
-

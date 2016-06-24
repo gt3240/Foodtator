@@ -31,6 +31,28 @@
 
 
 <body>
+    @* Nav *@
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="~/">Home</a></li>
+                    <li><a>How it works</a></li>
+                    <li><a>Contact us</a></li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+
+    @* End Nav *@
     @RenderBody()
 
     <script type="text/javascript">
@@ -39,7 +61,8 @@
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
-    
+    <script src="~/Scripts/tkj.js"></script>
+
     @RenderSection("pageInitScripts", required: false)
 
     @RenderSection("scripts", required: false)

@@ -16,7 +16,7 @@ using System.Web;
 
 namespace Foodtator.Services
 {
-    public class UserService:BaseService
+    public class UserService : BaseService
     {
         private static ApplicationUserManager GetUserManager()
         {
