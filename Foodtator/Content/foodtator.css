@@ -51,6 +51,19 @@
 }
 
 /* All */
-label{
-    font-weight:normal;
+label {
+    font-weight: normal;
+}
+
+.navbar-default {
+    background-color: rgba(0,0,0,0.5);
+    border: none;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #ffffff;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: antiquewhite;
 }
