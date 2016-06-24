@@ -239,6 +239,15 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Domain\UserDetails.cs" />
+    <Compile Include="Enums\AttributesDataType.cs" />
+    <Compile Include="Enums\CategoryType.cs" />
+    <Compile Include="Enums\CmsPageType.cs" />
+    <Compile Include="Enums\MediaType.cs" />
+    <Compile Include="Enums\MessageType.cs" />
+    <Compile Include="Enums\NotificationType.cs" />
+    <Compile Include="Enums\RoleUserType.cs" />
+    <Compile Include="Enums\SystemEventType.cs" />
+    <Compile Include="Enums\UserRolesType.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
