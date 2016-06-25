@@ -1,9 +1,8 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "PageSample";
     Layout = "~/Views/Shared/_LandingPageLayout.cshtml";
 }
-
 
 @section Styles
 {
@@ -11,19 +10,11 @@
 }
 
 <div id="fullpage">
-    <div class="section text-center" id="topSection">
-        <div class="userbg">
+    <div class="section text-center" id="section0">
+        <h1>home section</h1>
+    </div><!-- End section0 -->
 
-            <div class="col-sm-offset-1 col-sm-10 col-lg-offset-4 col-lg-4 text-center">
-                <br /><br /><br />
-                <h1>Foodtator</h1>
-                <h2>tells you where to eat!</h2>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="section text-center" id="howItWorksSection">
+    <div class="section text-center" id="section1">
         <div class="slide" id="slide1">
             <h1>slide 1</h1>
         </div><!-- End slide1 -->
@@ -41,9 +32,10 @@
         </div><!-- End slide4 -->
     </div><!-- End section1 -->
 
-    <div class="section text-center" id="contactUsSection">
+    <div class="section text-center" id="section2">
         <h1>contact page</h1>
     </div><!-- End section4 -->
+
 </div>
 
 
@@ -51,41 +43,22 @@
 
     <script src="~/Scripts/jquery.slimscroll.min.js"></script>
     <script src="~/Scripts/jquery.fullPage.js"></script>
+   
 
     <script type="text/javascript">
-
-        tkj.page.startUp = function () {
+        $(document).ready(function () {
             var anchoScreen = $(window).width();
-
             $('#fullpage').fullpage({
+                //menu: '#myMenu',
+                //'autoScrolling': false,
                 slidesColor: ['#00BFBB', '#939FAA', '#00CEF1'],
-                'afterLoad': function () {
-                },
+                'afterLoad': function () {     
 
+                },              
             });
-        }
 
-        $("#homeBtn").click(function () {
-            $.fn.fullpage.moveTo(1, 0);
         });
-
-        $("#howItWorksBtn").click(function () {
-            $.fn.fullpage.moveTo(2, 0);
-        });
-
-        $("#contactBtn").click(function () {
-            $.fn.fullpage.moveTo(3, 0);
-        });
-
     </script>
     <script src="js/validate.js"></script>
     <script src="js/jquery.validate.min.js"></script>
 }
-
-
-
-
-
-
-
-

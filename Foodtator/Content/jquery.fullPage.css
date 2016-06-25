@@ -1,0 +1,260 @@
+/**
+ * fullPage 1.6.7
+ * https://github.com/alvarotrigo/fullPage.js
+ * MIT licensed
+ *
+ * Copyright (C) 2013 alvarotrigo.com - A project by Alvaro Trigo
+ */
+html, body {
+	overflow:hidden;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+#superContainer {
+    height: 100%;
+    position: relative;
+	/* Touch detection for Windows 8 */
+	-ms-touch-action: none; 
+}
+.section {
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.slide {
+    float: left;
+}
+.slide, .slidesContainer {
+    height: 100%;
+    display: block;
+}
+.slides {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+.section.table, .slide.table {
+    display: table;
+    width: 100%;
+}
+.tableCell {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+}
+.slidesContainer {
+    float: left;
+    position: relative;
+}
+.controlArrow {
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    margin-top: -38px;
+    display: none;
+}
+.controlArrow.prev {
+    left: 15px;
+    width: 0;
+    border-width: 38.5px 34px 38.5px 0;
+    border-color: transparent #fff transparent transparent;
+}
+.controlArrow.next {
+    right: 15px;
+    border-width: 38.5px 0 38.5px 34px;
+    border-color: transparent transparent transparent #fff;
+}
+.scrollable {
+    overflow: scroll;
+}
+.easing {
+    -webkit-transition: all 0.7s ease-out;
+    -moz-transition: all 0.7s ease-out;
+    -o-transition: all 0.7s ease-out;
+    transition: all 0.7s ease-out;
+}
+
+
+/* Nav Left
+--------------------------------------------------------*/
+#fullPage-nav {
+    position: fixed;
+    top: 50%;
+    opacity: 1;
+    z-index: 100;
+}
+
+#fullPage-nav.right {
+    right: 3em;
+}
+#fullPage-nav.left {
+    left: 3em;
+}
+
+#fullPage-nav ul{
+   margin: 0;
+   padding: 0;
+}
+
+#fullPage-nav li{
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin: 0 0 2.2em 0;
+    position:relative;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+
+#fullPage-nav li:nth-child(1) {
+    background: #FFFFFF url(../images/home.png) no-repeat center center;
+}
+#fullPage-nav li:nth-child(2) {
+    background: #FFFFFF url(../images/how_we_do_it.png) no-repeat center center;
+}
+#fullPage-nav li:nth-child(3) {
+    background: #FFFFFF url(../images/products.png) no-repeat center center;
+}
+
+#fullPage-nav li:nth-child(4) {
+    background: #FFFFFF url(../images/our_team.png) no-repeat center center;
+}
+
+#fullPage-nav li:nth-child(5) {
+    background: #FFFFFF url(../images/contact.png) no-repeat center center;
+    margin: 0;
+}
+
+#fullPage-nav li a{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 1;
+}
+
+/*#fullPage-nav li .active span{
+    background: rgba(0,0,0,0.2);
+}*/
+
+#fullPage-nav span{
+    top: 0px;
+    left: 0px;
+    width: 32px;
+    height: 32px;
+    /*border: 1px solid #00BFBB;
+    background: rgba(0, 0, 0, 0.5);*/
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 1;
+}
+
+.online{border-right: 1px dashed #FFF; width: 1px; height: 300px; position: absolute; top: 0; left: 0.9em; z-index: -1;}
+.arrow_menu{background: url(../images/arrow_menu.png) no-repeat; width: 17px; height: 32px; top: 0; position: absolute; right: -17px;}
+
+.fullPage-tooltip {
+    background: #FFF;
+    color: #4C4748;
+    font-size: 0.9em;
+    font-family: Arial, helvetica, sans-serif;
+    font-weight: 700;
+    width: 150px;
+    height: 20px;
+    padding: 6px 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    z-index: -1;
+}
+
+.fullPage-tooltip.right {
+    right: 20px;
+}
+.fullPage-tooltip.left {
+    left: 15px;
+}
+
+/* Nav Bottom
+--------------------------------------------------------*/
+.fullPage-slidesNav {
+    position: absolute;
+    left: 50%;
+    opacity: 1;
+    z-index: 4;
+}
+.fullPage-slidesNav.bottom {
+    bottom: 30px;
+}
+.fullPage-slidesNav.top {
+    top: 17px;
+}
+
+.fullPage-slidesNav ul {
+  margin: 0;
+  padding: 0;
+}
+.fullPage-slidesNav li {
+    display: block;
+    width: 14px;
+    height: 13px;
+    margin: 0.8em;
+    position:relative;
+}
+.fullPage-slidesNav li {
+    display: inline-block;
+}
+
+.fullPage-slidesNav li a {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 1;
+}
+
+.fullPage-slidesNav .active span {
+    background: #00BFBB;
+}
+
+.fullPage-slidesNav span {
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border: 3px solid #00BFBB;
+    background: rgba(0, 0, 0, 0);
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 1;
+}
+
+
+/* MEDISA QUERYS
+-------------------------------------------------------*/
+
+@media only screen and (max-width: 767px){
+    #fullPage-nav {display: none;}
+
+    .fullPage-slidesNav {left: 50%;}
+    .fullPage-slidesNav.bottom {bottom: 15px;}
+    .fullPage-slidesNav li {margin: 0.5em;}
+    .fullPage-slidesNav span {width: 12px; height: 12px; border: 1px solid #00BFBB;}
+}

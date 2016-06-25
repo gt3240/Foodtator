@@ -26,5 +26,10 @@ namespace Foodtator.Controllers
 
             return View();
         }
+
+        public ActionResult PageSample()
+        {
+            return View();
+        }
     }
 }
