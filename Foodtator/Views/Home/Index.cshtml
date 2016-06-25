@@ -5,6 +5,46 @@
 }
 
 <div class="userbg">
+    <div class="" >
+        <div class="" ng-controller="IndexController as IC">
 
+        </div>
+    </div>
 
 </div>
+
+@section scripts{
+    <script type="text/javascript">
+
+        angular.module(APPNAME, ["ngRoute"]);
+
+        angular.module(APPNAME)
+     .config(["$routeProvider", "$locationProvider", function ($routeProvider, $locationProvider) {
+         $routeProvider.when('/home', {
+             templateUrl: '/Scripts/FoodTator/App/Restaurants/Templates/RestaurantsMain.html',
+             controller: 'Tab1Controller',
+             controllerAs: 'Tab1'
+         }).when('/media/:adminBlogId', {
+             templateUrl: '/Scripts/sabio/application/adminblogs/templates/media.html',
+             controller: 'Tab2Controller',
+             controllerAs: 'Tab2'
+         }).when('/', {
+             templateUrl: '/Scripts/sabio/application/adminblogs/templates/index.html',
+             controller: 'Tab3Controller',
+             controllerAs: 'Tab3'
+         })
+         $locationProvider.html5Mode(false);
+     }]);
+
+        angular.module(APPNAME).controller("Tab1Controller", function () {
+            console.log("hello world");
+        });
+        angular.module(APPNAME).controller("Tab2Controller", function () {
+            console.log("hello");
+        });
+        angular.module(APPNAME).controller("Tab3Controller", function () {
+            console.log("hello Jesus");
+        });
+
+    </script>
+}
