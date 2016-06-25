@@ -68,8 +68,7 @@ namespace Foodtator.Services
                }, returnParameters: delegate (SqlParameterCollection param)
                {
                    int.TryParse(param["@UserId"].Value.ToString(), out uid);
-               }
-               );
+               });
 
             //TokenRequest Request = new TokenRequest();
 

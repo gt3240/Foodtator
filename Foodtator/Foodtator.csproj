@@ -235,6 +235,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\SearchApiController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\GooglePlacesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -363,8 +364,12 @@
     <Content Include="Views\Shared\_LandingPageLayout.cshtml" />
     <Content Include="Views\Public\Register.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
+<<<<<<< HEAD
+    <Content Include="Views\GooglePlaces\Index.cshtml" />
+=======
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Home\PageSample.cshtml" />
+>>>>>>> e1d766e9e4b7028541590850f3718eba2637c9cf
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
