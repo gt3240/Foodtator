@@ -97,6 +97,10 @@
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RestSharp, Version=104.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.104.1\lib\net4\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -161,6 +165,10 @@
     <Reference Include="Antlr3.Runtime">
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="YelpSharp, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\YelpSharp.1.2.1.0\lib\net4\YelpSharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +243,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\SearchApiController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BusinessController.cs" />
     <Compile Include="Controllers\GooglePlacesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -257,6 +266,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RegistrationModel.cs" />
+    <Compile Include="Models\RequestModel\BusinessSearchRequestModel.cs" />
     <Compile Include="Models\RequestModel\PaginateListRequestModel.cs" />
     <Compile Include="Models\RequestModel\UserSearchRequestModel.cs" />
     <Compile Include="Models\ResponseModel\BaseResponse.cs" />
@@ -266,11 +276,14 @@
     <Compile Include="Models\ResponseModel\PaginateItemsResponseModel.cs" />
     <Compile Include="Models\ResponseModel\SuccessResponse.cs" />
     <Compile Include="Models\ViewModels\BaseViewModel.cs" />
+    <Compile Include="Models\ViewModels\ItemViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\SearchService.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="Services\UtilityService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Config.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -313,6 +326,7 @@
     <Content Include="Scripts\bower_components\angular\angular.js" />
     <Content Include="Scripts\bower_components\angular\angular.min.js" />
     <Content Include="Scripts\bower_components\angular\index.js" />
+    <Content Include="Scripts\FoodTator\App\Restaurants\Templates\RestaurantsMain.html" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -364,12 +378,16 @@
     <Content Include="Views\Shared\_LandingPageLayout.cshtml" />
     <Content Include="Views\Public\Register.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
-    <Content Include="Views\GooglePlaces\Index.cshtml" />
+    <Content Include="Views\GooglePlaces\Restaurants.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Home\PageSample.cshtml" />
+    <Content Include="Views\Home\Results.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\FoodTator\App\Restaurants\Controllers\" />
+    <Folder Include="Scripts\FoodTator\Core\" />
+    <Folder Include="Scripts\FoodTator\Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
