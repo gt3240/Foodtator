@@ -1,43 +1,83 @@
 ﻿@model YelpSharp.Data.SearchResults
 
+
 @{
-    ViewBag.Title = "Results";
+    ViewBag.Title = "PageSample";
     Layout = "~/Views/Shared/_LandingPageLayout.cshtml";
 }
 
-<h2>Results</h2>
+@section Styles
+{
+    <link href="~/Content/jquery.fullPage.css" rel="stylesheet" />
+}
 
-<fieldset>
-    <legend>SearchResults</legend>
+<div id="fullpage">
+    <div class="section text-center" id="section0">
+        <h1>home section</h1>
+    </div><!-- End section0 -->
 
-    <div class="display-label">total</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.total)
-    </div>
+    <div class="section text-center" id="section1">
+        <div class="slide" id="slide1">
+            
+            <img src="@Model.businesses[6].image_url" />
+        </div><!-- End slide1 -->
 
-    
-        <img src="@Model.businesses[0].image_url" alt="#">
-    
-    
-   
+        <div class="slide" id="slide2">
+            <h1>slide 2</h1>
+            <img src="@Model.businesses[1].image_url" />
+        </div><!-- End slide2 -->
 
-    <input type="hidden" id="model" value="@Model.businesses[0]" />
+        <div class="slide" id="slide3">
+            <h1>slide 3</h1>
+            <img src="@Model.businesses[2].image_url" />
+        </div><!-- End slide3 -->
+
+        <div class="slide" id="slide4">
+            <h1>slide 4</h1>
+            <img src="@Model.businesses[3].image_url" />
+        </div><!-- End slide4 -->
+    </div><!-- End section1 -->
+
+    <div class="section text-center" id="section2">
+        <h1>contact page</h1>
+    </div><!-- End section4 -->
+
+</div>
 
 
-
-</fieldset>
-<p>
-    @Html.ActionLink("Back to Search", "Index")
 @section scripts{
-<script type="text/javascript">
-    tkj.page.startUp = function () {
-        var modelval= $("#model").val();
-        console.log(modelval,"model");
-    }
 
-    tkj.page.handlers.get = function () {
-       
-    }
+    <script src="~/Scripts/jquery.slimscroll.min.js"></script>
+    <script src="~/Scripts/jquery.fullPage.js"></script>
 
-</script>
-        }
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var anchoScreen = $(window).width();
+            $('#fullpage').fullpage({
+                //menu: '#myMenu',
+                //'autoScrolling': false,
+                slidesColor: ['#00BFBB', '#939FAA', '#00CEF1'],
+                'afterLoad': function () {
+
+                },
+            });
+
+        });
+
+
+        $("#homeBtn").click(function () {
+            $.fn.fullpage.moveTo(1, 0);
+        });
+
+        $("#howItWorksBtn").click(function () {
+            $.fn.fullpage.moveTo(2, 0);
+        });
+
+        $("#contactBtn").click(function () {
+            $.fn.fullpage.moveTo(3, 0);
+        });
+    </script>
+    <script src="js/validate.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+}

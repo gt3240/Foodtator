@@ -43,7 +43,7 @@
 
     <script src="~/Scripts/jquery.slimscroll.min.js"></script>
     <script src="~/Scripts/jquery.fullPage.js"></script>
-   
+
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -52,11 +52,24 @@
                 //menu: '#myMenu',
                 //'autoScrolling': false,
                 slidesColor: ['#00BFBB', '#939FAA', '#00CEF1'],
-                'afterLoad': function () {     
+                'afterLoad': function () {
 
-                },              
+                },
             });
 
+        });
+
+
+        $("#homeBtn").click(function () {
+            $.fn.fullpage.moveTo(1, 0);
+        });
+
+        $("#howItWorksBtn").click(function () {
+            $.fn.fullpage.moveTo(2, 0);
+        });
+
+        $("#contactBtn").click(function () {
+            $.fn.fullpage.moveTo(3, 0);
         });
     </script>
     <script src="js/validate.js"></script>
