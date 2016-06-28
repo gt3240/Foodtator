@@ -8,9 +8,11 @@ using YelpSharp;
 
 namespace Foodtator.Controllers
 {
+    [RoutePrefix("GooglePlaces")]
     public class GooglePlacesController : Controller
     {
         // GET: GooglePlaces
+        [Route("")]
         public ActionResult Restaurants()
         {
             return View();
