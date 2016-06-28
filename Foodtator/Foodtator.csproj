@@ -248,8 +248,8 @@
     <Compile Include="Controllers\GooglePlacesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ResultsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Domain\Business.cs" />
     <Compile Include="Domain\Coordinate.cs" />
     <Compile Include="Domain\Location.cs" />
     <Compile Include="Domain\UserDetails.cs" />
@@ -393,6 +393,7 @@
     <Content Include="Views\Home\PageSample.cshtml" />
     <Content Include="Views\Home\Results.cshtml" />
     <Content Include="Views\Home\PageSample.cshtml" />
+    <Content Include="Views\Results\Results.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

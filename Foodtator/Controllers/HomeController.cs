@@ -17,30 +17,9 @@ namespace Foodtator.Controllers
      
         public ActionResult Index(BusinessSearchRequestModel model)
         {
-            Yelp yelp = new Yelp(Config.Options);
-            var results = yelp.Search("Restaurant","Seattle").Result;
-            List<Business> resultsList = new List<Business>();
-            System.Diagnostics.Debug.WriteLine(results.businesses);
-            foreach (var result in results.businesses)
-            {
-                String s = result.image_url;
-                s = s.Replace("/ms.jpg", "/o.jpg");
-                result.image_url = s;
 
-            }
-
-            Random array = new Random();
-            var num = UtilityService.NextNumber(array);
-            for(int i = 1; i < results.businesses.Count; i++)
-            {
-                resultsList.Add(results.businesses[num]);
-            }
             
-         
-
-            results.businesses = resultsList;
-            
-            return View(results);
+            return View();
             
         }
 
@@ -56,29 +35,6 @@ namespace Foodtator.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
-        }
-        public ActionResult Results(BusinessSearchRequestModel model)
-        {
-            Yelp yelp = new Yelp(Config.Options);
-            var results = yelp.Search("Restaurant", "Seattle").Result;
-            List<Business> resultsList = new List<Business>();
-            System.Diagnostics.Debug.WriteLine(results.businesses);
-            foreach (var result in results.businesses)
-            {
-                String s = result.image_url;
-                s = s.Replace("/ms.jpg", "/o.jpg");
-                result.image_url = s;
-
-            }
-
-            //Random array = new Random();
-            //var num = UtilityService.NextNumber(array);
-          
-            //    resultsList.Add(results.businesses[num]);
-      
-            //results.businesses = resultsList;
-
-            return View(results);
         }
 
         public ActionResult PageSample()

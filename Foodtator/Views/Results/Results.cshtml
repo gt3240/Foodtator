@@ -1,0 +1,87 @@
+﻿@model YelpSharp.Data.SearchResults
+
+
+@{  
+    ViewBag.Title = "PageSample";
+    Layout = "~/Views/Shared/_LandingPageLayout.cshtml";
+}
+
+@section Styles
+{
+    <link href="~/Content/jquery.fullPage.css" rel="stylesheet" />
+}
+
+<div id="fullpage">
+    <div class="section text-center" id="section0">
+        <h1>home section</h1>
+    </div><!-- End section0 -->
+
+    <div class="section text-center" id="section1">
+        <div class="slide" id="slide1">
+
+            <img src="@Model.businesses[29].image_url" />
+        </div><!-- End slide1 -->
+
+        <div class="slide" id="slide2">
+            <h1>slide 2</h1>
+            <img src="@Model.businesses[3].image_url" />
+        </div><!-- End slide2 -->
+
+        <div class="slide" id="slide3">
+            <h1>slide 3</h1>
+            <img src="@Model.businesses[4].image_url" />
+        </div><!-- End slide3 -->
+
+        <div class="slide" id="slide4">
+            <h1>slide 4</h1>
+            <img src="@Model.businesses[5].image_url" />
+        </div><!-- End slide4 -->
+    </div><!-- End section1 -->
+
+    <div class="section text-center" id="section2">
+        <h1>contact page</h1>
+    </div><!-- End section4 -->
+
+</div>
+@for (var i = 0; i <= 100; i++)
+{
+    <input type="hidden" value="@Model.businesses[i].name" id="modelBiz" />
+}
+
+@section scripts{
+
+    <script src="~/Scripts/jquery.slimscroll.min.js"></script>
+    <script src="~/Scripts/jquery.fullPage.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+            var anchoScreen = $(window).width();
+            $('#fullpage').fullpage({
+                //menu: '#myMenu',
+                //'autoScrolling': false,
+                slidesColor: ['#00BFBB', '#939FAA', '#00CEF1'],
+                'afterLoad': function () {
+
+                },
+            });
+
+        });
+
+
+        $("#homeBtn").click(function () {
+            $.fn.fullpage.moveTo(1, 0);
+        });
+
+        $("#howItWorksBtn").click(function () {
+            $.fn.fullpage.moveTo(2, 0);
+        });
+
+        $("#contactBtn").click(function () {
+            $.fn.fullpage.moveTo(3, 0);
+        });
+    </script>
+    <script src="js/validate.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+}
