@@ -12,7 +12,7 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
     <title>Foodtator</title>
-   
+
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
     <link href="~/Content/foodtator.css" rel="stylesheet" />
@@ -30,7 +30,7 @@
 
 
 
-<body >
+<body ng-app="FoodtatorApp">
     @* Nav *@
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -45,7 +45,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="#" id="homeBtn">Home</a></li>
                     <li><a href="#" id="howItWorksBtn">How it works</a></li>
-                    <li><a  href="#" id="contactBtn">Contact us</a></li>
+                    <li><a href="#" id="contactBtn">Contact us</a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -53,12 +53,11 @@
     </div>
 
     @* End Nav *@
+
+
     @RenderBody()
 
-    <script type="text/javascript">
-        var APPNAME = 'FoodtatorApp';
-    </script>
-    
+
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/bower_components/angular/angular.min.js"></script>
@@ -68,7 +67,20 @@
 
     @RenderSection("pageInitScripts", required: false)
 
+    @*ng js*@
+    <script type="text/javascript">
+        var APPNAME = 'FoodtatorApp';
+
+        angular.module(APPNAME, ["ngRoute"]);
+
+    </script>
+
+    <script src="~/Scripts/FoodTator/Core/services/base.service.js"></script>
+
     @RenderSection("scripts", required: false)
+
+
+
 </body>
 </html>
 

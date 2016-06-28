@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_LandingPageLayout.cshtml";
 }
 
-<div class="userbg">
+<div class="userbg" data-ng-controller="homeController as hc">
 
     <div class="registerWindow col-sm-offset-1 col-sm-10 col-lg-offset-4 col-lg-4 text-center">
         <img src="~/Content/images/logo.png" alt="logo" width="80" class="indexLogo" />
@@ -29,22 +29,28 @@
         <hr />
 
         @* Regular register*@
-        <form>
+        <form id="loginForm" name="hc.loginForm" ng-submit="hc.logUserClicked()" novalidate>
 
             <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email">
+                <input type="email" class="form-control" id="email" ng-model="hc.logUser.email">
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password">
+                <input type="password" class="form-control" id="password" ng-model="hc.logUser.password">
             </div>
 
             <div class="text-center">
-                <button type="submit" class="btn btn-raised btn-success">Login</button>
+                <button type="submit" class="btn btn-raised btn-success">{{hc.registerBtnText}}</button>
             </div>
         </form>
+
+        <div ng-show="hc.errMsg">
+            <br />
+            <div class="alert alert-danger">{{hc.errMsg}}</div>
+        </div>
+
         <br />
         <p>I don't have an account - <a href="/user/register">Register</a></p>
 
@@ -53,15 +59,72 @@
 </div>
 
 @section scripts{
+    <script src="~/Scripts/FoodTator/Services/UserServices.js"></script>
+
     <script type="text/javascript">
 
-        tkj.page.startUp = function () {
+        (function () {
+            "use strict";
 
-            console.log("Login page");
-            $('#howItWorksBtn').addClass('hidden');
-            $('#contactBtn').addClass('hidden');
-            $('#homeBtn').attr('href', '/');
-        };
+            angular.module(APPNAME)
+                .controller('homeController', HomeController);
 
+            HomeController.$inject = ['$scope', '$userService'];
+
+            function HomeController(
+                $scope
+                , $userService) {
+
+                var vm = this;
+                vm.$scope = $scope;
+                vm.$userService = $userService;
+
+                vm.logUser = {};
+                vm.loading = false;
+                vm.registerBtnText = "Login";
+                vm.errMsg = null;
+
+                vm.logUserClicked = _logUserClicked;
+                vm.onSuccess = _onSuccess;
+                vm.onErr = _onErr;
+
+                init();
+
+                function init() {
+                    console.log("register page");
+                    $('#howItWorksBtn').addClass('hidden');
+                    $('#contactBtn').addClass('hidden');
+                    $('#homeBtn').attr('href', '/');
+
+                    vm.$userService.test();
+                };
+
+                function _logUserClicked() {
+                    vm.logUser.confirmPassword = vm.logUser.password;
+                    console.log("log me in", vm.logUser);
+                    vm.$userService.login(vm.logUser, vm.onSuccess, vm.onErr);
+                    vm.loading = true;
+                    vm.registerBtnText = "Loading...";
+                };
+
+                function _onSuccess(data) {
+                    console.log("user logged in", data);
+                    vm.loading = false;
+                    vm.registerBtnText = "Login";
+                };
+
+                function _onErr(data) {
+                    console.log("ajax err", data);
+                    vm.loading = false;
+                    vm.registerBtnText = "Login";
+                    vm.errMsg = data.Message;
+                };
+
+
+
+            }
+        })();
     </script>
 }
+
+

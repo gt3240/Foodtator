@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_LandingPageLayout.cshtml";
 }
 
-<div class="userbg">
+<div class="userbg" data-ng-controller="homeController as hc">
 
     <div class="registerWindow col-sm-offset-1 col-sm-10 col-lg-offset-4 col-lg-4 text-center">
         <img src="~/Content/images/logo.png" alt="logo" width="80" class="indexLogo" />
@@ -27,31 +27,37 @@
         <hr />
 
         @* Regular register*@
-        <form>
+        <form id="registerForm" name="hc.registerForm" ng-submit="hc.regUser()" novalidate>
             <div class="form-group">
                 <label for="firstName">First Name</label>
-                <input type="text" class="form-control" id="firstName">
+                <input type="text" class="form-control" id="firstName" ng-model="hc.newUser.firstName">
             </div>
 
             <div class="form-group">
                 <label for="lastName">Last Name</label>
-                <input type="text" class="form-control" id="lastName">
+                <input type="text" class="form-control" id="lastName" ng-model="hc.newUser.lastName">
             </div>
 
             <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email">
+                <input type="email" class="form-control" id="email" ng-model="hc.newUser.email">
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password">
+                <input type="password" class="form-control" id="password" ng-model="hc.newUser.password">
             </div>
-
+            
             <div class="text-center">
-                <button type="submit" class="btn btn-raised btn-success">Register</button>
+                <button type="submit" class="btn btn-raised btn-success" ng-disabled="hc.loading == true">{{hc.registerBtnText}}</button>
             </div>
         </form>
+
+        <div ng-show="hc.errMsg">
+            <br />
+            <div class="alert alert-danger">{{hc.errMsg}}</div>
+        </div>
+       
         <br />
         <p>I have an account - <a href="/user/login">Login</a></p>
 
@@ -59,16 +65,71 @@
 </div>
 
 @section scripts{
+    <script src="~/Scripts/FoodTator/Services/UserServices.js"></script>
+
     <script type="text/javascript">
 
-        tkj.page.startUp = function () {
+        (function () {
+            "use strict";
 
-            console.log("register page");
-            $('#howItWorksBtn').addClass('hidden');
-            $('#contactBtn').addClass('hidden');
-            $('#homeBtn').attr('href', '/');
-        };
+            angular.module(APPNAME)
+                .controller('homeController', HomeController);
 
+            HomeController.$inject = ['$scope', '$userService'];
+
+            function HomeController(
+                $scope
+                , $userService) {
+
+                var vm = this;
+                vm.$scope = $scope;
+                vm.$userService = $userService;
+                
+                vm.newUser = {};
+                vm.loading = false;
+                vm.registerBtnText = "Register";
+                vm.errMsg = null;
+
+                vm.regUser = _regUser;
+                vm.onSuccess = _onSuccess;
+                vm.onErr = _onErr;
+
+                init();
+
+                function init() {
+                    console.log("register page");
+                    $('#howItWorksBtn').addClass('hidden');
+                    $('#contactBtn').addClass('hidden');
+                    $('#homeBtn').attr('href', '/');
+
+                    vm.$userService.test();
+                };
+
+                function _regUser() {
+                    vm.newUser.confirmPassword = vm.newUser.password;
+                    console.log("register me", vm.newUser);
+                    vm.$userService.register(vm.newUser, vm.onSuccess, vm.onErr);
+                    vm.loading = true;
+                    vm.registerBtnText = "Loading...";
+                };
+
+                function _onSuccess(data) {
+                    console.log("user added", data);
+                    vm.loading = false;
+                    vm.registerBtnText = "Register";
+                };
+
+                function _onErr(data) {
+                    console.log("ajax err", data);
+                    vm.loading = false;
+                    vm.registerBtnText = "Register";
+                    vm.errMsg = data.Message;
+                };
+
+
+
+            }
+        })();
     </script>
 }
 
