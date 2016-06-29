@@ -13,6 +13,7 @@
         svc.register = _register;
         svc.login = _login;
         svc.checkExternalAuthEmail = _checkExternalAuthEmail;
+        svc.externalAuthInsert = _externalAuthInsert;
 
         $.extend(svc, $baseService);
 
@@ -26,12 +27,12 @@
             });
         };
 
-        function _register(data, onSucess, onErr) {
-            $http.post("/api/user/register/", data).success(onSucess).error(onErr);
+        function _register(data, onSuccess, onErr) {
+            $http.post("/api/user/register/", data).success(onSuccess).error(onErr);
         };
 
-        function _login(data, onSucess, onErr) {
-            $http.post("/api/user/login/", data).success(onSucess).error(onErr);
+        function _login(data, onSuccess, onErr) {
+            $http.post("/api/user/login/", data).success(onSuccess).error(onErr);
         };
 
         function _checkExternalAuthEmail(payload, onSuccess, onError) {
@@ -43,6 +44,10 @@
                 success: onSuccess,
                 error: onError
             });
+        }
+
+        function _externalAuthInsert(payload, onSuccess, onError) {
+            $http.post("/api/user/ExternalAuth/", payload).success(onSuccess).error(onError);
         }
 
         return svc;

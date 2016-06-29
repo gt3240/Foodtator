@@ -60,10 +60,29 @@ label {
     border: none;
 }
 
-.navbar-default .navbar-nav>li>a {
-    color: #ffffff;
+    .navbar-default .navbar-nav > li > a {
+        color: #ffffff;
+    }
+
+        .navbar-default .navbar-nav > li > a:hover {
+            color: antiquewhite;
+        }
+
+.dashbg {
+    width: 100%;
+    height: 100%;
+    background-color:aquamarine;
+    background-size: auto 100%;
 }
 
-.navbar-default .navbar-nav>li>a:hover {
-    color: antiquewhite;
+#checkInEstablishment{
+    width: 90%;
+    height: 50%;
+    border: 1px solid;
+    margin: 20px auto;
+}
+
+.establishmentTitle{
+    font-size:20px;
+    color: #fff;
 }

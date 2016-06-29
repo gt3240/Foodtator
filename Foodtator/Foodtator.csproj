@@ -245,6 +245,7 @@
     <Compile Include="Controllers\Api\YelpApiController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BusinessController.cs" />
+    <Compile Include="Controllers\CheckInController.cs" />
     <Compile Include="Controllers\GooglePlacesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -414,6 +415,7 @@
     <Content Include="Views\Home\Results.cshtml" />
     <Content Include="Views\Home\PageSample.cshtml" />
     <Content Include="Views\Results\Results.cshtml" />
+    <Content Include="Views\CheckIn\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
