@@ -1,13 +1,12 @@
 ﻿@model YelpSharp.Data.SearchResults
 
 
-@{  
+@{
     ViewBag.Title = "PageSample";
     Layout = "~/Views/Shared/_LandingPageLayout.cshtml";
 }
 
-@section Styles
-{
+@section Styles{
     <link href="~/Content/jquery.fullPage.css" rel="stylesheet" />
 }
 
@@ -20,6 +19,7 @@
         <div class="slide" id="slide1">
             <h1>@Model.businesses[0].name</h1>
             <img src="@Model.businesses[0].image_url" />
+        <h1>@Model.region.center.latitude</h1>
         </div><!-- End slide1 -->
 
         <div class="slide" id="slide2">
@@ -40,6 +40,7 @@
 
     <div class="section text-center" id="section2">
         <h1>contact page</h1>
+
     </div><!-- End section4 -->
 
 </div>
@@ -49,11 +50,11 @@
 
     <script src="~/Scripts/jquery.slimscroll.min.js"></script>
     <script src="~/Scripts/jquery.fullPage.js"></script>
-
+    <script src="~/Scripts/bower_components/flip/dist/jquery.flip.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
-            
+
             var anchoScreen = $(window).width();
             $('#fullpage').fullpage({
                 //menu: '#myMenu',
@@ -65,7 +66,6 @@
             });
 
         });
-
 
         $("#homeBtn").click(function () {
             $.fn.fullpage.moveTo(1, 0);
