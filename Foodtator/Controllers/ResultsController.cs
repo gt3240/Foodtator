@@ -22,7 +22,7 @@ namespace Foodtator.Controllers
 
 {
 
-    [RoutePrefix("{Results}")]
+    [RoutePrefix("Results")]
 
     public class ResultsController : Controller
 
