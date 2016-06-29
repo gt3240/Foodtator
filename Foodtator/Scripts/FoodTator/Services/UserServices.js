@@ -12,6 +12,7 @@
         svc.getLeads = _getLeads;
         svc.register = _register;
         svc.login = _login;
+        svc.checkExternalAuthEmail = _checkExternalAuthEmail;
 
         $.extend(svc, $baseService);
 
@@ -32,6 +33,17 @@
         function _login(data, onSucess, onErr) {
             $http.post("/api/user/login/", data).success(onSucess).error(onErr);
         };
+
+        function _checkExternalAuthEmail(payload, onSuccess, onError) {
+            $.ajax({
+                type: 'GET',
+                dataType: "json",
+                url: '/api/user/ExternalAuth/' + payload,
+                data: payload,
+                success: onSuccess,
+                error: onError
+            });
+        }
 
         return svc;
     };

@@ -62,17 +62,16 @@
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/bower_components/angular/angular.min.js"></script>
     <script src="~/Scripts/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="~/Scripts/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/tkj.js"></script>
+    <script src="~/Scripts/FoodTator/Core/tkj.module.js"></script>
 
     @RenderSection("pageInitScripts", required: false)
 
     @*ng js*@
     <script type="text/javascript">
         var APPNAME = 'FoodtatorApp';
-
-        angular.module(APPNAME, ["ngRoute"]);
-
     </script>
 
     <script src="~/Scripts/FoodTator/Core/services/base.service.js"></script>

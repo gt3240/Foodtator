@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_LandingPageLayout.cshtml";
 }
 
-<div class="userbg" data-ng-controller="homeController as hc">
+<div class="userbg">
 
     <div class="registerWindow col-sm-offset-1 col-sm-10 col-lg-offset-4 col-lg-4 text-center">
         <img src="~/Content/images/logo.png" alt="logo" width="80" class="indexLogo" />
@@ -14,9 +14,9 @@
         @* Facebook login*@
         <p class="text-muted text-center" style="color: #ffffff;">Sign up with your Facebook account</p>
         <div class="clearfix">
-            <div>
+            <div ng-controller="facebookLoginController as fbc">
                 <div class="text-center">
-                    <button type="button" class="btn btn-raised btn-primary" ng-click="fbc.fblogin()"><i class="ti-facebook mr-5"></i> Facebook</button>
+                    <button type="button" class="btn btn-raised btn-primary" ng-click="fbc.fblogin()" ng-disabled="fbc.loading == true"><i class="ti-facebook mr-5"></i> {{fbc.registerBtnText}}</button>
                 </div>
 
                 <div id="status">
@@ -27,45 +27,65 @@
         <hr />
 
         @* Regular register*@
-        <form id="registerForm" name="hc.registerForm" ng-submit="hc.regUser()" novalidate>
-            <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input type="text" class="form-control" id="firstName" ng-model="hc.newUser.firstName">
+        <div data-ng-controller="homeController as hc">
+            <form id="registerForm" name="hc.registerForm" ng-submit="hc.regUser()" novalidate>
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" id="firstName" ng-model="hc.newUser.firstName">
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" ng-model="hc.newUser.lastName">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" ng-model="hc.newUser.email">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" ng-model="hc.newUser.password">
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-raised btn-success" ng-disabled="hc.loading == true">{{hc.registerBtnText}}</button>
+                </div>
+            </form>
+
+            <div ng-show="hc.errMsg">
+                <br />
+                <div class="alert alert-danger">{{hc.errMsg}}</div>
             </div>
 
-            <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input type="text" class="form-control" id="lastName" ng-model="hc.newUser.lastName">
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" ng-model="hc.newUser.email">
-            </div>
-
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" ng-model="hc.newUser.password">
-            </div>
-            
-            <div class="text-center">
-                <button type="submit" class="btn btn-raised btn-success" ng-disabled="hc.loading == true">{{hc.registerBtnText}}</button>
-            </div>
-        </form>
-
-        <div ng-show="hc.errMsg">
             <br />
-            <div class="alert alert-danger">{{hc.errMsg}}</div>
+            <p>I have an account - <a href="/user/login">Login</a></p>
         </div>
-       
-        <br />
-        <p>I have an account - <a href="/user/login">Login</a></p>
-
     </div>
 </div>
 
+<!-- Merge modal -->
+<script type="text/ng-template" id="modalContent.html">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" aria-label="Close" ng-click="mc.cancel()"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Existing Account</h4>
+        </div>
+        <div class="modal-body">
+            <p>You already have an account, would you like to merge them?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click="mc.cancel()">Cancel</button>
+            <button type="button" class="btn btn-primary" ng-click="mc.ok()">Merge Accounts</button>
+        </div>
+    </div><!-- /.modal-content -->
+</script>
+
 @section scripts{
     <script src="~/Scripts/FoodTator/Services/UserServices.js"></script>
+    <script src="~/Scripts/FoodTator/Services/FacebookServices.js"></script>
+    <script src="~/Scripts/FoodTator/App/Users/Controllers/FacebookLoginController.js"></script>
 
     <script type="text/javascript">
 
@@ -84,7 +104,7 @@
                 var vm = this;
                 vm.$scope = $scope;
                 vm.$userService = $userService;
-                
+
                 vm.newUser = {};
                 vm.loading = false;
                 vm.registerBtnText = "Register";
