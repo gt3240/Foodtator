@@ -12,7 +12,9 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
-
+using Foodtator.Models.RequestModel;
+using Tkj.Data;
+using Foodtator.Domain;
 
 namespace Foodtator.Services
 {
@@ -49,7 +51,7 @@ namespace Foodtator.Services
             }
         }
 
-        public static IdentityUser InsertUser(RegistrationModel model)
+        public static IdentityUser InsertUser(RegisterRequestModel model)
         {
             int uid = 0;
             IdentityUser newUser = UserService.CreateUser(model.email, model.confirmPassword);
@@ -68,7 +70,8 @@ namespace Foodtator.Services
                }, returnParameters: delegate (SqlParameterCollection param)
                {
                    int.TryParse(param["@UserId"].Value.ToString(), out uid);
-               });
+               }
+               );
 
             //TokenRequest Request = new TokenRequest();
 
@@ -80,7 +83,6 @@ namespace Foodtator.Services
             //Request.TokenType = 1;
 
             //Guid Token = TokenService.InsertToken(Request);
-
 
             //ConfirmationRequestModel RequestEmail = new ConfirmationRequestModel();
 
@@ -100,7 +102,6 @@ namespace Foodtator.Services
 
             return newUser;
         }
-
 
         public static bool Signin(string emailaddress, string password)
         {
@@ -169,7 +170,6 @@ namespace Foodtator.Services
             return user;
         }
 
-
         public static ApplicationUser GetUserById(string userId)
         {
 
@@ -207,7 +207,6 @@ namespace Foodtator.Services
             return result;
         }
 
-
         public static bool Logout()
         {
             bool result = false;
@@ -223,7 +222,6 @@ namespace Foodtator.Services
 
             return result;
         }
-
 
         public static IdentityUser GetCurrentUser()
         {
@@ -273,16 +271,105 @@ namespace Foodtator.Services
                    p = new Domain.UserDetails();
                    int startingIndex = 0; //startingOrdinal
 
-                   //p.Id = reader.GetSafeString(startingIndex++);
-                   //p.Email = reader.GetSafeString(startingIndex++);
-                   //p.PhoneNumber = reader.GetSafeString(startingIndex++);
-                   //p.UserName = reader.GetSafeString(startingIndex++);
+                   p.Id = reader.GetSafeString(startingIndex++);
+                   p.Email = reader.GetSafeString(startingIndex++);
+                   p.PhoneNumber = reader.GetSafeString(startingIndex++);
+                   p.UserName = reader.GetSafeString(startingIndex++);
                }
                );
 
             return p;
         }
 
+        public static string GetExternalAuthEmail(string email)
+        {
+            string p = null;
+
+            DataProvider.ExecuteCmd(GetConnection, "dbo.UsersExternalAuth_SelectByEmail"
+               , inputParamMapper: delegate (SqlParameterCollection paramCollection)
+               {
+                   paramCollection.AddWithValue("@Email", email);
+
+               }, map: delegate (IDataReader reader, short set)
+               {
+                   int startingIndex = 0; //startingOrdinal
+
+                   p = reader.GetSafeString(startingIndex++);
+               }
+               );
+
+            return p;
+        }
+
+        public static void InsertUserExternalAuth(ExternalAuthRequestModel model)
+        {
+            DataProvider.ExecuteNonQuery(GetConnection, "dbo.UsersExternalAuth_Insert"
+               , inputParamMapper: delegate (SqlParameterCollection paramCollection)
+               {
+                   paramCollection.AddWithValue("@UserId", model.userId);
+                   paramCollection.AddWithValue("@ExternalAuthID", model.id);
+                   paramCollection.AddWithValue("@Type", model.type);
+                   paramCollection.AddWithValue("@Email", model.email);
+
+               }, returnParameters: delegate (SqlParameterCollection param)
+               {
+
+               }
+               );
+        }
+
+        public static void userInitialRoleInsert(string userId, string roleId)
+        {
+            DataProvider.ExecuteNonQuery(GetConnection, "dbo.AspNetUserRoles_Update"
+               , inputParamMapper: delegate (SqlParameterCollection paramCollection)
+               {
+                   paramCollection.AddWithValue("@userId", userId);
+                   paramCollection.AddWithValue("@RoleId", roleId);
+
+               }, returnParameters: delegate (SqlParameterCollection param)
+               {
+
+               }
+               );
+        }
+
+        //Select User by Id
+        public static UserDetails GetUserById(Guid id)
+        {
+            //UserDetails p = null;
+            UserDetails p = new UserDetails();
+
+            DataProvider.ExecuteCmd(GetConnection, "dbo.Users_Select_By_Id"
+              , inputParamMapper: delegate (SqlParameterCollection paramCollection)
+              {
+                  paramCollection.AddWithValue("@ID", id);
+
+              },
+              map: (Action<IDataReader, short>)delegate (IDataReader reader, short set)
+              {
+
+                  if (set == 0)
+                  {
+
+                      int startingIndex = 0; //startingOrdinal
+
+                      p.Id = reader.GetSafeString(startingIndex++);
+                      p.UserName = reader.GetSafeString(startingIndex++);
+                      p.FirstName = reader.GetSafeString(startingIndex++);
+                      p.LastName = reader.GetSafeString(startingIndex++);
+                      p.PhoneNumber = reader.GetSafeString(startingIndex++);
+                      p.Email = reader.GetSafeString(startingIndex++);
+                      p.DateAdded = reader.GetSafeDateTime(startingIndex++);
+                      p.DateModified = reader.GetSafeDateTime(startingIndex++);
+                      p.UserType = reader.GetSafeInt32(startingIndex++);
+                      int MediaId = reader.GetSafeInt32(startingIndex++);                     
+                
+                  }
+                 
+              });
+
+            return p;
+        }
 
     }
 }

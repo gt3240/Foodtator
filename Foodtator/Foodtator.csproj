@@ -241,6 +241,7 @@
     <Compile Include="Classes\Exceptions\IdentityResultException.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\SearchApiController.cs" />
+    <Compile Include="Controllers\Api\UserApiController.cs" />
     <Compile Include="Controllers\Api\YelpApiController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BusinessController.cs" />
@@ -269,13 +270,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IAdminUsersService.cs" />
     <Compile Include="Interfaces\ISearchService.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RegistrationModel.cs" />
     <Compile Include="Models\RequestModel\BusinessSearchRequestModel.cs" />
+    <Compile Include="Models\RequestModel\ExternalAuthRequestModel.cs" />
+    <Compile Include="Models\RequestModel\LogInRequestModel.cs" />
     <Compile Include="Models\RequestModel\PaginateListRequestModel.cs" />
+    <Compile Include="Models\RequestModel\RegisterRequestModel.cs" />
     <Compile Include="Models\RequestModel\UserSearchRequestModel.cs" />
     <Compile Include="Models\ResponseModel\BaseResponse.cs" />
     <Compile Include="Models\ResponseModel\ErrorResponse.cs" />
@@ -335,6 +340,8 @@
     <Content Include="Scripts\bower_components\angular\angular.min.js" />
     <Content Include="Scripts\bower_components\angular\index.js" />
     <Content Include="Scripts\FoodTator\App\Restaurants\Templates\RestaurantsMain.html" />
+    <Content Include="Scripts\FoodTator\Core\services\base.service.js" />
+    <Content Include="Scripts\FoodTator\Services\UserServices.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -396,8 +403,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\FoodTator\App\Restaurants\Controllers\" />
-    <Folder Include="Scripts\FoodTator\Core\" />
-    <Folder Include="Scripts\FoodTator\Services\" />
+    <Folder Include="Scripts\FoodTator\Core\controller\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
