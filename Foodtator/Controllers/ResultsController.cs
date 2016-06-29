@@ -28,6 +28,8 @@ namespace Foodtator.Controllers
 
         }
 
+
+        //Yelp Results controller 
         [Route("location/{location}")]
         public ActionResult Results(string location)
         {
@@ -36,6 +38,7 @@ namespace Foodtator.Controllers
             Yelp yelp = new Yelp(Config.Options);
             var searchOptions = new SearchOptions();
             List<Business> resultsList = new List<Business>();
+            //Search options has to be in this format due to YELPSharp. We can add many different options just check his github
             searchOptions.GeneralOptions = new GeneralOptions()
             {
                 term = "Restaurant",
@@ -45,8 +48,11 @@ namespace Foodtator.Controllers
             {
                 location = location
             };
+
+            //Run the search 4 times so we get 80 results in our List to help with the randomness.
             for (int x = 0; x <= 3; x++)
             {
+                //Offset after each iteration by 25
                 searchOptions.GeneralOptions = new GeneralOptions()
                 {
                     term = "Restaurant",
@@ -54,13 +60,13 @@ namespace Foodtator.Controllers
                 };
                 results = yelp.Search(searchOptions).Result;
                 offset += 25;
+                //Select a random index and add to the list
                 Random rnd = new Random();
                 int rndBusiness = rnd.Next(1, results.businesses.Count());
                 resultsList.Add(results.businesses[rndBusiness]);
                 System.Diagnostics.Debug.WriteLine(results);
             }
-
-
+            //Change photos from standard 100x100 to the largest size possible
             foreach (var business in resultsList)
             {
                 if (business.image_url != null)
@@ -71,23 +77,19 @@ namespace Foodtator.Controllers
                 }
             }
             results.businesses = resultsList;
-            for (int i = 0; i < resultsList.Count(); i++)
-            {
-                System.Diagnostics.Debug.WriteLine(results.businesses[i].name);
-            }
-         
             return View(results);
-
         }
-        
+
+
+        //Google results function, not used yet but if we decide to use google places as well this is ready to go. 
         public async System.Threading.Tasks.Task<ActionResult> GoogleResults(string Userlocation)
         {
             PlacesApiQueryResponse result = null;
             using (var client = new HttpClient())
             {
-                var response = await client.
-                    GetStringAsync(string.Format("https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+" + Userlocation + "&key=AIzaSyDFkdz1Hnu4Ob2B5kal_Jl-T8a7NecU8Bw"));
+                var response = await client.GetStringAsync(string.Format("https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+" + Userlocation + "&key=AIzaSyDFkdz1Hnu4Ob2B5kal_Jl-T8a7NecU8Bw"));
                 result = JsonConvert.DeserializeObject<PlacesApiQueryResponse>(response);
+
                 System.Diagnostics.Debug.WriteLine(result.results[0].photos[0].photo_reference);
             }
             return View(result);
