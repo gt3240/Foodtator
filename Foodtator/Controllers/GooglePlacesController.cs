@@ -15,6 +15,7 @@ namespace Foodtator.Controllers
         [Route("")]
         public ActionResult Restaurants()
         {
+            
             return View();
         }
         
