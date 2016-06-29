@@ -251,7 +251,12 @@
     <Compile Include="Controllers\ResultsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Domain\Coordinate.cs" />
+    <Compile Include="Domain\Google\GoogleApiResults.cs" />
+    <Compile Include="Domain\Google\GoogleGeometry.cs" />
+    <Compile Include="Domain\Google\GoogleLocation.cs" />
+    <Compile Include="Domain\Google\GooglePhoto.cs" />
     <Compile Include="Domain\Location.cs" />
+    <Compile Include="Domain\Google\PlacesApiQueryResponse.cs" />
     <Compile Include="Domain\UserDetails.cs" />
     <Compile Include="Enums\AttributesDataType.cs" />
     <Compile Include="Enums\CategoryType.cs" />

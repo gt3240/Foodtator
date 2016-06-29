@@ -11,43 +11,11 @@
 <h2>@ViewBag.Message</h2>
 <div>
 
-    <br />
-    <br />
-
-    @*@using (Html.BeginForm("Results", "Home", FormMethod.Get))
-        {
-            @Html.ValidationSummary(true, "Please enter a search term and location")
-            <div>
-                <fieldset>
-                    <legend>Try YelpSharp!</legend>
-
-                    <div class="editor-label">
-                        @Html.LabelFor(m => m.Term)
-                    </div>
-                    <div class="editor-field">
-                        @Html.TextBoxFor(m => m.Term)
-                        @Html.ValidationMessageFor(m => m.Term)
-                    </div>
-
-                    <div class="editor-label" >
-                        @Html.LabelFor(m => m.Location)
-                    </div>
-                    <div class="editor-field">
-                        @Html.TextBoxFor(m => m.Location)
-                        @Html.ValidationMessageFor(m => m.Location)
-                    </div>
-
-                    <p>
-                        <input type="submit" value="Search Yelp" />
-                    </p>
-                </fieldset>
-            </div>*@
-    }
 
 </div>
 @section scripts{
     <script type="text/javascript">
-
+   
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
                 $.ajax({
@@ -57,22 +25,23 @@
                     success: tkj.page.handlers.success,
                     error:tkj.page.handlers.error
                 });
-
+              
         });
        
     }
 
     tkj.page.handlers.success = function (data) {
-        console.log(data);
+        console.log(data,"DATA");
         var str = data.results[3].address_components[1].long_name;
         str = str.replace(/\s+/g, '-').toLowerCase();
-
-        window.location.replace("/Results/" + str);
+       
+        window.location.replace("/Results/location/" + str);
     }
 
-    tkj.page.handlers.error = function () {
-        alert("success");
+    tkj.page.handlers.error = function (data) {
+        alert("DATATATATATA",data);
     }
+
 
 
     </script>

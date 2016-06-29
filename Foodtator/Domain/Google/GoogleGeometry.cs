@@ -5,9 +5,8 @@ using System.Web;
 
 namespace Foodtator.Domain
 {
-    public class Coordinate
-    {
-        public double latitude { get; set; }
-        public double longitude { get; set; }
+    public class GoogleGeometry
+    { 
+        public Location location { get; set; }
     }
 }
