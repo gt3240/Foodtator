@@ -4,8 +4,8 @@
     //  https://github.com/johnpapa/angular-styleguide#moduleOptionss
     var defaultDependencies = [
         'ui.bootstrap',
-        'ngRoute'
-        //'ngAnimate',
+        'ngRoute',
+        'ngAnimate'
         //'toastr'
     ];
 

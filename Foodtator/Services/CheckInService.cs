@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Foodtator.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -7,7 +8,7 @@ using YelpSharp.Data;
 
 namespace Foodtator.Services
 {
-    public class CheckInService : BaseService
+    public class CheckInService : BaseService,ICheckInService
     {
         public int EstablishmentSelected(Business model)
         {
@@ -20,7 +21,7 @@ namespace Foodtator.Services
                paramCollection.AddWithValue("@UserId", UserService.GetCurrentUserId());
                paramCollection.AddWithValue("@EstablishmentName", model.name);
                paramCollection.AddWithValue("@Latitude", model.location.coordinate.latitude);
-               paramCollection.AddWithValue("@Latitude", model.location.coordinate.longitude);
+               paramCollection.AddWithValue("@Longitude", model.location.coordinate.longitude);
                paramCollection.AddWithValue("@ImageUrl", model.image_url);
                paramCollection.AddWithValue("@Selected", unixTimestamp);
 
@@ -32,7 +33,7 @@ namespace Foodtator.Services
                {
                    int.TryParse(param["@Id"].Value.ToString(), out uid);
                });
-
+         
 
             return uid;
         }

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Sabio.Web.Controllers
+namespace Foodtator.Controllers
 {
     public class BaseController : Controller
     {

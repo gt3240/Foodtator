@@ -1,5 +1,6 @@
 ﻿using Foodtator.Interfaces;
 using Foodtator.Models.ResponseModel;
+using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +14,11 @@ namespace Foodtator.Controllers.Api
     [RoutePrefix("api/CheckIn")]
     public class CheckInApiController : ApiController
     {
-       
-        private ICheckInService _CheckInService { get; set; }
 
-        public  CheckInApiController(ICheckInService CheckInService)
-        {
-            _CheckInService = CheckInService;
-        }
+        [Dependency]
+        public ICheckInService _CheckInService { get; set; }
+
+       
 
         [Route("Selected"), HttpPost]
         public HttpResponseMessage SelectEstablishment(Business model)

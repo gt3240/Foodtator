@@ -18,6 +18,7 @@ namespace Foodtator
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            UnityConfig.RegisterComponents(GlobalConfiguration.Configuration);
         }
     }
 }
