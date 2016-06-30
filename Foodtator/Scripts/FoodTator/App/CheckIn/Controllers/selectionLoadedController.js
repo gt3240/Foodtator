@@ -60,8 +60,9 @@
                 }
                 console.log("calling back");
                
-                vm.showRateBtn = true;
-                vm.$scope.$apply();
+                vm.$scope.$apply(function(){
+                    vm.showRateBtn = true;
+                });
             }
         }
 

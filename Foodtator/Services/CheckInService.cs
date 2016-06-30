@@ -50,14 +50,11 @@ namespace Foodtator.Services
               {
                   paramCollection.AddWithValue("@UserId", userId);
                   paramCollection.AddWithValue("@time", unixTimestamp - 10800);
-
               },
               map: (Action<IDataReader, short>)delegate (IDataReader reader, short set)
               {
-
                   if (set == 0)
                   {
-
                       int startingIndex = 0; //startingOrdinal
 
                       p.establishmentName = reader.GetSafeString(startingIndex++);
@@ -65,7 +62,6 @@ namespace Foodtator.Services
                       p.lon = reader.GetSafeDecimal(startingIndex++);
                       p.imageUrl = reader.GetSafeString(startingIndex++);
                   }
-
               });
 
             return p;

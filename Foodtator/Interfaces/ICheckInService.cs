@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Foodtator.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,6 @@ namespace Foodtator.Interfaces
    public interface ICheckInService
     {
         int EstablishmentSelected(Business model);
+        SelectedEstablishment getSelectedEstablishment(string userId);
     }
 }
