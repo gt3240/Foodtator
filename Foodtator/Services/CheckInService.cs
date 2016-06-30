@@ -50,7 +50,7 @@ namespace Foodtator.Services
               , inputParamMapper: delegate (SqlParameterCollection paramCollection)
               {
                   paramCollection.AddWithValue("@UserId", userId);
-                  paramCollection.AddWithValue("@time", unixTimestamp - 10800);
+                  paramCollection.AddWithValue("@Selected", unixTimestamp - 10800);
               },
               map: (Action<IDataReader, short>)delegate (IDataReader reader, short set)
               {
