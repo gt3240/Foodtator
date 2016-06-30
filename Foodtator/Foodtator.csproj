@@ -262,6 +262,7 @@
     <Compile Include="Domain\Google\GooglePhoto.cs" />
     <Compile Include="Domain\Location.cs" />
     <Compile Include="Domain\Google\PlacesApiQueryResponse.cs" />
+    <Compile Include="Domain\SelectedEstablishment.cs" />
     <Compile Include="Domain\UserDetails.cs" />
     <Compile Include="Enums\AttributesDataType.cs" />
     <Compile Include="Enums\CategoryType.cs" />
@@ -366,11 +367,17 @@
     <Content Include="Scripts\bower_components\angular\angular.js" />
     <Content Include="Scripts\bower_components\angular\angular.min.js" />
     <Content Include="Scripts\bower_components\angular\index.js" />
+    <Content Include="Scripts\FoodTator\App\CheckIn\CheckInConfig.js" />
+    <Content Include="Scripts\FoodTator\App\CheckIn\Controllers\rateController.js" />
+    <Content Include="Scripts\FoodTator\App\CheckIn\Controllers\selectionLoadedController.js" />
+    <Content Include="Scripts\FoodTator\App\CheckIn\Templates\rate.html" />
+    <Content Include="Scripts\FoodTator\App\CheckIn\Templates\selectionLoaded.html" />
     <Content Include="Scripts\FoodTator\App\Restaurants\Templates\RestaurantsMain.html" />
     <Content Include="Scripts\FoodTator\App\Users\Controllers\FacebookLoginController.js" />
     <Content Include="Scripts\FoodTator\Core\services\base.service.js" />
     <Content Include="Scripts\FoodTator\Core\tkj.module.js" />
     <Content Include="Scripts\FoodTator\Services\FacebookServices.js" />
+    <Content Include="Scripts\FoodTator\Services\GoogleMapService.js" />
     <Content Include="Scripts\FoodTator\Services\ResultsService.js" />
     <Content Include="Scripts\FoodTator\Services\UserServices.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
