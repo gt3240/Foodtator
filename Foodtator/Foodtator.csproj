@@ -240,6 +240,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Classes\Exceptions\IdentityResultException.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\CheckInApiController.cs" />
     <Compile Include="Controllers\Api\SearchApiController.cs" />
     <Compile Include="Controllers\Api\UserApiController.cs" />
     <Compile Include="Controllers\Api\YelpApiController.cs" />
@@ -271,6 +272,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IAdminUsersService.cs" />
+    <Compile Include="Interfaces\ICheckInService.cs" />
     <Compile Include="Interfaces\ISearchService.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
