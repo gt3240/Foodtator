@@ -239,6 +239,9 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Classes\Exceptions\IdentityResultException.cs" />
+    <Compile Include="Classes\Extensions\DictionaryExt.cs" />
+    <Compile Include="Classes\Extensions\EnumExt.cs" />
+    <Compile Include="Classes\Extensions\HtmlHelperExt.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CheckInApiController.cs" />
     <Compile Include="Controllers\Api\SearchApiController.cs" />
@@ -246,6 +249,7 @@
     <Compile Include="Controllers\Api\YelpApiController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BusinessController.cs" />
+    <Compile Include="Controllers\CheckInController.cs" />
     <Compile Include="Controllers\GooglePlacesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -412,6 +416,7 @@
     <Content Include="Views\Home\PageSample.cshtml" />
     <Content Include="Views\Home\PageSample.cshtml" />
     <Content Include="Views\Results\Results.cshtml" />
+    <Content Include="Views\CheckIn\Index.cshtml" />
     <Content Include="Views\Results\GoogleResults.cshtml" />
   </ItemGroup>
   <ItemGroup>

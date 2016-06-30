@@ -135,6 +135,7 @@
 
                 function _onSuccess(data) {
                     console.log("user added", data);
+                    window.location.href = '/dashboard';
                     vm.loading = false;
                     vm.registerBtnText = "Register";
                 };

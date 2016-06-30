@@ -76,10 +76,10 @@
             console.log("external auth data", data)
             if (data.Item.Id) {
                 console.log("logged in", data.Item.Id);
-                //window.location.href = '/user/profile/' + data.item.Id;
+                window.location.href = '/dashboard';
             } else {
-                console.log("dup user alert");
-                vm.payload.userId = data.item;
+                console.log("dup user alert", data);
+                vm.payload.userId = data.Item;
                 vm.openModal();
             }
         };
@@ -110,7 +110,7 @@
 
         function _mergeAccounts() {
             console.log("merging accounts", vm.payload);
-            vm.$publicService.externalAuthInsert(vm.payload, vm.externalAuthResult, vm.ajaxErr);
+            vm.$userService.externalAuthInsert(vm.payload, vm.externalAuthResult, vm.ajaxErr);
         };
 
         function _ajaxErr() {
