@@ -7,31 +7,27 @@
 }
 
 @section Styles{
-    <link href="~/Content/jquery.fullPage.css" rel="stylesheet" />
+
+    <link href="~/Content/SliderStyle.css" rel="stylesheet" />
 }
+<div data-ng-controller="resultsController as rc">
+    <div class="container slider">
+        <div ng-repeat="slide in rc.data">
+            <img class="slide" ng-hide="!rc.isCurrentSlideIndex($index)" ng-src="{{slide.image_url}}">
+            <button class="btn btn-success selectButton" ng-click="rc.selectSlide(slide)">Eat</button>
+            <button class="btn btn-success selectButton" ng-click="rc.prevSlide()">Prev</button>
+            <button class="btn btn-warning selectButton" ng-click="rc.nextSlide()">Next</button>
+        </div>
+        <a class="arrow prev" href="#" ng-click="rc.nextSlide()"></a>
+        <a class="arrow next" href="#" ng-click="rc.prevSlide()"></a>
+        <nav class="SliderNav">
+            <div class="wrapper">
+                <div class="dot">
 
-
-
-
-<div id="fullpage" data-ng-controller="resultsController as rc">
-    <div class="section text-center" id="section0">
-        <h1>home section</h1>
-    </div><!-- End section0 -->
-
-    <div class="section text-center" id="section1" data-ng-repeat="result in rc.data">
-        <div class="slide" id="slide1">
-            <h1>name</h1>
-            <img ng-src="{{result.image_url}}" />
-            <h1>{{result.name}}</h1>
-            <input />
-        </div><!-- End slide1 -->
+                </div>
+            </div>
+        </nav>
     </div>
-
-    <div class="section text-center" id="section2">
-        <h1>contact page</h1>
-
-    </div><!-- End section4 -->
-
 </div>
 
 <script type="application/json" id="modelData">
@@ -40,10 +36,8 @@
 
 
 @section scripts{
-<script src="~/Scripts/FoodTator/Services/ResultsService.js"></script>
-    <script src="~/Scripts/jquery.slimscroll.min.js"></script>
-    <script src="~/Scripts/jquery.fullPage.js"></script>
-    <script src="~/Scripts/bower_components/flip/dist/jquery.flip.min.js"></script>
+    <script src="~/Scripts/FoodTator/Services/ResultsService.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
     <script type="text/javascript">
 
         (function () {
@@ -61,125 +55,67 @@
                 var vm = this;
                 vm.$scope = $scope;
                 vm.$resultsService = $resultsService;
-
-                vm.logUser = {};
-                vm.loading = false;
-                vm.registerBtnText = "Login";
+                vm.currentIndex = 0;
+                vm.setCurrentSlideIndex = _setCurrentSlideIndex;
+                vm.isCurrentSlideIndex = _isCurrentSlideIndex;
+                vm.prevSlide = _prevSlide;
+                vm.nextSlide = _nextSlide;
+                vm.selectSlide = _selectSlide;
                 vm.errMsg = null;
                 vm.data = [];
-                vm.logUserClicked = _logUserClicked;
-                vm.onSuccess = _onSuccess;
-                vm.onErr = _onErr;
+
 
                 init();
 
                 function init() {
-                    var anchoScreen = $(window).width();
-                    $('#fullpage').fullpage({
-                        //menu: '#myMenu',
-                        //'autoScrolling': false,
-                        slidesColor: ['#00BFBB', '#939FAA', '#00CEF1'],
-                        'afterLoad': function () {
-
-                        },
-                    });
                     vm.data = JSON.parse($("#modelData").html());
                     console.log("data is ", vm.data);
+                }
+
+                function _setCurrentSlideIndex(index) {
+                    vm.currentIndex = index;
                 };
 
+                function _isCurrentSlideIndex(index) {
+                    return vm.currentIndex === index;
+                };
+                function _prevSlide() {
+                    vm.currentIndex = (vm.currentIndex < vm.data.length - 1) ? ++vm.currentIndex : 0;
+                };
+                function _nextSlide() {
 
-                function _logUserClicked() {
-                    vm.logUser.confirmPassword = vm.logUser.password;
-                    console.log("log me in", vm.logUser);
-                    vm.$userService.login(vm.logUser, vm.onSuccess, vm.onErr);
-                    vm.loading = true;
-                    vm.registerBtnText = "Loading...";
+                    vm.currentIndex = (vm.currentIndex > 0) ? --vm.currentIndex : vm.data.length - 1;
+                };
+                function _selectSlide(data) {
+                    //var payload={
+                    //    EstablishmentName:data.name,
+                    //    Latitude:data.location.coordinate.latitude,
+                    //    Latitude:data.location.coordinate.latitude,
+                    //    ImageUrl:data.image_url
+                    //};
+                    var payload = data;
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/api/CheckIn/Selected',
+                        data: payload,
+                        datatype: 'json',
+                        success: _Success,
+                        error: data
+                    });
                 };
 
-                function _onSuccess(data) {
-                    console.log("user logged in", data);
-                    window.location.href = '/dashboard';
-                    vm.loading = false;
-                    vm.registerBtnText = "Login";
-                };
-
-                function _onErr(data) {
-                    console.log("ajax err", data);
-                    vm.loading = false;
-                    vm.registerBtnText = "Login";
-                    vm.errMsg = data.Message;
-                };
-                $("#homeBtn").click(function () {
-                    $.fn.fullpage.moveTo(1, 0);
-                });
-
-                $("#howItWorksBtn").click(function () {
-                    $.fn.fullpage.moveTo(2, 0);
-                });
-
-                $("#contactBtn").click(function () {
-                    $.fn.fullpage.moveTo(3, 0);
-                });
+                function _Success(data) {
+                    console.log("Data passed", data);
+                }
+                function _Error() {
+                    console.log("Fail")
+                }
 
 
-
-            }
+            };
         })();
     </script>
 
-    <script src="js/validate.js"></script>
-    <script src="js/jquery.validate.min.js"></script>\
+
 }
-
-@*<script type="text/javascript">
-            $(document).ready(function () {
-
-                var data = JSON.parse($("#modelData").html());
-                console.log("data is ", data);
-
-                var anchoScreen = $(window).width();
-                $('#fullpage').fullpage({
-                    //menu: '#myMenu',
-                    //'autoScrolling': false,
-                    slidesColor: ['#00BFBB', '#939FAA', '#00CEF1'],
-                    'afterLoad': function () {
-
-                    },
-                });
-
-            });
-
-
-            $(".slide").click(function () {
-
-                //    type:'POST',
-                //    url:'api/CheckIn/Selected',
-                //    data:payload,
-                //    success: tkj.page.onSuccess,
-                //    error:tkj.page.onError
-
-                //});
-            });
-                //tkj.page.onSuccess=function(){
-
-                //}
-
-                //tkj.page.onError=function(){
-
-                //}
-
-            $("#homeBtn").click(function () {
-                $.fn.fullpage.moveTo(1, 0);
-            });
-
-            $("#howItWorksBtn").click(function () {
-                $.fn.fullpage.moveTo(2, 0);
-            });
-
-            $("#contactBtn").click(function () {
-                $.fn.fullpage.moveTo(3, 0);
-            });
-    </script>
-        <script src="js/validate.js"></script>
-        <script src="js/jquery.validate.min.js"></script>
-    }*@

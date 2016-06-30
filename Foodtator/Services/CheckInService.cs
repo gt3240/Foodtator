@@ -1,4 +1,5 @@
-﻿using Foodtator.Domain;
+﻿using Foodtator.Interfaces;
+using Foodtator.Domain;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +11,7 @@ using YelpSharp.Data;
 
 namespace Foodtator.Services
 {
-    public class CheckInService : BaseService
+    public class CheckInService : BaseService,ICheckInService
     {
         public int EstablishmentSelected(Business model)
         {
@@ -20,12 +21,12 @@ namespace Foodtator.Services
             DataProvider.ExecuteNonQuery(GetConnection, "Establishment_Selected"
                , inputParamMapper: delegate (SqlParameterCollection paramCollection)
                {
-                   paramCollection.AddWithValue("@UserId", UserService.GetCurrentUserId());
-                   paramCollection.AddWithValue("@EstablishmentName", model.name);
-                   paramCollection.AddWithValue("@Latitude", model.location.coordinate.latitude);
-                   paramCollection.AddWithValue("@Latitude", model.location.coordinate.longitude);
-                   paramCollection.AddWithValue("@ImageUrl", model.image_url);
-                   paramCollection.AddWithValue("@Selected", unixTimestamp);
+               paramCollection.AddWithValue("@UserId", UserService.GetCurrentUserId());
+               paramCollection.AddWithValue("@EstablishmentName", model.name);
+               paramCollection.AddWithValue("@Latitude", model.location.coordinate.latitude);
+               paramCollection.AddWithValue("@Longitude", model.location.coordinate.longitude);
+               paramCollection.AddWithValue("@ImageUrl", model.image_url);
+               paramCollection.AddWithValue("@Selected", unixTimestamp);
 
                    SqlParameter p = new SqlParameter("@Id", System.Data.SqlDbType.Int);
                    p.Direction = System.Data.ParameterDirection.Output;
