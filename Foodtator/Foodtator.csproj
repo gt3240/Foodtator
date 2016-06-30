@@ -359,6 +359,7 @@
     <Content Include="Scripts\FoodTator\Core\services\base.service.js" />
     <Content Include="Scripts\FoodTator\Core\tkj.module.js" />
     <Content Include="Scripts\FoodTator\Services\FacebookServices.js" />
+    <Content Include="Scripts\FoodTator\Services\ResultsService.js" />
     <Content Include="Scripts\FoodTator\Services\UserServices.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

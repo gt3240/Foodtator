@@ -11,35 +11,21 @@
 }
 
 
-<div id="fullpage">
+
+
+<div id="fullpage" data-ng-controller="resultsController as rc">
     <div class="section text-center" id="section0">
         <h1>home section</h1>
     </div><!-- End section0 -->
 
-    <div class="section text-center" id="section1">
+    <div class="section text-center" id="section1" data-ng-repeat="result in rc.data">
         <div class="slide" id="slide1">
-            <h1>@Model.businesses[0].name</h1>
-            <img src="@Model.businesses[0].image_url" />
-        <h1>@Model.region.center.latitude</h1>
-        <input/>
+            <h1>name</h1>
+            <img ng-src="{{result.image_url}}" />
+            <h1>{{result.name}}</h1>
+            <input />
         </div><!-- End slide1 -->
-
-        <div class="slide" id="slide2">
-            <h1>@Model.businesses[1].name</h1>
-            <img src="@Model.businesses[1].image_url" />
-        </div><!-- End slide2 -->
-
-        <div class="slide" id="slide3">
-            <h1>@Model.businesses[2].name</h1>
-            <img src="@Model.businesses[2].image_url" />
-        @Model.businesses[2].location.coordinate.latitude
-        </div><!-- End slide3 -->
-
-        <div class="slide" id="slide4">
-            <h1>@Model.businesses[3].name</h1>
-            <img src="@Model.businesses[3].image_url" />
-        </div><!-- End slide4 -->
-    </div><!-- End section1 -->
+    </div>
 
     <div class="section text-center" id="section2">
         <h1>contact page</h1>
@@ -54,60 +40,148 @@
 
 
 @section scripts{
-
+<script src="~/Scripts/FoodTator/Services/ResultsService.js"></script>
     <script src="~/Scripts/jquery.slimscroll.min.js"></script>
     <script src="~/Scripts/jquery.fullPage.js"></script>
     <script src="~/Scripts/bower_components/flip/dist/jquery.flip.min.js"></script>
-
     <script type="text/javascript">
-        $(document).ready(function () {
 
-            var data = JSON.parse($("#modelData").html());
-            console.log("data is ", data);
+        (function () {
+            "use strict";
 
-            var anchoScreen = $(window).width();
-            $('#fullpage').fullpage({
-                //menu: '#myMenu',
-                //'autoScrolling': false,
-                slidesColor: ['#00BFBB', '#939FAA', '#00CEF1'],
-                'afterLoad': function () {
+            angular.module(APPNAME)
+                .controller('resultsController', ResultsController);
 
-                },
+            ResultsController.$inject = ['$scope', '$resultsService'];
+
+            function ResultsController(
+                $scope
+                , $resultsService) {
+
+                var vm = this;
+                vm.$scope = $scope;
+                vm.$resultsService = $resultsService;
+
+                vm.logUser = {};
+                vm.loading = false;
+                vm.registerBtnText = "Login";
+                vm.errMsg = null;
+                vm.data = [];
+                vm.logUserClicked = _logUserClicked;
+                vm.onSuccess = _onSuccess;
+                vm.onErr = _onErr;
+
+                init();
+
+                function init() {
+                    var anchoScreen = $(window).width();
+                    $('#fullpage').fullpage({
+                        //menu: '#myMenu',
+                        //'autoScrolling': false,
+                        slidesColor: ['#00BFBB', '#939FAA', '#00CEF1'],
+                        'afterLoad': function () {
+
+                        },
+                    });
+                    vm.data = JSON.parse($("#modelData").html());
+                    console.log("data is ", vm.data);
+
+
+                    
+                };
+
+                function _logUserClicked() {
+                    vm.logUser.confirmPassword = vm.logUser.password;
+                    console.log("log me in", vm.logUser);
+                    vm.$userService.login(vm.logUser, vm.onSuccess, vm.onErr);
+                    vm.loading = true;
+                    vm.registerBtnText = "Loading...";
+                };
+
+                function _onSuccess(data) {
+                    console.log("user logged in", data);
+                    window.location.href = '/dashboard';
+                    vm.loading = false;
+                    vm.registerBtnText = "Login";
+                };
+
+                function _onErr(data) {
+                    console.log("ajax err", data);
+                    vm.loading = false;
+                    vm.registerBtnText = "Login";
+                    vm.errMsg = data.Message;
+                };
+                $("#homeBtn").click(function () {
+                    $.fn.fullpage.moveTo(1, 0);
+                });
+
+                $("#howItWorksBtn").click(function () {
+                    $.fn.fullpage.moveTo(2, 0);
+                });
+
+                $("#contactBtn").click(function () {
+                    $.fn.fullpage.moveTo(3, 0);
+                });
+
+
+
+            }
+        })();
+    </script>
+
+    <script src="js/validate.js"></script>
+    <script src="js/jquery.validate.min.js"></script>\
+}
+
+@*<script type="text/javascript">
+            $(document).ready(function () {
+
+                var data = JSON.parse($("#modelData").html());
+                console.log("data is ", data);
+
+                var anchoScreen = $(window).width();
+                $('#fullpage').fullpage({
+                    //menu: '#myMenu',
+                    //'autoScrolling': false,
+                    slidesColor: ['#00BFBB', '#939FAA', '#00CEF1'],
+                    'afterLoad': function () {
+
+                    },
+                });
+
             });
 
-        });
 
-        
-        $(".slide").click(function () {
-          
-            //    type:'POST',
-            //    url:'api/CheckIn/Selected',
-            //    data:payload,
-            //    success: tkj.page.onSuccess,
-            //    error:tkj.page.onError
+            $(".slide").click(function () {
 
-            //});
-        });
-            //tkj.page.onSuccess=function(){
+                //    type:'POST',
+                //    url:'api/CheckIn/Selected',
+                //    data:payload,
+                //    success: tkj.page.onSuccess,
+                //    error:tkj.page.onError
 
-            //}
+                //});
+            });
+                //tkj.page.onSuccess=function(){
 
-            //tkj.page.onError=function(){
+                //}
 
-            //}
-     
-        $("#homeBtn").click(function () {
-            $.fn.fullpage.moveTo(1, 0);
-        });
+                //tkj.page.onError=function(){
 
-        $("#howItWorksBtn").click(function () {
-            $.fn.fullpage.moveTo(2, 0);
-        });
+                //}
 
-        $("#contactBtn").click(function () {
-            $.fn.fullpage.moveTo(3, 0);
-        });
+            $("#homeBtn").click(function () {
+                $.fn.fullpage.moveTo(1, 0);
+            });
+
+            $("#howItWorksBtn").click(function () {
+                $.fn.fullpage.moveTo(2, 0);
+            });
+
+            $("#contactBtn").click(function () {
+                $.fn.fullpage.moveTo(3, 0);
+            });
     </script>
-    <script src="js/validate.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-}
+        <script src="js/validate.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+    }*@
