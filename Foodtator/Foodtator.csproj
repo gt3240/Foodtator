@@ -239,6 +239,9 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Classes\Exceptions\IdentityResultException.cs" />
+    <Compile Include="Classes\Extensions\DictionaryExt.cs" />
+    <Compile Include="Classes\Extensions\EnumExt.cs" />
+    <Compile Include="Classes\Extensions\HtmlHelperExt.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\SearchApiController.cs" />
     <Compile Include="Controllers\Api\UserApiController.cs" />
