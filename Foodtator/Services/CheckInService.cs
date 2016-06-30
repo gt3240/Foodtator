@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Foodtator.Domain;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using Tkj.Data;
 using YelpSharp.Data;
 
 namespace Foodtator.Services
@@ -17,12 +20,12 @@ namespace Foodtator.Services
             DataProvider.ExecuteNonQuery(GetConnection, "Establishment_Selected"
                , inputParamMapper: delegate (SqlParameterCollection paramCollection)
                {
-               paramCollection.AddWithValue("@UserId", UserService.GetCurrentUserId());
-               paramCollection.AddWithValue("@EstablishmentName", model.name);
-               paramCollection.AddWithValue("@Latitude", model.location.coordinate.latitude);
-               paramCollection.AddWithValue("@Latitude", model.location.coordinate.longitude);
-               paramCollection.AddWithValue("@ImageUrl", model.image_url);
-               paramCollection.AddWithValue("@Selected", unixTimestamp);
+                   paramCollection.AddWithValue("@UserId", UserService.GetCurrentUserId());
+                   paramCollection.AddWithValue("@EstablishmentName", model.name);
+                   paramCollection.AddWithValue("@Latitude", model.location.coordinate.latitude);
+                   paramCollection.AddWithValue("@Latitude", model.location.coordinate.longitude);
+                   paramCollection.AddWithValue("@ImageUrl", model.image_url);
+                   paramCollection.AddWithValue("@Selected", unixTimestamp);
 
                    SqlParameter p = new SqlParameter("@Id", System.Data.SqlDbType.Int);
                    p.Direction = System.Data.ParameterDirection.Output;
@@ -37,7 +40,37 @@ namespace Foodtator.Services
             return uid;
         }
 
+        public SelectedEstablishment getSelectedEstablishment(string userId)
+        {
+            SelectedEstablishment p = new SelectedEstablishment();
+            Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
 
+            DataProvider.ExecuteCmd(GetConnection, "dbo.EstablishmentCheckIn_Get"
+              , inputParamMapper: delegate (SqlParameterCollection paramCollection)
+              {
+                  paramCollection.AddWithValue("@UserId", userId);
+                  paramCollection.AddWithValue("@time", unixTimestamp - 10800);
+
+              },
+              map: (Action<IDataReader, short>)delegate (IDataReader reader, short set)
+              {
+
+                  if (set == 0)
+                  {
+
+                      int startingIndex = 0; //startingOrdinal
+
+                      p.establishmentName = reader.GetSafeString(startingIndex++);
+                      p.lat = reader.GetSafeDecimal(startingIndex++);
+                      p.lon = reader.GetSafeDecimal(startingIndex++);
+                      p.imageUrl = reader.GetSafeString(startingIndex++);
+                  }
+
+              });
+
+            return p;
+
+        }
 
 
     }
