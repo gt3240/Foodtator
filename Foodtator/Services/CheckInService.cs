@@ -1,6 +1,4 @@
-﻿using Foodtator.Interfaces;
-using Foodtator.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -8,6 +6,8 @@ using System.Linq;
 using System.Web;
 using Tkj.Data;
 using YelpSharp.Data;
+using Foodtator.Interfaces;
+using Foodtator.Domain;
 
 namespace Foodtator.Services
 {
