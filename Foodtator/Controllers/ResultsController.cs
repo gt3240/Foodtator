@@ -38,7 +38,7 @@ namespace Foodtator.Controllers
         public ActionResult Results(string location)
         {
 
-            SelectedEstablishment selected = _CheckInService.getSelectedEstablishment(UserService.GetCurrentUserId());
+            SelectedEstablishment selected = _CheckInService.getSelectedEstablishment();
 
             if (selected.establishmentName == null)
             {

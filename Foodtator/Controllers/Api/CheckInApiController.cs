@@ -37,7 +37,7 @@ namespace Foodtator.Controllers.Api
         }
 
         [Route("Selected"), HttpGet]
-        public HttpResponseMessage GetSelectEstablishment([FromUri]string userId)
+        public HttpResponseMessage GetSelectEstablishment()
         {
 
             if (!ModelState.IsValid)
@@ -46,7 +46,22 @@ namespace Foodtator.Controllers.Api
             }
 
             ItemResponse<SelectedEstablishment> response = new ItemResponse<SelectedEstablishment>();
-            response.Item = _CheckInService.getSelectedEstablishment(userId);
+            response.Item = _CheckInService.getSelectedEstablishment();
+
+            return Request.CreateResponse(response);
+        }
+
+        [Route("checkIn"), HttpPut]
+        public HttpResponseMessage checkIn([FromUri]int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+
+            SuccessResponse response = new SuccessResponse();
+
+            _CheckInService.CheckIn(id);
 
             return Request.CreateResponse(response);
         }

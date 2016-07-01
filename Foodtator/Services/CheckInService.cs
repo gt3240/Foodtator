@@ -42,7 +42,7 @@ namespace Foodtator.Services
             return uid;
         }
 
-        public SelectedEstablishment getSelectedEstablishment(string userId)
+        public SelectedEstablishment getSelectedEstablishment()
         {
             SelectedEstablishment p = new SelectedEstablishment();
             Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
@@ -50,7 +50,7 @@ namespace Foodtator.Services
             DataProvider.ExecuteCmd(GetConnection, "dbo.EstablishmentCheckIn_Get"
               , inputParamMapper: delegate (SqlParameterCollection paramCollection)
               {
-                  paramCollection.AddWithValue("@UserId", userId);
+                  paramCollection.AddWithValue("@UserId", UserService.GetCurrentUserId());
                   paramCollection.AddWithValue("@Selected", unixTimestamp - threeHours);
               },
               map: (Action<IDataReader, short>)delegate (IDataReader reader, short set)
@@ -59,6 +59,7 @@ namespace Foodtator.Services
                   {
                       int startingIndex = 0; //startingOrdinal
 
+                      p.id = reader.GetSafeInt32(startingIndex++);
                       p.establishmentName = reader.GetSafeString(startingIndex++);
                       p.lat = reader.GetSafeDecimal(startingIndex++);
                       p.lon = reader.GetSafeDecimal(startingIndex++);
@@ -67,7 +68,23 @@ namespace Foodtator.Services
               });
 
             return p;
-
         }
+
+        // checkin
+        public void CheckIn(int id)
+        {
+
+            DataProvider.ExecuteNonQuery(GetConnection, "dbo.Establishment_CheckIn"
+               , inputParamMapper: delegate (SqlParameterCollection paramCollection)
+               {
+                   paramCollection.AddWithValue("@Id", id);
+                  
+               }, returnParameters: delegate (SqlParameterCollection param)
+               {
+               }
+               );
+        }
+
+
     }
 }

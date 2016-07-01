@@ -11,7 +11,7 @@ namespace Foodtator.Interfaces
    public interface ICheckInService
     {
         int EstablishmentSelected(Business model);
-        SelectedEstablishment getSelectedEstablishment(string userId);
-       
+        SelectedEstablishment getSelectedEstablishment();
+        void CheckIn(int id);
     }
 }

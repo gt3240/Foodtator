@@ -381,6 +381,7 @@
     <Content Include="Scripts\FoodTator\App\Users\Controllers\FacebookLoginController.js" />
     <Content Include="Scripts\FoodTator\Core\services\base.service.js" />
     <Content Include="Scripts\FoodTator\Core\tkj.module.js" />
+    <Content Include="Scripts\FoodTator\Services\CheckInService.js" />
     <Content Include="Scripts\FoodTator\Services\FacebookServices.js" />
     <Content Include="Scripts\FoodTator\Services\GoogleMapService.js" />
     <Content Include="Scripts\FoodTator\Services\PublicService.js" />
