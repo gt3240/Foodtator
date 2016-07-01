@@ -3,8 +3,6 @@
 }
 
 .slider {
-  width: 900px;
-    height: 800px;
     overflow: hidden;
     position: relative;
     margin-top: 20px;
@@ -20,7 +18,20 @@
     float:right; 
     margin-left: 5px;
     z-index: 3;
+}
    
+.nextButton{
+    display:inline-block;
+    top: 100px;
+    z-index: 3;
+    float: left;
+}
+
+.previousButton{
+    display:inline-block;
+    top: 100px;
+    z-index: 3;
+    float: right;
 }
 
 .arrow {
