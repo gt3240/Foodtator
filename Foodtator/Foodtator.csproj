@@ -244,7 +244,6 @@
     <Compile Include="Classes\Extensions\HtmlHelperExt.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CheckInApiController.cs" />
-    <Compile Include="Controllers\Api\PublicApiController.cs" />
     <Compile Include="Controllers\Api\SearchApiController.cs" />
     <Compile Include="Controllers\Api\UserApiController.cs" />
     <Compile Include="Controllers\Api\YelpApiController.cs" />

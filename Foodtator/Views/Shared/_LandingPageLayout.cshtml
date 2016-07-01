@@ -60,7 +60,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" id="homeBtn">Home</a></li>
+                    <li><a href="/Home" id="homeBtn">Home</a></li>
                     <li><a href="#" id="howItWorksBtn">How it works</a></li>
                     <li><a href="#" id="contactBtn">Contact us</a></li>
                 </ul>
@@ -84,7 +84,6 @@
     <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/tkj.js"></script>
     <script src="~/Scripts/FoodTator/Core/tkj.module.js"></script>
-
     @RenderSection("pageInitScripts", required: false)
 
     @*ng js*@
@@ -92,7 +91,9 @@
         var APPNAME = 'FoodtatorApp';
     </script>
 
+    <script src="~/Scripts/FoodTator/Services/PublicService.js"></script>
     <script src="~/Scripts/FoodTator/Core/services/base.service.js"></script>
+    <script src="~/Scripts/FoodTator/App/Public/Controllers/PublicController.js"></script>
 
     @RenderSection("scripts", required: false)
 
