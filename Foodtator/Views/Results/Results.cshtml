@@ -12,52 +12,43 @@
 }
 <div data-ng-controller="resultsController as rc">
 
-    <div class="container slider">
-        <div class="row" ng-repeat="slide in rc.data">
-            <div class="feedContainer col-md-6 col-md-offset-3" ng-if="rc.activeItem == $index">
-                <div>
-                    <div class="feedTitleBox">
-                        {{slide.name}}
-                    </div>
-                    <div class="feedImgBox">
-                        <img ng-src="{{slide.image_url}}" width="100%" />
-                    </div>
-                    <div class="feedControlBox">
-                        <button class="pull-left btn btn-danger" ng-click="rc.nextSlide($index + 1)">Trash</button>
-                        <button class="pull-right btn btn-success" ng-click="rc.selectSlide($index)">select</button>
-                    </div>
+    <div class="container">
+        <div class="row" ng-show="rc.showPicture">
+            <div class="feedContainer col-md-6 col-md-offset-3">
+                <div class="feedTitleBox">
+                    <span class="pull-left">{{rc.activeLoc.name}}</span>
+                    <span class="pull-right">{{rc.activeLoc.display_phone}}</span>
+                    <div id="clear"></div>
+                </div>
+                <div class="feedImgBox">
+                    <img ng-src="{{rc.activeLoc.image_url}}" ng-class="{fadeInPicture: rc.startFadePicture}" />
+                </div>
+                <div class="feedControlBox">
+                    <a class="pull-left" ng-click="rc.nextSlide()"><span class="glyphicon glyphicon-remove-circle text-danger"></span></a>
+                    <a class="pull-right" ng-click="rc.selectSlide(rc.activeLoc)"><span class="glyphicon glyphicon-ok-circle text-success"></span></a>
+                    <div id="clear"></div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!--
-    <div class="container slider col-lg-4">
-        <div ng-repeat="slide in rc.data">
-            <img class="slide" ng-hide="!rc.isCurrentSlideIndex($index)" ng-src="{{slide.image_url}}">
-            <button class="btn btn-success selectButton" ng-click="rc.selectSlide(slide)">Eat</button>
-            <button class="btn btn-success selectButton" ng-click="rc.prevSlide()">Prev</button>
-            <button class="btn btn-warning selectButton" ng-click="rc.nextSlide()">Next</button>
+        <div class="subtractPoints col-md-6 col-md-offset-3" ng-show="rc.showMinusPoints" ng-class="{fade: rc.startFade}">
+            -5
         </div>
-        @*<a class="arrow prev" href="#" ng-click="rc.nextSlide()"></a>
-        <a class="arrow next" href="#" ng-click="rc.prevSlide()"></a>
-        <nav class="SliderNav">
-            <div class="wrapper">
-                <div class="dot">
-                    <button class="btn btn-success" ng-click="rc.prevSlide()">Prev</button>
-                    <button class="btn btn-warning" ng-click="rc.nextSlide()">Next</button>
+
+        <div class="row" ng-show="rc.showNoMoreFeeds">
+            <div class="feedContainer col-md-6 col-md-offset-3">
+                <div class="feedTitleBox text-center">
+                    <h2>No more feeds, u indecisive *#~*&!</h2>
                 </div>
             </div>
-        </nav>*@
+        </div>
+
     </div>
-    -->
 </div>
 
 <script type="application/json" id="modelData">
     @Html.RawJson(Model.businesses)
 </script>
-
-
 
 @section scripts{
     <script src="~/Scripts/FoodTator/Services/ResultsService.js"></script>
@@ -70,48 +61,62 @@
             angular.module(APPNAME)
                 .controller('resultsController', ResultsController);
 
-            ResultsController.$inject = ['$scope', '$resultsService'];
+            ResultsController.$inject = ['$scope', '$resultsService', '$timeout'];
 
             function ResultsController(
                 $scope
-                , $resultsService) {
+                , $resultsService
+                , $timeout) {
 
                 var vm = this;
                 vm.$scope = $scope;
+                vm.$timeout = $timeout;
                 vm.$resultsService = $resultsService;
-                vm.nextSlide = _nextSlide;
-                vm.selectSlide = _selectSlide;
                 vm.errMsg = null;
                 vm.data = [];
-                vm.activeItem = 0;
+                vm.activeItem = 1;
+                vm.showMinusPoints = false;
+                vm.startFade = false;
+                vm.startFadePicture = false;
+                vm.activeLoc = {};
+                vm.showPicture = true;
+                vm.showNoMoreFeeds = false;
 
+                vm.nextSlide = _nextSlide;
+                vm.selectSlide = _selectSlide;
+                vm.Success = _Success;
+                vm.Error = _Error;
 
                 init();
 
                 function init() {
                     vm.data = JSON.parse($("#modelData").html());
                     console.log("data is ", vm.data);
+                    vm.activeLoc = vm.data[0];
                 }
 
-                function _setCurrentSlideIndex(index) {
-                    vm.currentIndex = index;
-                };
+                function _nextSlide() {
+                    console.log("activeItem is ", vm.activeItem);
+                    if (vm.activeItem < vm.data.length) {
+                        vm.startFadePicture = true;
+                        vm.startFade = true;
+                        vm.showMinusPoints = true;
 
-                function _isCurrentSlideIndex(index) {
-                    return vm.currentIndex === index;
-                };
-
-                function _nextSlide(index) {
-                    console.log("index is ", index);
-                    if (index <= vm.data.length) {
-                        vm.activeItem = index;
+                        vm.$timeout(function () {
+                            console.log("time's up");
+                            vm.showMinusPoints = false;
+                            vm.startFade = false;
+                            vm.activeLoc = vm.data[vm.activeItem];
+                            vm.activeItem++;
+                            vm.startFadePicture = false;
+                        }, 500);
                     } else {
-                        console.log("no more slides");
+                        vm.showPicture = false;
+                        vm.showNoMoreFeeds = true;
                     }
-
                 };
                 function _selectSlide(payload) {
-
+                    console.log("payload is", payload);
                     $.ajax({
                         type: 'POST',
                         url: '/api/CheckIn/Selected',
