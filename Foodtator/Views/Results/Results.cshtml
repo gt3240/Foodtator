@@ -15,15 +15,15 @@
         <div ng-repeat="slide in rc.data">
             <img class="slide" ng-hide="!rc.isCurrentSlideIndex($index)" ng-src="{{slide.image_url}}">
             <button class="btn btn-success selectButton" ng-click="rc.selectSlide(slide)">Eat</button>
-            <button class="btn btn-success selectButton" ng-click="rc.prevSlide()">Prev</button>
-            <button class="btn btn-warning selectButton" ng-click="rc.nextSlide()">Next</button>
+            
         </div>
         <a class="arrow prev" href="#" ng-click="rc.nextSlide()"></a>
         <a class="arrow next" href="#" ng-click="rc.prevSlide()"></a>
         <nav class="SliderNav">
             <div class="wrapper">
                 <div class="dot">
-
+                    <button class="btn btn-success" ng-click="rc.prevSlide()">Prev</button>
+                    <button class="btn btn-warning" ng-click="rc.nextSlide()">Next</button>
                 </div>
             </div>
         </nav>

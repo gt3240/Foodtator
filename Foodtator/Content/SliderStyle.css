@@ -17,10 +17,8 @@
 }
 
 .selectButton {
-    display:inline-block;
-    position: absolute;
-    left: 0px;
-    top: 100px;
+    float:right; 
+    margin-left: 5px;
     z-index: 3;
    
 }
