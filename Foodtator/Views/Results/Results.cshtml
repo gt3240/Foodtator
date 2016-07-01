@@ -11,14 +11,35 @@
     <link href="~/Content/SliderStyle.css" rel="stylesheet" />
 }
 <div data-ng-controller="resultsController as rc">
+
     <div class="container slider">
+        <div class="row" ng-repeat="slide in rc.data">
+            <div class="feedContainer col-md-6 col-md-offset-3" ng-if="rc.activeItem == $index">
+                <div>
+                    <div class="feedTitleBox">
+                        {{slide.name}}
+                    </div>
+                    <div class="feedImgBox">
+                        <img ng-src="{{slide.image_url}}" width="100%" />
+                    </div>
+                    <div class="feedControlBox">
+                        <button class="pull-left btn btn-danger" ng-click="rc.nextSlide($index + 1)">Trash</button>
+                        <button class="pull-right btn btn-success" ng-click="rc.selectSlide($index)">select</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+    <div class="container slider col-lg-4">
         <div ng-repeat="slide in rc.data">
             <img class="slide" ng-hide="!rc.isCurrentSlideIndex($index)" ng-src="{{slide.image_url}}">
             <button class="btn btn-success selectButton" ng-click="rc.selectSlide(slide)">Eat</button>
-            <button class="btn btn-success selectButton" ng-click="rc.prevSlide()">Prev</button>
-            <button class="btn btn-warning selectButton" ng-click="rc.nextSlide()">Next</button>
+            <button class="btn btn-success previousButton" ng-click="rc.prevSlide()">Prev</button>
+            <button class="btn btn-warning nextButton" ng-click="rc.nextSlide()">Next</button>
         </div>
-        <a class="arrow prev" href="#" ng-click="rc.nextSlide()"></a>
+        @*<a class="arrow prev" href="#" ng-click="rc.nextSlide()"></a>
         <a class="arrow next" href="#" ng-click="rc.prevSlide()"></a>
         <nav class="SliderNav">
             <div class="wrapper">
@@ -26,13 +47,15 @@
 
                 </div>
             </div>
-        </nav>
+        </nav>*@
     </div>
+    -->
 </div>
 
 <script type="application/json" id="modelData">
     @Html.RawJson(Model.businesses)
 </script>
+
 
 
 @section scripts{
@@ -55,14 +78,11 @@
                 var vm = this;
                 vm.$scope = $scope;
                 vm.$resultsService = $resultsService;
-                vm.currentIndex = 0;
-                vm.setCurrentSlideIndex = _setCurrentSlideIndex;
-                vm.isCurrentSlideIndex = _isCurrentSlideIndex;
-                vm.prevSlide = _prevSlide;
                 vm.nextSlide = _nextSlide;
                 vm.selectSlide = _selectSlide;
                 vm.errMsg = null;
                 vm.data = [];
+                vm.activeItem = 0;
 
 
                 init();
@@ -79,21 +99,17 @@
                 function _isCurrentSlideIndex(index) {
                     return vm.currentIndex === index;
                 };
-                function _prevSlide() {
-                    vm.currentIndex = (vm.currentIndex < vm.data.length - 1) ? ++vm.currentIndex : 0;
-                };
-                function _nextSlide() {
 
-                    vm.currentIndex = (vm.currentIndex > 0) ? --vm.currentIndex : vm.data.length - 1;
+                function _nextSlide(index) {
+                    console.log("index is ", index);
+                    if (index <= vm.data.length) {
+                        vm.activeItem = index;
+                    } else {
+                        console.log("no more slides");
+                    }
+
                 };
-                function _selectSlide(data) {
-                    //var payload={
-                    //    EstablishmentName:data.name,
-                    //    Latitude:data.location.coordinate.latitude,
-                    //    Latitude:data.location.coordinate.latitude,
-                    //    ImageUrl:data.image_url
-                    //};
-                    var payload = data;
+                function _selectSlide(payload) {
 
                     $.ajax({
                         type: 'POST',
@@ -101,7 +117,7 @@
                         data: payload,
                         datatype: 'json',
                         success: _Success,
-                        error: data
+                        error: _Error
                     });
                 };
 
