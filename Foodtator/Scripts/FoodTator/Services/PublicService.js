@@ -1,18 +1,16 @@
 ﻿//**Public service factory**
 (function () {//IIFE Boiler Plate
     "use strict";
-
-
-    //APPNAME is a variable called a constant becuase it never changes.
-    //Service is implemented as a "factory".
+ 
     angular.module(APPNAME)
     .factory('$publicService', publicServiceFactory);
 
     //Identify dependencies for injection. $sabio is a reference to sabio.page object located in scripts
     publicServiceFactory.$inject = ['$http', '$baseService'];
     function publicServiceFactory($http, $baseService) {
+
         var svc = this;
-        svc.logOut = logOut;
+        svc.logOut = _logOut;
 
         $.extend(svc, $baseService);
 
@@ -24,14 +22,12 @@
             $http.post("/api/user/login/", data).success(onSuccess).error(onErr);
         };
 
-        function logOut(success) {
-            $.ajax({
-                type: 'POST',
-                url: '/api/public/LogOut',
-                dataType: 'json',
-                success: success //sabio.page.handlers.loggedOut
-            });
+        function _logOut(Onsuccess) {
+            $http.post("/api/user/LogOut/").success(Onsuccess).error(onErr);
         };
+
+       
+
         function _checkExternalAuthEmail(payload, onSuccess, onError) {
             $.ajax({
                 type: 'GET',

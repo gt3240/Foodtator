@@ -1,33 +1,4 @@
-﻿@*@using Microsoft.AspNet.Identity
-
-@if (Request.IsAuthenticated)
-{
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-    @Html.AntiForgeryToken()
-
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-            
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
-    }
-}
-else
-{
-    <ul class="nav navbar-nav navbar-right">
-        <li><a href="/user/register">Register</a></li>
-        <li><a href="/user/login">Login</a></li>
-    </ul>
-}*@
-@if (Request.IsAuthenticated)
-{
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-        @Html.AntiForgeryToken()
-
+﻿
         <ul class="nav navbar-nav navbar-right" data-ng-controller="publicController as public">
             <li>
                 <a role="button" ng-click="public.logOut()" class="icon userLogOutBtn">
@@ -36,24 +7,9 @@ else
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>
-    }
-}
-else
-{
+  
+
     <ul class="nav navbar-nav navbar-right">
         <li><a href="/user/register">Register</a></li>
         <li><a href="/user/login">Login</a></li>
     </ul>
-}
-@*@if (Model.IsLoggedIn)
-            {
-    <li>
-        <a role="button" ng-click="public.logOut()" class="icon userLogOutBtn">
-            <i class="glyphicon glyphicon-remove-sign" ng-click="public.logOut()"></i>
-        </a>
-    </li>
-}
-else
-{
-    <li><a role="button" ng-click="public.logIn()" class="icon userLogInBtn"><i class="ti-power-off text-muted"></i></a></li>
-}*@

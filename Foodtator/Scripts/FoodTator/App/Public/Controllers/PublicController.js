@@ -1,54 +1,55 @@
-﻿//**Public Controller Factory**
-
-(function () {
+﻿(function () {
     "use strict";
 
     angular.module(APPNAME)
-    .controller('publicController'/*name*/, PublicController/*definition*/);
+    .controller('publicController', PublicController);
 
-    PublicController.$inject = ['$scope','$publicService', '$window'];
+    PublicController.$inject = ['$scope','$publicService'];
 
     function PublicController(
         $scope,
         $baseController,
-        $publicService,
-        $window) {
+        $publicService
+        ) {
 
-        //controllerAs with vm syntax - john papa style
-        var vm = this; //this points to a new {}
+        
+        var vm = this; 
         vm.public = null;
 
         vm.$publicService = $publicService;
         vm.$scope = $scope;
 
-        // **HOIST HERE**bindable members (functions) always go up top 
+        
         vm.logOut = _logOut;
         vm.logIn = _logIn;
         vm.register = _register;
+        vm.logOutSuccess = _logOutSuccess;
+        vm.logOutError = _logOutError;
 
         // simulate inheritance
         $baseController.merge(vm, $baseController);
 
-        // wrapper for small dependency on $scope
-        //vm.notify = vm.$publicService.getNotifier($scope);
-
-        //this is like the sabio.startUp function
-
         function _logOut() {
-            vm.$publicService.logOut(_logOutSuccess);
+           
+            vm.$publicService.logOut(vm.logOutSuccess,vm.logOutError);
         }
 
         function _logOutSuccess() {
-            vm.$alertService.success("You have been logged out");
-            $window.location.href = '/public/logIn/';
+            console.log("Logged out success");
+            window.location.href = '/';
+          
         }
 
         function _logIn() {
-            $window.location.href = '/user/logIn/';
+            window.location.href = '/user/logIn/';
         }
 
         function _register() {
-            $window.location.href = '/user/register/';
+            window.location.href = '/user/register/';
+        }
+
+        function _logOutError() {
+            console.log("Log Out Error");
         }
 
     }

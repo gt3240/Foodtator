@@ -87,6 +87,21 @@ namespace Foodtator.Controllers.Api
             }
         }
 
+        [Route("LogOut"), HttpPost]
+        public HttpResponseMessage LogOut()
+        {
+            //if the Model does not pass validation, there will be an Error response returned with errors
+            if (!ModelState.IsValid)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+
+            bool response = UserService.Logout();
+
+            return Request.CreateResponse(response);
+
+        }
+
         [Route("ExternalAuth/{email}"), HttpGet]
         public HttpResponseMessage ExternalUserLogin([FromUri]ExternalAuthRequestModel model)
         {
