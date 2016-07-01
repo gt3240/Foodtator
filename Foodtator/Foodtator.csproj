@@ -244,6 +244,7 @@
     <Compile Include="Classes\Extensions\HtmlHelperExt.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CheckInApiController.cs" />
+    <Compile Include="Controllers\Api\PublicApiController.cs" />
     <Compile Include="Controllers\Api\SearchApiController.cs" />
     <Compile Include="Controllers\Api\UserApiController.cs" />
     <Compile Include="Controllers\Api\YelpApiController.cs" />
@@ -284,8 +285,10 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RegistrationModel.cs" />
+    <Compile Include="Models\RequestModel\AdminUsersRequestModel.cs" />
     <Compile Include="Models\RequestModel\BusinessSearchRequestModel.cs" />
     <Compile Include="Models\RequestModel\ExternalAuthRequestModel.cs" />
+    <Compile Include="Models\RequestModel\LogIn.cs" />
     <Compile Include="Models\RequestModel\LogInRequestModel.cs" />
     <Compile Include="Models\RequestModel\PaginateListRequestModel.cs" />
     <Compile Include="Models\RequestModel\RegisterRequestModel.cs" />
@@ -299,6 +302,7 @@
     <Compile Include="Models\ViewModels\BaseViewModel.cs" />
     <Compile Include="Models\ViewModels\ItemViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AdminUserService.cs" />
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\CheckInService.cs" />
     <Compile Include="Services\PointsService.cs" />
@@ -372,12 +376,14 @@
     <Content Include="Scripts\FoodTator\App\CheckIn\Controllers\selectionLoadedController.js" />
     <Content Include="Scripts\FoodTator\App\CheckIn\Templates\rate.html" />
     <Content Include="Scripts\FoodTator\App\CheckIn\Templates\selectionLoaded.html" />
+    <Content Include="Scripts\FoodTator\App\Public\Controllers\PublicController.js" />
     <Content Include="Scripts\FoodTator\App\Restaurants\Templates\RestaurantsMain.html" />
     <Content Include="Scripts\FoodTator\App\Users\Controllers\FacebookLoginController.js" />
     <Content Include="Scripts\FoodTator\Core\services\base.service.js" />
     <Content Include="Scripts\FoodTator\Core\tkj.module.js" />
     <Content Include="Scripts\FoodTator\Services\FacebookServices.js" />
     <Content Include="Scripts\FoodTator\Services\GoogleMapService.js" />
+    <Content Include="Scripts\FoodTator\Services\PublicService.js" />
     <Content Include="Scripts\FoodTator\Services\ResultsService.js" />
     <Content Include="Scripts\FoodTator\Services\UserServices.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

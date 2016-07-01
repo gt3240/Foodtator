@@ -39,8 +39,8 @@ namespace Foodtator.Controllers
         {
 
             SelectedEstablishment selected = _CheckInService.getSelectedEstablishment(UserService.GetCurrentUserId());
-            
-            if (selected == null)
+
+            if (selected.establishmentName == null)
             {
                 SearchResults results = _ResultsService.Results(location);
                 return View(results);
@@ -49,7 +49,7 @@ namespace Foodtator.Controllers
             {
                 return View("alreadySelected");
             }
-     
+
         }
 
 
