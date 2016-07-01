@@ -12,6 +12,7 @@
     publicServiceFactory.$inject = ['$http', '$baseService'];
     function publicServiceFactory($http, $baseService) {
         var svc = this;
+        svc.logOut = logOut;
 
         $.extend(svc, $baseService);
 
@@ -23,6 +24,14 @@
             $http.post("/api/user/login/", data).success(onSuccess).error(onErr);
         };
 
+        function logOut(success) {
+            $.ajax({
+                type: 'POST',
+                url: '/api/public/LogOut',
+                dataType: 'json',
+                success: success //sabio.page.handlers.loggedOut
+            });
+        };
         function _checkExternalAuthEmail(payload, onSuccess, onError) {
             $.ajax({
                 type: 'GET',

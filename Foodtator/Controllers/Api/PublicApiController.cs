@@ -4,6 +4,7 @@ using Foodtator.Models.RequestModel;
 using Foodtator.Models.ResponseModel;
 using Foodtator.Services;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +17,8 @@ namespace Foodtator.Controllers.Api
     [RoutePrefix("api/public")]
     public class PublicApiController : ApiController
     {
-
+        [Dependency]
         private IAdminUsersService _AdminUserService { get; set; }
-
-
-        public PublicApiController(IAdminUsersService AdminUserService)
-        {
-            _AdminUserService = AdminUserService;
-        }
 
         [Route("Register"), HttpPost]
         public HttpResponseMessage Register(RegistrationModel model)

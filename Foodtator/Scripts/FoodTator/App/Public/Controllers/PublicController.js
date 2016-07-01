@@ -6,7 +6,7 @@
     angular.module(APPNAME)
     .controller('publicController'/*name*/, PublicController/*definition*/);
 
-    PublicController.$inject = ['$scope', '$baseController', '$publicService', '$window'];
+    PublicController.$inject = ['$scope','$publicService', '$window'];
 
     function PublicController(
         $scope,
@@ -30,7 +30,7 @@
         $baseController.merge(vm, $baseController);
 
         // wrapper for small dependency on $scope
-        vm.notify = vm.$publicService.getNotifier($scope);
+        //vm.notify = vm.$publicService.getNotifier($scope);
 
         //this is like the sabio.startUp function
 
