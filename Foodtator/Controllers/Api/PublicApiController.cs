@@ -1,5 +1,4 @@
-﻿using Foodtator.Classes.Exceptions;
-using Foodtator.Interfaces;
+﻿using Foodtator.Interfaces;
 using Foodtator.Models;
 using Foodtator.Models.RequestModel;
 using Foodtator.Models.ResponseModel;
@@ -14,43 +13,20 @@ using System.Web.Http;
 
 namespace Foodtator.Controllers.Api
 {
-    [RoutePrefix("api/user")]
-    public class UserApiController : ApiController
+    [RoutePrefix("api/public")]
+    public class PublicApiController : ApiController
     {
 
-        [Route("register"), HttpPost]
-        public HttpResponseMessage Register(RegistrationModel model)
+        private IAdminUsersService _AdminUserService { get; set; }
+
+
+        public PublicApiController(IAdminUsersService AdminUserService)
         {
-            // if the Model does not pass validation, there will be an Error response returned with errors
-            if (!ModelState.IsValid)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-            }
-
-            ItemResponse<IdentityUser> response = new ItemResponse<IdentityUser>();
-
-            try
-            {
-                response.Item = UserService.InsertUser(model);
-
-            }
-            catch (IdentityResultException ire)
-            {
-
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ire.Result.Errors.ElementAt(0));
-
-            }
-            catch (Exception)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Something went wrong, contact admin.");
-            }
-
-            return Request.CreateResponse(response);
-
+            _AdminUserService = AdminUserService;
         }
 
-        [Route("LogIn"), HttpPost]
-        public HttpResponseMessage LogIn(LogInRequestModel model)
+        [Route("Register"), HttpPost]
+        public HttpResponseMessage Register(RegistrationModel model)
         {
             // if the Model does not pass validation, there will be an Error response returned with errors
             if (!ModelState.IsValid)
@@ -69,14 +45,59 @@ namespace Foodtator.Controllers.Api
             }
             else
             {
-                bool response = UserService.Signin(model.email, model.password);
+                //ItemResponse<IdentityUser> response = new ItemResponse<IdentityUser>();
+
+                UserService.InsertUser(model);
+
+                bool response = UserService.Signin(model.email, model.confirmPassword);
 
                 if (response == true)
                 {
                     ItemResponse<Domain.UserDetails> newResponse = new ItemResponse<Domain.UserDetails>();
                     string userId = UserService.GetCurrentUserId();
                     Guid userGuid = new Guid(userId);
-                    newResponse.Item = UserService.GetUserById(userGuid);
+                    newResponse.Item = _AdminUserService.GetUserById(userGuid);
+                    return Request.CreateResponse(newResponse);
+
+                }
+                else
+                {
+                    return Request.CreateResponse(response);
+                }
+            }
+
+        }
+
+
+
+        [Route("LogIn"), HttpPost]
+        public HttpResponseMessage LogIn(LogIn model)
+        {
+            // if the Model does not pass validation, there will be an Error response returned with errors
+            if (!ModelState.IsValid)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+
+            // check if external auth user
+            string isExternalAuth = UserService.GetExternalAuthEmail(model.UserLogInEmail);
+
+            if (isExternalAuth != null)
+            {
+                ItemResponse<string> externalAuthResponse = new ItemResponse<string>();
+                externalAuthResponse.Item = "externalAuthUser";
+                return Request.CreateResponse(externalAuthResponse);
+            }
+            else
+            {
+                bool response = UserService.Signin(model.UserLogInEmail, model.UserLogInPassword);
+
+                if (response == true)
+                {
+                    ItemResponse<Domain.UserDetails> newResponse = new ItemResponse<Domain.UserDetails>();
+                    string userId = UserService.GetCurrentUserId();
+                    Guid userGuid = new Guid(userId);
+                    newResponse.Item = _AdminUserService.GetUserById(userGuid);
                     return Request.CreateResponse(newResponse);
 
                 }
@@ -86,6 +107,22 @@ namespace Foodtator.Controllers.Api
                 }
             }
         }
+
+        [Route("LogOut"), HttpPost]
+        public HttpResponseMessage LogOut()
+        {
+            //if the Model does not pass validation, there will be an Error response returned with errors
+            if (!ModelState.IsValid)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+
+            bool response = UserService.Logout();
+
+            return Request.CreateResponse(response);
+
+        }
+
 
         [Route("ExternalAuth/{email}"), HttpGet]
         public HttpResponseMessage ExternalUserLogin([FromUri]ExternalAuthRequestModel model)
@@ -121,7 +158,7 @@ namespace Foodtator.Controllers.Api
                         ItemResponse<Domain.UserDetails> newResponse = new ItemResponse<Domain.UserDetails>();
                         //string userId = UserService.GetCurrentUserId();
                         Guid userGuid = new Guid(isAuthUserId);
-                        newResponse.Item = UserService.GetUserById(userGuid);
+                        newResponse.Item = _AdminUserService.GetUserById(userGuid);
                         return Request.CreateResponse(newResponse);
                     }
                 }
@@ -151,7 +188,7 @@ namespace Foodtator.Controllers.Api
                     ItemResponse<Domain.UserDetails> newResponse = new ItemResponse<Domain.UserDetails>();
                     //string userId = UserService.GetCurrentUserId();
                     Guid userGuid = new Guid(newUser.Id);
-                    newResponse.Item = UserService.GetUserById(userGuid);
+                    newResponse.Item = _AdminUserService.GetUserById(userGuid);
                     return Request.CreateResponse(newResponse);
                 }
 
@@ -175,7 +212,7 @@ namespace Foodtator.Controllers.Api
                 ItemResponse<Domain.UserDetails> newResponse = new ItemResponse<Domain.UserDetails>();
                 //string userId = UserService.GetCurrentUserId();
                 Guid userGuid = new Guid(model.userId);
-                newResponse.Item = UserService.GetUserById(userGuid);
+                newResponse.Item = _AdminUserService.GetUserById(userGuid);
                 return Request.CreateResponse(newResponse);
             }
             else
@@ -184,5 +221,6 @@ namespace Foodtator.Controllers.Api
             }
 
         }
+
     }
 }

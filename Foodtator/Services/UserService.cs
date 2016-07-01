@@ -51,7 +51,7 @@ namespace Foodtator.Services
             }
         }
 
-        public static IdentityUser InsertUser(RegisterRequestModel model)
+        public static IdentityUser InsertUser(RegistrationModel model)
         {
             int uid = 0;
             IdentityUser newUser = UserService.CreateUser(model.email, model.confirmPassword);

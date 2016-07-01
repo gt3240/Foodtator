@@ -21,6 +21,8 @@ namespace Foodtator.Controllers
     {
         [Dependency]
         public IResultsService _ResultsService { get; set; }
+        [Dependency]
+        public ICheckInService _CheckInService { get; set; }
 
 
         public ActionResult Index()
@@ -35,8 +37,19 @@ namespace Foodtator.Controllers
         [Route("location/{location}")]
         public ActionResult Results(string location)
         {
-            SearchResults results = _ResultsService.Results(location);
-            return View(results);
+
+            SelectedEstablishment selected = _CheckInService.getSelectedEstablishment(UserService.GetCurrentUserId());
+
+            if (selected.establishmentName == null)
+            {
+                SearchResults results = _ResultsService.Results(location);
+                return View(results);
+            }
+            else
+            {
+                return View("alreadySelected");
+            }
+
         }
 
 

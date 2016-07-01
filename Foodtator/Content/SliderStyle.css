@@ -15,13 +15,11 @@
 }
 
 .selectButton {
-    display:inline-block;
-    position: absolute;
-    left: 0px;
-    top: 100px;
-    z-index: 3;  
+    float:right; 
+    margin-left: 5px;
+    z-index: 3;
 }
-
+   
 .nextButton{
     display:inline-block;
     top: 100px;

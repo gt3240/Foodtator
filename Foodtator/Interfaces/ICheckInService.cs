@@ -12,5 +12,6 @@ namespace Foodtator.Interfaces
     {
         int EstablishmentSelected(Business model);
         SelectedEstablishment getSelectedEstablishment(string userId);
+       
     }
 }

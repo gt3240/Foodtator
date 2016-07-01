@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "_LandingPageLayout";
 }
 
@@ -31,6 +30,24 @@
 
 
 <body ng-app="FoodtatorApp">
+    <!--LOG IN OUT BUTTONS-->
+    @*<ul class="notification-bar list-inline pull-right" data-ng-controller="publicController as public" id="publicController">
+        <li><a href="javascript:;" role="button" class="right-sidebar-toggle bubble icon"><i class="ti-comment-alt text-muted"></i><span class="dot bg-danger"></span></a></li>
+
+        @if (Model.IsLoggedIn)
+            {
+            <li>
+                <a role="button" ng-click="public.logOut()" class="icon userLogOutBtn">
+                    <i class="glyphicon glyphicon-remove-sign" ng-click="public.logOut()"></i>
+                </a>
+            </li>
+        }
+        else
+        {
+            <li><a role="button" ng-click="public.logIn()" class="icon userLogInBtn"><i class="ti-power-off text-muted"></i></a></li>
+        }
+    </ul>*@
+
     @* Nav *@
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">

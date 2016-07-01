@@ -13,6 +13,7 @@ namespace Foodtator.Services
 {
     public class CheckInService : BaseService,ICheckInService
     {
+        int threeHours = 10800;
         public int EstablishmentSelected(Business model)
         {
             int uid = 0;
@@ -50,7 +51,7 @@ namespace Foodtator.Services
               , inputParamMapper: delegate (SqlParameterCollection paramCollection)
               {
                   paramCollection.AddWithValue("@UserId", userId);
-                  paramCollection.AddWithValue("@Selected", unixTimestamp - 10800);
+                  paramCollection.AddWithValue("@Selected", unixTimestamp - threeHours);
               },
               map: (Action<IDataReader, short>)delegate (IDataReader reader, short set)
               {
@@ -68,7 +69,5 @@ namespace Foodtator.Services
             return p;
 
         }
-
-
     }
 }
