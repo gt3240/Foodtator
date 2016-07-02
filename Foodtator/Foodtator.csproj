@@ -365,6 +365,8 @@
     <Content Include="Scripts\bower_components\angular-animate\LICENSE.md" />
     <Content Include="Scripts\bower_components\angular-animate\package.json" />
     <Content Include="Scripts\bower_components\angular-animate\README.md" />
+    <None Include="Properties\PublishProfiles\FoodTator %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\FoodTator.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bower_components\angular\angular-csp.css" />
     <Content Include="Scripts\bower_components\angular\angular.js" />
