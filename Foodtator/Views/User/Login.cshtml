@@ -122,7 +122,7 @@
                     console.log("log me in", vm.logUser);
                     vm.$userService.login(vm.logUser, vm.onSuccess, vm.onErr);
                     vm.loading = true;
-                    vm.registerBtnText = "Loading...";
+                    vm.registerBtnText = "";
                 };
 
                 function _onSuccess(data) {

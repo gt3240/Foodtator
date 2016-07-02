@@ -133,7 +133,7 @@
                     console.log("register me", vm.newUser);
                     vm.$userService.register(vm.newUser, vm.onSuccess, vm.onErr);
                     vm.loading = true;
-                    vm.registerBtnText = "Loading...";
+                    vm.registerBtnText = "";
                 };
 
                 function _onSuccess(data) {
