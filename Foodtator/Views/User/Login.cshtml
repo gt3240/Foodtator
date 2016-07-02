@@ -41,7 +41,11 @@
             </div>
 
             <div class="text-center">
-                <button type="submit" class="btn btn-raised btn-success">{{hc.registerBtnText}}</button>
+                <button type="submit" class="btn btn-raised btn-success" ng-disabled="hc.loading == true">
+                    {{hc.registerBtnText}}
+                    <img src="~/Content/images/loader.gif" ng-show="hc.loading" />
+                </button>
+
             </div>
         </form>
 
@@ -111,8 +115,6 @@
                     $('#howItWorksBtn').addClass('hidden');
                     $('#contactBtn').addClass('hidden');
                     $('#homeBtn').attr('href', '/');
-
-                    vm.$userService.test();
                 };
 
                 function _logUserClicked() {
@@ -126,8 +128,8 @@
                 function _onSuccess(data) {
                     console.log("user logged in", data);
                     window.location.href = '/dashboard';
-                    vm.loading = false;
-                    vm.registerBtnText = "Login";
+                    //vm.loading = false;
+                    //vm.registerBtnText = "Login";
                 };
 
                 function _onErr(data) {

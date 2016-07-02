@@ -70,20 +70,7 @@ namespace Foodtator.Controllers.Api
             else
             {
                 bool response = UserService.Signin(model.email, model.password);
-
-                if (response == true)
-                {
-                    ItemResponse<Domain.UserDetails> newResponse = new ItemResponse<Domain.UserDetails>();
-                    string userId = UserService.GetCurrentUserId();
-                    Guid userGuid = new Guid(userId);
-                    newResponse.Item = UserService.GetUserById(userGuid);
-                    return Request.CreateResponse(newResponse);
-
-                }
-                else
-                {
-                    return Request.CreateResponse(response);
-                }
+                return Request.CreateResponse(response);
             }
         }
 

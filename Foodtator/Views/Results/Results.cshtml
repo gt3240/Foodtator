@@ -24,8 +24,8 @@
                     <img ng-src="{{rc.activeLoc.image_url}}" ng-class="{fadeInPicture: rc.startFadePicture}" />
                 </div>
                 <div class="feedControlBox">
-                    <a class="pull-left" ng-click="rc.nextSlide()"><span class="glyphicon glyphicon-remove-circle text-danger"></span></a>
-                    <a class="pull-right" ng-click="rc.selectSlide(rc.activeLoc)"><span class="glyphicon glyphicon-ok-circle text-success"></span></a>
+                    <a class="pull-left fa fa-trash text-danger" ng-click="rc.nextSlide()"></a>
+                    <a class="pull-right fa fa-cutlery text-success" ng-click="rc.selectSlide(rc.activeLoc)"></a>
                     <div id="clear"></div>
                 </div>
             </div>
