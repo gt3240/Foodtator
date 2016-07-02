@@ -20,7 +20,7 @@
                     <span class="pull-right">{{rc.activeLoc.display_phone}}</span>
                     <div id="clear"></div>
                 </div>
-                <div class="feedImgBox">
+                <div class="feedImgBox" style="max-height: 480px;">
                     <img ng-src="{{rc.activeLoc.image_url}}" ng-class="{fadeInPicture: rc.startFadePicture}" />
                 </div>
                 <div class="feedControlBox">
@@ -39,6 +39,16 @@
             <div class="feedContainer col-md-6 col-md-offset-3">
                 <div class="feedTitleBox text-center">
                     <h2>No more feeds, u indecisive *#~*&!</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-show="rc.successMsgBox">
+            <div class="feedContainer col-md-6 col-md-offset-3">
+                <div class="feedTitleBox text-center">
+                    <h2 style="color:#0099CC;">{{rc.activeLoc.name}}</h2>
+                    <h3>is waiting for you.</h3>
+                    <h3>Don't forget to check in to earn more points.</h3>
                 </div>
             </div>
         </div>
@@ -81,6 +91,8 @@
                 vm.activeLoc = {};
                 vm.showPicture = true;
                 vm.showNoMoreFeeds = false;
+                vm.successMsgBox = false;
+                vm.successMsg = "";
 
                 vm.nextSlide = _nextSlide;
                 vm.selectSlide = _selectSlide;
@@ -129,7 +141,14 @@
 
                 function _Success(data) {
                     console.log("Data passed", data);
+                    vm.$scope.$apply(function () {
+                        vm.showPicture = false;
+                        vm.successMsgBox = true;
+                        vm.successMsg = "";
+                    });
+                    
                 }
+
                 function _Error() {
                     console.log("Fail")
                 }

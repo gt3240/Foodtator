@@ -25,6 +25,35 @@
         height: 100%;
         padding: 30px;
     }
+
+    .feedContainer {
+        margin-top: 50px;
+        border: 1px solid rgba(0,0,0,0.1);
+        border-radius: 4px;
+        padding: 0px;
+        background-color: #FFFFFF;
+    }
+
+    .feedTitleBox {
+        padding: 10px 20px;
+    }
+
+    .feedImgBox {
+        max-height: 380px;
+        overflow: hidden;
+        border-top: 1px solid rgba(0,0,0,0.1);
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        padding: 0px;
+    }
+
+        .feedImgBox img {
+            width: 100%;
+        }
+
+    .feedControlBox {
+        padding: 10px 80px;
+        font-size: 56px;
+    }
 }
 
 /* Desktop */
@@ -139,9 +168,9 @@ label {
     opacity: 0;
 }
 
-.fadeInPicture.ng-show {
-  opacity: 0;
-}
+    .fadeInPicture.ng-show {
+        opacity: 0;
+    }
 
 
 #clear {

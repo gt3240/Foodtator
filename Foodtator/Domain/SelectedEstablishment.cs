@@ -11,6 +11,7 @@ namespace Foodtator.Domain
         public decimal lat { get; set; }
         public decimal lon { get; set; }
         public string imageUrl { get; set; }
+        public int id { get; set; }
 
     }
 }
