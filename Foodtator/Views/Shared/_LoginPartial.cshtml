@@ -1,6 +1,10 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
+    <ul class="nav navbar-nav">
+        <li><a href="/dashboard" id="homeBtn">Dashboard</a></li>
+    </ul>
+
     <ul class="nav navbar-nav navbar-right" data-ng-controller="publicController as pc">
         <li>
             <a href="#" ng-click="pc.logOff()">
@@ -11,6 +15,12 @@
 }
 else
 {
+    <ul class="nav navbar-nav">
+        <li><a href="/Home" id="homeBtn">Home</a></li>
+        <li><a href="#" id="howItWorksBtn">How it works</a></li>
+        <li><a href="#" id="contactBtn">Contact us</a></li>
+    </ul>
+
     <ul class="nav navbar-nav navbar-right">
         <li><a href="/user/register">Register</a></li>
         <li><a href="/user/login">Login</a></li>

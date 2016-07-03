@@ -320,6 +320,7 @@
     <Content Include="Content\images\bg1.jpg" />
     <Content Include="Content\images\bgmobile.jpg" />
     <Content Include="Content\images\foodtator_logo.png" />
+    <Content Include="Content\images\foodtator_logo_header.png" />
     <Content Include="Content\images\loader.gif" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\jquery.fullPage.css" />

@@ -19,6 +19,8 @@
                     <span class="pull-left">{{rc.activeLoc.name}}</span>
                     <span class="pull-right">{{rc.activeLoc.display_phone}}</span>
                     <div id="clear"></div>
+                    <span  class="pull-left" ng-repeat="item in rc.activeLoc.location.display_address"> {{item}} </span>
+                    <div id="clear"></div>
                 </div>
                 <div class="feedImgBox" style="max-height: 480px;">
                     <img ng-src="{{rc.activeLoc.image_url}}" ng-class="{fadeInPicture: rc.startFadePicture}" />
