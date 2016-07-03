@@ -4,52 +4,41 @@
     angular.module(APPNAME)
     .controller('publicController', PublicController);
 
-    PublicController.$inject = ['$scope','$publicService'];
+    PublicController.$inject = ['$scope', '$publicService'];
 
     function PublicController(
-        $scope,
-        $baseController,
-        $publicService
+        $scope
+        ,$publicService
         ) {
 
-        
-        var vm = this; 
+        var vm = this;
         vm.public = null;
 
-        vm.$publicService = $publicService;
         vm.$scope = $scope;
+        vm.$publicService = $publicService;
 
-        
-        vm.logOut = _logOut;
-        vm.logIn = _logIn;
-        vm.register = _register;
-        vm.logOutSuccess = _logOutSuccess;
-        vm.logOutError = _logOutError;
+        vm.logOff = _logOff;
+        vm.logOffSuccess = _logOffSuccess;
+        vm.logOffErr = _logOffErr;
 
-        // simulate inheritance
-        $baseController.merge(vm, $baseController);
+        init();
 
-        function _logOut() {
-           
-            vm.$publicService.logOut(vm.logOutSuccess,vm.logOutError);
+        function init() {
+            console.log("public controller loaded");
         }
 
-        function _logOutSuccess() {
-            console.log("Logged out success");
+        function _logOff(){
+            console.log("log off clicked");
+            vm.$publicService.logOut(vm.logOffSuccess, vm.logOffErr);
+        }
+
+        function _logOffSuccess() {
+            console.log("log off succss");
             window.location.href = '/';
-          
         }
 
-        function _logIn() {
-            window.location.href = '/user/logIn/';
-        }
-
-        function _register() {
-            window.location.href = '/user/register/';
-        }
-
-        function _logOutError() {
-            console.log("Log Out Error");
+        function _logOffErr() {
+            console.log("log off error");
         }
 
     }

@@ -4,18 +4,34 @@
     margin: 0;
     padding: 0;
     background-color: #FAFAFA;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Comfortaa', cursive;
 }
 
+a {
+    font-family: 'Comfortaa', cursive;
+}
+
+    a:hover {
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+.headerLogo {
+    color: #ffffff;
+    font-family: 'Lobster', cursive;
+    font-size: 40px;
+}
 /* Mobile devices */
-
 @media (min-width: 0px) and (max-width: 767px) {
-
     .userbg {
         width: 100%;
         height: 100%;
         background: url("images/bgmobile.jpg") top center no-repeat;
         background-size: auto 100%;
+    }
+
+    .navbar-default .navbar-toggle {
+        margin-top: 15px;
     }
 
     .registerWindow {
@@ -27,7 +43,7 @@
     }
 
     .feedContainer {
-        margin-top: 50px;
+        margin-top: 65px;
         border: 1px solid rgba(0,0,0,0.1);
         border-radius: 4px;
         padding: 0px;
@@ -126,6 +142,10 @@ label {
             color: antiquewhite;
         }
 
+.navbar-nav > li > a {
+    padding-top: 23px;
+}
+
 .dashbg {
     width: 100%;
     height: 100%;
@@ -175,4 +195,9 @@ label {
 
 #clear {
     clear: both;
+}
+
+.icon_text {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
 }

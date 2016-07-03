@@ -29,6 +29,9 @@
         vm.showRateBtn = false;
         vm.checkInResult = false;
         vm.showCheckInBtn = true;
+        vm.CHECK_DISTANCE = 100000;
+        vm.showNoSelected = false;
+        vm.showSelected = false;
 
         vm.selectedLoc = null;
         vm.checkInResultText = null;
@@ -42,9 +45,12 @@
 
         function _getSelectedSuccess(data) {
             console.log("data is ", data);
-
-            vm.selectedLoc = data.item;
-
+            if (data.item.id < 1) {
+                vm.showNoSelected = true;
+            } else {
+                vm.showSelected = true;
+                vm.selectedLoc = data.item;
+            }
         }
 
         function _getSelectedError() {
@@ -71,11 +77,11 @@
                 var distance = response.rows[0].elements[0].distance.value;
                 vm.checkInResult = true;
                 vm.$scope.$apply(function () {
-                    if (distance > 11000) {
+                    if (distance > vm.CHECK_DISTANCE) {
                         console.log("too far");
                         vm.checkInResultText = "Sorry, you are too far away =(";
                     } else {
-                        
+
                         vm.$checkInService.checkIn(vm.selectedLoc.id, vm.checkedInSuccess, vm.checkInError);
                     }
 

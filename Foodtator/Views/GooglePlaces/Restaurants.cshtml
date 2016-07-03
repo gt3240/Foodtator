@@ -6,41 +6,74 @@
 @section Styles
 {
     <link href="~/Content/jquery.fullPage.css" rel="stylesheet" />
+    <style>
+        .btn {
+            height: 100px;
+            margin: 20px auto;
+        }
+    </style>
 }
 
-<h2>@ViewBag.Message</h2>
-<div>
+<div class="container">
+    <div class="row">
+        <div class="feedContainer col-md-6 col-md-offset-3">
 
+            <div class="feedControlBox text-center">
+                <a class="fa fa-cutlery btn-block" id="findLoc" style="margin-top:20px;"><br /><span class="icon_text locText">Find a Restaurant</span></a>
+                <hr />
+                <a class="fa fa-map-marker btn-block" id="checkIn" href="/checkin"><br /><span class="icon_text">Check In</span></a>
+                <hr />
+                <a class="fa fa-money btn-block" id="myPoints"><br /><span class="icon_text">My Points</span></a>
+            </div>
+        </div>
+    </div>
 
 </div>
+
 @section scripts{
     <script type="text/javascript">
-   
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-                $.ajax({
-                    type: 'GET',
-                    url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude ,
-                    datatype: 'jsonp',
-                    success: tkj.page.handlers.success,
-                    error:tkj.page.handlers.error
+        var currentLocation = null;
+
+        tkj.page.startUp = function () {
+            $('#findLoc').on('click', tkj.page.handlers.onFindLoc);
+            tkj.page.getPosition();
+        }
+        
+        tkj.page.getPosition = function () {
+            if (navigator.geolocation) {             
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    $.ajax({
+                        type: 'GET',
+                        url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude,
+                        datatype: 'jsonp',
+                        success: tkj.page.handlers.success,
+                        error: tkj.page.handlers.error
+                    });
                 });
-              
-        });
-       
-    }
+            }
+        }
 
-    tkj.page.handlers.success = function (data) {
-        console.log(data,"DATA");
-        var str = data.results[3].address_components[1].long_name;
-        str = str.replace(/\s+/g, '-').toLowerCase();
-       
-        window.location.replace("/Results/location/" + str);
-    }
+        tkj.page.handlers.onFindLoc = function () {
+            window.location.replace("/Results/location/" + currentLocation);
+        }
 
-    tkj.page.handlers.error = function (data) {
-        alert("DATATATATATA",data);
-    }
+        tkj.page.handlers.success = function (data) {
+            console.log(data, "DATA");
+            var str = data.results[1].address_components[0].long_name;
+            currentLocation = str.replace(/\s+/g, '-');
+            if (currentLocation != null) {
+                $('.locText').text("Find a Restaurant in " + currentLocation);
+            } else {
+                $('#findLoc').prop('disabled', true);
+            }
+            
+            currentLocation = currentLocation.toLowerCase();
+            console.log("location is ", currentLocation);        
+        }
+
+        tkj.page.handlers.error = function (data) {
+            alert("Please turn on your loction service.");
+        }
 
 
 

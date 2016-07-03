@@ -319,6 +319,9 @@
     <Content Include="Content\images\background1.jpg" />
     <Content Include="Content\images\bg1.jpg" />
     <Content Include="Content\images\bgmobile.jpg" />
+    <Content Include="Content\images\foodtator_logo.png" />
+    <Content Include="Content\images\foodtator_logo_header.png" />
+    <Content Include="Content\images\loader.gif" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\jquery.fullPage.css" />
     <Content Include="Content\SliderStyle.css" />
@@ -452,6 +455,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\FoodTator\App\Restaurants\Controllers\" />
     <Folder Include="Scripts\FoodTator\Core\controller\" />
+    <Folder Include="Scripts\FoodTator\Modules\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

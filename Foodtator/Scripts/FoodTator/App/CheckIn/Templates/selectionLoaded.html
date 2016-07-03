@@ -1,4 +1,4 @@
-﻿<div class="container">
+﻿<div class="container" ng-show="slc.showSelected">
     <div class="row">
         <div class="feedContainer col-md-6 col-md-offset-3 col-sm-10">
             <div class="feedTitleBox">
@@ -25,15 +25,20 @@
 
             </div>
         </div>
-    </div>
-
-   
+    </div>  
 </div>
 
-
-
-
-
+<div class="container" ng-show="slc.showNoSelected">
+    <div class="row">
+        <div class="feedContainer col-md-6 col-md-offset-3 col-sm-10">
+          
+            <div class="feedControlBox text-center">
+                <h2>Nothing to checkin at this moment</h2>
+                <a href="/dashboard" class="btn btn-primary">Find a joint!</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7_aQUU0GcNJ0lPfufE1qoLixA4uUL04I">
