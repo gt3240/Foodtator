@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AWSSDK, Version=2.3.55.0, Culture=neutral, PublicKeyToken=9f476d3089b52be3, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.2.3.55.0\lib\net45\AWSSDK.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -244,6 +248,7 @@
     <Compile Include="Classes\Extensions\HtmlHelperExt.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CheckInApiController.cs" />
+    <Compile Include="Controllers\Api\PhotoUploadAPIController.cs" />
     <Compile Include="Controllers\Api\SearchApiController.cs" />
     <Compile Include="Controllers\Api\UserApiController.cs" />
     <Compile Include="Controllers\Api\YelpApiController.cs" />
@@ -253,6 +258,7 @@
     <Compile Include="Controllers\GooglePlacesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PhotoUploadController.cs" />
     <Compile Include="Controllers\ResultsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Domain\Coordinate.cs" />
@@ -262,6 +268,7 @@
     <Compile Include="Domain\Google\GooglePhoto.cs" />
     <Compile Include="Domain\Location.cs" />
     <Compile Include="Domain\Google\PlacesApiQueryResponse.cs" />
+    <Compile Include="Domain\Media.cs" />
     <Compile Include="Domain\SelectedEstablishment.cs" />
     <Compile Include="Domain\UserDetails.cs" />
     <Compile Include="Enums\AttributesDataType.cs" />
@@ -278,6 +285,8 @@
     </Compile>
     <Compile Include="Interfaces\IAdminUsersService.cs" />
     <Compile Include="Interfaces\ICheckInService.cs" />
+    <Compile Include="Interfaces\IFileUploadService.cs" />
+    <Compile Include="Interfaces\IMediaService.cs" />
     <Compile Include="Interfaces\IResultsService.cs" />
     <Compile Include="Interfaces\ISearchService.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -289,6 +298,7 @@
     <Compile Include="Models\RequestModel\ExternalAuthRequestModel.cs" />
     <Compile Include="Models\RequestModel\LogIn.cs" />
     <Compile Include="Models\RequestModel\LogInRequestModel.cs" />
+    <Compile Include="Models\RequestModel\MediaRequestModel.cs" />
     <Compile Include="Models\RequestModel\PaginateListRequestModel.cs" />
     <Compile Include="Models\RequestModel\RegisterRequestModel.cs" />
     <Compile Include="Models\RequestModel\UserSearchRequestModel.cs" />
@@ -304,6 +314,9 @@
     <Compile Include="Services\AdminUserService.cs" />
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\CheckInService.cs" />
+    <Compile Include="Services\ConfigService.cs" />
+    <Compile Include="Services\FileUploadService.cs" />
+    <Compile Include="Services\MediaService.cs" />
     <Compile Include="Services\PointsService.cs" />
     <Compile Include="Services\ResultsService.cs" />
     <Compile Include="Services\SearchService.cs" />
@@ -370,11 +383,22 @@
     <Content Include="Scripts\bower_components\angular-animate\README.md" />
     <None Include="Properties\PublishProfiles\FoodTator %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\FoodTator.pubxml" />
+    <Content Include="Scripts\bower_components\dropzone\.bower.json" />
+    <Content Include="Scripts\bower_components\dropzone\bower.json" />
+    <Content Include="Scripts\bower_components\dropzone\dist\readme.md" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bower_components\angular\angular-csp.css" />
     <Content Include="Scripts\bower_components\angular\angular.js" />
     <Content Include="Scripts\bower_components\angular\angular.min.js" />
     <Content Include="Scripts\bower_components\angular\index.js" />
+    <Content Include="Scripts\bower_components\dropzone\dist\basic.css" />
+    <Content Include="Scripts\bower_components\dropzone\dist\dropzone-amd-module.js" />
+    <Content Include="Scripts\bower_components\dropzone\dist\dropzone.css" />
+    <Content Include="Scripts\bower_components\dropzone\dist\dropzone.js" />
+    <Content Include="Scripts\bower_components\dropzone\dist\min\basic.min.css" />
+    <Content Include="Scripts\bower_components\dropzone\dist\min\dropzone-amd-module.min.js" />
+    <Content Include="Scripts\bower_components\dropzone\dist\min\dropzone.min.css" />
+    <Content Include="Scripts\bower_components\dropzone\dist\min\dropzone.min.js" />
     <Content Include="Scripts\FoodTator\App\CheckIn\CheckInConfig.js" />
     <Content Include="Scripts\FoodTator\App\CheckIn\Controllers\rateController.js" />
     <Content Include="Scripts\FoodTator\App\CheckIn\Controllers\selectionLoadedController.js" />
@@ -450,9 +474,11 @@
     <Content Include="Views\CheckIn\Index.cshtml" />
     <Content Include="Views\Results\GoogleResults.cshtml" />
     <Content Include="Views\Shared\alreadySelected.cshtml" />
+    <Content Include="Views\PhotoUpload\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Media\" />
     <Folder Include="Scripts\FoodTator\App\Restaurants\Controllers\" />
     <Folder Include="Scripts\FoodTator\Core\controller\" />
     <Folder Include="Scripts\FoodTator\Modules\" />

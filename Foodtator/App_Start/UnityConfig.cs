@@ -27,6 +27,9 @@ namespace Foodtator
 
            container.RegisterType<IResultsService, ResultsService>();
            container.RegisterType<ICheckInService, CheckInService>();
+           container.RegisterType<IMediaService, MediaService>();
+           container.RegisterType<IFileUploadService, FileUploadService>();
+
            
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
