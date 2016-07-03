@@ -41,7 +41,7 @@
         function _fblogin() {
             vm.$fbService.checkLoginStatus(vm.statusChangeCallback);
             vm.loading = true;
-            vm.registerBtnText = "Loading...";
+            vm.registerBtnText = "";
         }
 
         function _statusChangeCallback(response) {
@@ -74,12 +74,12 @@
 
         function _externalAuthResult(data) {
             console.log("external auth data", data)
-            if (data.Item.Id) {
-                console.log("logged in", data.Item.Id);
+            if (data.item.id) {
+                console.log("logged in", data.item.id);
                 window.location.href = '/dashboard';
             } else {
                 console.log("dup user alert", data);
-                vm.payload.userId = data.Item;
+                vm.payload.userId = data.item;
                 vm.openModal();
             }
         };
