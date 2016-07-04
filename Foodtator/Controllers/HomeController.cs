@@ -37,6 +37,7 @@ namespace Foodtator.Controllers
             return View();
         }
 
+        [Route("test")]
         public ActionResult PageSample()
         {
             ViewBag.Message = "Your application description page.";
