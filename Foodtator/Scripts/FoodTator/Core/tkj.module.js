@@ -3,17 +3,18 @@
 
     //  https://github.com/johnpapa/angular-styleguide#moduleOptionss
     var defaultDependencies = [
-        'ui.bootstrap',
-        'ngRoute',
-        'ngAnimate'
-        //'toastr'
+        'ui.bootstrap'
+        ,'ngRoute'
+        ,'ngAnimate'
+        , '720kb.fx'
+        //,'toastr'
     ];
 
     var arrOfDep = getModuleDependencies(moduleOptions, defaultDependencies);
     //console.log('array of dependencies', arrOfDep);
 
     var app = angular.module(moduleOptions.APPNAME, arrOfDep);
-
+    //console.log("model", app);
     app.value('$tkj', moduleOptions.page);
 
     if (moduleOptions) {

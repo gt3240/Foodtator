@@ -13,17 +13,18 @@
 <div data-ng-controller="resultsController as rc">
 
     <div class="container">
-        <div class="row" ng-show="rc.showPicture">
+        <div class="row" ng-show="rc.showPictureBox">
             <div class="feedContainer col-md-6 col-md-offset-3">
                 <div class="feedTitleBox">
                     <span class="pull-left">{{rc.activeLoc.name}}</span>
                     <span class="pull-right">{{rc.activeLoc.display_phone}}</span>
                     <div id="clear"></div>
-                    <span  class="pull-left" ng-repeat="item in rc.activeLoc.location.display_address"> {{item}} </span>
+                    <span  class="pull-left" ng-repeat="item in rc.activeLoc.location.display_address">  {{item}}  </span>
                     <div id="clear"></div>
                 </div>
                 <div class="feedImgBox" style="max-height: 480px;">
-                    <img ng-src="{{rc.activeLoc.image_url}}" ng-class="{fadeInPicture: rc.startFadePicture}" />
+                    <div style="visibility:hidden; height: 500px; z-index:-20;">image holder</div>
+                    <img style="z-index:99; margin-top:-500px;" ng-src="{{rc.activeLoc.image_url}}" ngfx-fade-in-right="rc.showPicture" ngfx-fade-out-down="rc.hidePicture" />
                 </div>
                 <div class="feedControlBox">
                     <a class="pull-left fa fa-trash text-danger" ng-click="rc.nextSlide()"></a>
@@ -33,7 +34,7 @@
             </div>
         </div>
 
-        <div class="subtractPoints col-md-6 col-md-offset-3" ng-show="rc.showMinusPoints" ng-class="{fade: rc.startFade}">
+        <div class="subtractPoints col-md-6 col-md-offset-3" ng-show="rc.showMinusPoints" ng-class="{fade: rc.startFadeCoin}">
             -5
         </div>
 
@@ -88,10 +89,11 @@
                 vm.data = [];
                 vm.activeItem = 1;
                 vm.showMinusPoints = false;
-                vm.startFade = false;
-                vm.startFadePicture = false;
+                vm.startFadeCoin = false;
                 vm.activeLoc = {};
-                vm.showPicture = true;
+                vm.showPicture = false;
+                vm.hidePicture = false;
+                vm.showPictureBox = true;
                 vm.showNoMoreFeeds = false;
                 vm.successMsgBox = false;
                 vm.successMsg = "";
@@ -107,25 +109,34 @@
                     vm.data = JSON.parse($("#modelData").html());
                     console.log("data is ", vm.data);
                     vm.activeLoc = vm.data[0];
+                    vm.showPicture = true;
                 }
 
                 function _nextSlide() {
                     console.log("activeItem is ", vm.activeItem);
+                    vm.hidePicture = true;
+
                     if (vm.activeItem < vm.data.length) {
-                        vm.startFadePicture = true;
-                        vm.startFade = true;
+                        vm.startFadeCoin = true;
                         vm.showMinusPoints = true;
+
+                        vm.$timeout(function () {
+                            vm.hidePicture = false;
+
+                            vm.showPicture = false;
+
+                        }, 500);
 
                         vm.$timeout(function () {
                             console.log("time's up");
                             vm.showMinusPoints = false;
-                            vm.startFade = false;
+                            vm.startFadeCoin = false;
                             vm.activeLoc = vm.data[vm.activeItem];
+                            vm.showPicture = true;
                             vm.activeItem++;
-                            vm.startFadePicture = false;
-                        }, 500);
+                        }, 1000);
                     } else {
-                        vm.showPicture = false;
+                        vm.showPictureBox = false;
                         vm.showNoMoreFeeds = true;
                     }
                 };
