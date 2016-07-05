@@ -4,99 +4,113 @@
     Layout = "~/Views/Shared/_LandingPageLayout.cshtml";
 }
 @section styles{
-
-
     <link href="~/Scripts/bower_components/dropzone/dist/min/basic.min.css" rel="stylesheet" />
     <link href="~/Scripts/bower_components/dropzone/dist/min/dropzone.min.css" rel="stylesheet" />
 }
+<div class="userbg">
 
-<h2>Media Upload in 1 Step</h2>
+    <div class="registerWindow col-sm-offset-1 col-sm-10 col-lg-offset-4 col-lg-4 text-center">
+        <img src="~/Content/images/foodtator_logo.png" alt="logo" width="100" class="indexLogo" />
+        <h2 class="text-center">Submit meal!</h2>
+        <hr />
+        @* Drop Zone Meal*@
 
-        <div id="my-awesome-dropzone" class="dropzone col-xs-12">
-            <div class="dropzone-previews"></div> <!-- this is were the previews should be shown. -->
-            <!-- Now setup your input fields -->
-            <input type="text" name="Title" id="Title" placeholder="Title" />
-            <input type="text" name="Description" id="Description" />
+        <form>
+            <div class="form-group">
+                <label for="text">Restaurant Name</label>
+                <input type="text" name="Title" id="Title" class="form-control">
+            </div>
 
-            <button type="submit">Submit data and files!</button>
-        </div>
+            <div class="form-group">
+                <label for="text">Describe the goodness you just ate</label>
+                <input type="text" class="form-control" name="Description" id="Description">
+            </div>
 
-        <div class="alert alert-success hidden col-sm-offset-2 col-sm-4" id="picuploaded">
-            <strong>Success!</strong> <span></span>
-        </div>
-        @section scripts
+
+            <div id="my-awesome-dropzone" class="dropzone">
+                <div class="text-center">
+                    <button type="submit" class="btn btn-raised btn-success">
+                        Submit Photo!
+                    </button>
+                </div>
+                <div class="alert alert-success hidden col-sm-offset-2 col-sm-4" id="picuploaded">
+                    <strong>Success!</strong> <span></span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section scripts
 {
-            <script type="text/javascript">
-            
-                tkj.page.startUp = function () {
-                    tkj.page.initializeDropzone();
-                   
-                    
-                };
+    <script type="text/javascript">
 
-                //console.log("What the fuck",latitude, longitude);
-                    //if (navigator.geolocation) {
-                        
-                    //} 
-                    
-       
-                tkj.page.initializeDropzone = function () {
-                    var latitude = null;
-                    var longitude = null;
-                    navigator.geolocation.getCurrentPosition(function (position) {
-                        latitude = position.coords.latitude;
-                        longitude = position.coords.longitude;
+        tkj.page.startUp = function () {
+            tkj.page.initializeDropzone();
+
+
+        };
+
+        tkj.page.initializeDropzone = function () {
+            var latitude = null;
+            var longitude = null;
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    latitude = position.coords.latitude;
+                    longitude = position.coords.longitude;
+                });
+            }
+            Dropzone.options.myAwesomeDropzone = { // The camelized version of the ID of the form element
+
+                // The configuration we've talked about above
+                autoProcessQueue: false,
+                uploadMultiple: false,
+                parallelUploads: 1,
+                maxFiles: 1,
+                maxFilesize: 5,
+                url: "/api/photouploader/UploadWithData/",
+
+                // The setting up of the dropzone
+                init: function () {
+                    var myDropzone = this;
+
+                    // First change the button to actually tell Dropzone to process the queue.
+                    this.element.querySelector("button[type=submit]").addEventListener("click", function (e) {
+                        // Make sure that the form isn't actually being sent.
+                        e.preventDefault();
+                        e.stopPropagation();
+                        myDropzone.processQueue();
                     });
-                    Dropzone.options.myAwesomeDropzone = { // The camelized version of the ID of the form element
-                      
-                        // The configuration we've talked about above
-                        autoProcessQueue: false,
-                        uploadMultiple: false,
-                        parallelUploads: 1,
-                        maxFiles: 1,
-                        maxFilesize: 5,
-                        url: "/api/photouploader/UploadWithData/",
 
-                        // The setting up of the dropzone
-                        init: function () {
-                            var myDropzone = this;
+                    this.on("sending", function (file, xhr, formData) {
+                        // Will send the filesize along with the file as POST data.
+                        formData.append("Title", $('#Title').val());
+                        formData.append("Description", $('#Description').val());
+                        formData.append("Latitude", latitude);
+                        formData.append("Longitude", longitude);
+                        console.log(latitude, longitude, "Form!!");
 
-                            // First change the button to actually tell Dropzone to process the queue.
-                            this.element.querySelector("button[type=submit]").addEventListener("click", function (e) {
-                                // Make sure that the form isn't actually being sent.
-                                e.preventDefault();
-                                e.stopPropagation();
-                                myDropzone.processQueue();
-                            });
+                    });
 
-                            this.on("sending", function (file, xhr, formData) {
-                                // Will send the filesize along with the file as POST data.
-                                formData.append("Title", $('#Title').val());
-                                formData.append("Description", $('#Description').val());
-                                formData.append("Latitude", latitude);
-                                formData.append("Longitude", longitude);
-                                console.log(latitude, longitude, "Form!!");
-                               
-                            });
+                    this.on("success", function (file, response) {
+                        console.log("id is " + response.item);
+                        tkj.page.uploaded(response.item);
 
-                            this.on("success", function (file, response) {
-                                console.log("id is " + response.item);
-                                tkj.page.uploaded(response.item);
+                    })
+                }
 
-                            })
-                        }
+            }
+        };
 
-                    }
-                };
+        tkj.page.uploaded = function (item) {
 
-                tkj.page.uploaded = function (item) {
+            $('#picuploaded').removeClass('hidden');
+            $('#picuploaded span').text('ID is' + item);
+            $('#picuploaded').show().delay(5000);
 
-                    $('#picuploaded').removeClass('hidden');
-                    $('#picuploaded span').text('ID is' + item);
-                    $('#picuploaded').show().delay(5000);
+        };
 
-                };
-
-            </script>
-        }
+    </script>
+}
 
