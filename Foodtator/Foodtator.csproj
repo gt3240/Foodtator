@@ -258,6 +258,7 @@
     <Compile Include="Controllers\GooglePlacesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MyPointsController.cs" />
     <Compile Include="Controllers\PhotoUploadController.cs" />
     <Compile Include="Controllers\ResultsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -287,6 +288,7 @@
     <Compile Include="Interfaces\ICheckInService.cs" />
     <Compile Include="Interfaces\IFileUploadService.cs" />
     <Compile Include="Interfaces\IMediaService.cs" />
+    <Compile Include="Interfaces\IPointsService.cs" />
     <Compile Include="Interfaces\IResultsService.cs" />
     <Compile Include="Interfaces\ISearchService.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -300,6 +302,7 @@
     <Compile Include="Models\RequestModel\LogInRequestModel.cs" />
     <Compile Include="Models\RequestModel\MediaRequestModel.cs" />
     <Compile Include="Models\RequestModel\PaginateListRequestModel.cs" />
+    <Compile Include="Models\RequestModel\PointsRecordRequestModel.cs" />
     <Compile Include="Models\RequestModel\RegisterRequestModel.cs" />
     <Compile Include="Models\RequestModel\UserSearchRequestModel.cs" />
     <Compile Include="Models\ResponseModel\BaseResponse.cs" />
@@ -309,6 +312,7 @@
     <Compile Include="Models\ResponseModel\PaginateItemsResponseModel.cs" />
     <Compile Include="Models\ResponseModel\SuccessResponse.cs" />
     <Compile Include="Models\ViewModels\BaseViewModel.cs" />
+    <Compile Include="Models\ViewModels\CheckInViewModel.cs" />
     <Compile Include="Models\ViewModels\ItemViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdminUserService.cs" />
@@ -518,10 +522,15 @@
     <Content Include="Scripts\bower_components\animate.css\source\zooming_exits\zoomOutUp.css" />
     <Content Include="Scripts\bower_components\animate.css\source\_base.css" />
     <Content Include="Scripts\FoodTator\App\CheckIn\CheckInConfig.js" />
+    <Content Include="Scripts\FoodTator\App\CheckIn\Controllers\myPointsController.js" />
     <Content Include="Scripts\FoodTator\App\CheckIn\Controllers\rateController.js" />
     <Content Include="Scripts\FoodTator\App\CheckIn\Controllers\selectionLoadedController.js" />
+    <Content Include="Scripts\FoodTator\App\CheckIn\Templates\myPoints.html" />
     <Content Include="Scripts\FoodTator\App\CheckIn\Templates\rate.html" />
     <Content Include="Scripts\FoodTator\App\CheckIn\Templates\selectionLoaded.html" />
+    <Content Include="Scripts\FoodTator\App\MyPoints\MyPointsConfig.js" />
+    <Content Include="Scripts\FoodTator\App\MyPoints\Controllers\myPointsController.js" />
+    <Content Include="Scripts\FoodTator\App\MyPoints\Templates\myPoints.html" />
     <Content Include="Scripts\FoodTator\App\Public\Controllers\PublicController.js" />
     <Content Include="Scripts\FoodTator\App\Restaurants\Templates\RestaurantsMain.html" />
     <Content Include="Scripts\FoodTator\App\Users\Controllers\FacebookLoginController.js" />
@@ -531,6 +540,7 @@
     <Content Include="Scripts\FoodTator\Services\CheckInService.js" />
     <Content Include="Scripts\FoodTator\Services\FacebookServices.js" />
     <Content Include="Scripts\FoodTator\Services\GoogleMapService.js" />
+    <Content Include="Scripts\FoodTator\Services\PointsServices.js" />
     <Content Include="Scripts\FoodTator\Services\PublicService.js" />
     <Content Include="Scripts\FoodTator\Services\ResultsService.js" />
     <Content Include="Scripts\FoodTator\Services\UserServices.js" />
@@ -585,7 +595,7 @@
     <Content Include="Views\Shared\_LandingPageLayout.cshtml" />
     <Content Include="Views\Public\Register.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
-    <Content Include="Views\GooglePlaces\Restaurants.cshtml" />
+    <Content Include="Views\GooglePlaces\Dashboard.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Home\PageSample.cshtml" />
     <Content Include="Views\Home\PageSample.cshtml" />
@@ -594,6 +604,7 @@
     <Content Include="Views\Results\GoogleResults.cshtml" />
     <Content Include="Views\Shared\alreadySelected.cshtml" />
     <Content Include="Views\PhotoUpload\Index.cshtml" />
+    <Content Include="Views\MyPoints\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

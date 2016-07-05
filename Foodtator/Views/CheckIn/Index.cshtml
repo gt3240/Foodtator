@@ -1,5 +1,7 @@
-﻿
-@{
+﻿@model Foodtator.Models.ViewModels.CheckInViewModel
+@using Foodtator.Classes.Extensions
+
+@{ 
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LandingPageLayout.cshtml";
 }
@@ -12,11 +14,15 @@
 
 <div ng-view></div>
 
+<script type="application/json" id="modelData">
+    @Html.RawJson(Model.AppUser)
+</script>
 
 @section Scripts{
 <script src="~/Scripts/FoodTator/App/CheckIn/CheckInConfig.js"></script>
 <script src="~/Scripts/FoodTator/App/CheckIn/Controllers/rateController.js"></script>
 <script src="~/Scripts/FoodTator/App/CheckIn/Controllers/selectionLoadedController.js"></script>
+<script src="~/Scripts/FoodTator/App/CheckIn/Controllers/myPointsController.js"></script>
 <script src="~/Scripts/FoodTator/Services/CheckInService.js"></script>
 <script src="~/Scripts/FoodTator/Services/GoogleMapService.js"></script>
 

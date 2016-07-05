@@ -19,5 +19,7 @@ namespace Foodtator.Domain
         public int FollowersCount { get; set; }
         public int FollowedCount { get; set; }
         public String RoleId { get; set; }
+        public int redeemPoints { get; set; }
+        public int rankingPoints { get; set; }
     }
 }

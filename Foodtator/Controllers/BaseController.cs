@@ -56,14 +56,13 @@ namespace Foodtator.Controllers
 
             model.IsLoggedIn = UserService.IsLoggedIn();
 
-            model.CurrentNav = "PublicNav.cshtml";
+            //model.CurrentNav = "PublicNav.cshtml";
 
             if (model.IsLoggedIn)
             {
                 Guid currentUserId = new Guid(UserService.GetCurrentUserId());
-                //AdminUsersService aus = new AdminUsersService();
-                //model.AppUser = aus.GetUserById(currentemail);
-                //model.AppUser = aus.GetUserById(currentUserId);
+                AdminUserService aus = new AdminUserService();
+                model.AppUser = aus.GetUserById(currentUserId);
 
                 //if (model.AppUser != null)
                 //{

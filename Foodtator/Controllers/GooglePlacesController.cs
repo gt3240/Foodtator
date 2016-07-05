@@ -13,7 +13,7 @@ namespace Foodtator.Controllers
     {
         // GET: GooglePlaces
         [Route("")]
-        public ActionResult Restaurants()
+        public ActionResult dashboard()
         {
             
             return View();

@@ -11,7 +11,7 @@ using Foodtator.Domain;
 
 namespace Foodtator.Services
 {
-    public class CheckInService : BaseService,ICheckInService
+    public class CheckInService : BaseService, ICheckInService
     {
         int threeHours = 10800;
         public int EstablishmentSelected(Business model)
@@ -22,12 +22,12 @@ namespace Foodtator.Services
             DataProvider.ExecuteNonQuery(GetConnection, "Establishment_Selected"
                , inputParamMapper: delegate (SqlParameterCollection paramCollection)
                {
-               paramCollection.AddWithValue("@UserId", UserService.GetCurrentUserId());
-               paramCollection.AddWithValue("@EstablishmentName", model.name);
-               paramCollection.AddWithValue("@Latitude", model.location.coordinate.latitude);
-               paramCollection.AddWithValue("@Longitude", model.location.coordinate.longitude);
-               paramCollection.AddWithValue("@ImageUrl", model.image_url);
-               paramCollection.AddWithValue("@Selected", unixTimestamp);
+                   paramCollection.AddWithValue("@UserId", UserService.GetCurrentUserId());
+                   paramCollection.AddWithValue("@EstablishmentName", model.name);
+                   paramCollection.AddWithValue("@Latitude", model.location.coordinate.latitude);
+                   paramCollection.AddWithValue("@Longitude", model.location.coordinate.longitude);
+                   paramCollection.AddWithValue("@ImageUrl", model.image_url);
+                   paramCollection.AddWithValue("@Selected", unixTimestamp);
 
                    SqlParameter p = new SqlParameter("@Id", System.Data.SqlDbType.Int);
                    p.Direction = System.Data.ParameterDirection.Output;
@@ -78,7 +78,7 @@ namespace Foodtator.Services
                , inputParamMapper: delegate (SqlParameterCollection paramCollection)
                {
                    paramCollection.AddWithValue("@Id", id);
-                  
+
                }, returnParameters: delegate (SqlParameterCollection param)
                {
                }

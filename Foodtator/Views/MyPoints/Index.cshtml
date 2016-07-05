@@ -1,0 +1,36 @@
+﻿@model Foodtator.Models.ViewModels.CheckInViewModel
+@using Foodtator.Classes.Extensions
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LandingPageLayout.cshtml";
+}
+
+@section Styles
+{
+    <link href="~/Content/jquery.fullPage.css" rel="stylesheet" />
+
+}
+
+<div ng-view></div>
+
+<script type="application/json" id="modelData">
+    @Html.RawJson(Model.AppUser)
+</script>
+
+@section Scripts{
+    <script src="~/Scripts/FoodTator/App/MyPoints/MyPointsConfig.js"></script>
+    <script src="~/Scripts/FoodTator/App/MyPoints/Controllers/myPointsController.js"></script>
+
+    <script type="text/javascript">
+        tkj.page.startUp = function () {
+            window.location.replace('mypoints#/overview');
+        }
+
+    </script>
+
+
+}
+
+
+

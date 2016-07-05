@@ -15,11 +15,14 @@ using System.Web;
 using Foodtator.Models.RequestModel;
 using Tkj.Data;
 using Foodtator.Domain;
+using Microsoft.Practices.Unity;
+using Foodtator.Interfaces;
 
 namespace Foodtator.Services
 {
     public class UserService : BaseService
     {
+
         private static ApplicationUserManager GetUserManager()
         {
             return HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
@@ -362,10 +365,10 @@ namespace Foodtator.Services
                       p.DateAdded = reader.GetSafeDateTime(startingIndex++);
                       p.DateModified = reader.GetSafeDateTime(startingIndex++);
                       p.UserType = reader.GetSafeInt32(startingIndex++);
-                      int MediaId = reader.GetSafeInt32(startingIndex++);                     
-                
+                      int MediaId = reader.GetSafeInt32(startingIndex++);
+
                   }
-                 
+
               });
 
             return p;
