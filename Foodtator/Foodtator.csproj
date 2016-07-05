@@ -423,6 +423,8 @@
     <None Include="Properties\PublishProfiles\FoodTator.pubxml" />
     <Content Include="Scripts\bower_components\dropzone\.bower.json" />
     <Content Include="Scripts\bower_components\dropzone\bower.json" />
+    <Content Include="Scripts\bower_components\dropzone\dist\basic.css" />
+    <Content Include="Scripts\bower_components\dropzone\dist\dropzone.css" />
     <Content Include="Scripts\bower_components\dropzone\dist\readme.md" />
     <Content Include="Content\images\icons\manifest.json" />
     <None Include="Properties\PublishProfiles\FoodTator.pubxml" />

@@ -28,6 +28,8 @@ namespace Foodtator.Services
                    paramCollection.AddWithValue("@Description", model.Description);
                    paramCollection.AddWithValue("@UserID", null);
                    paramCollection.AddWithValue("@ThumbnailPath", model.ThumbnailPath);
+                   paramCollection.AddWithValue("@Latitude", model.Latitude);
+                   paramCollection.AddWithValue("@Longitude", model.Longitude);
 
                    SqlParameter p = new SqlParameter("@OID", System.Data.SqlDbType.Int);
                    p.Direction = System.Data.ParameterDirection.Output;
