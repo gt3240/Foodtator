@@ -4,83 +4,99 @@
     Layout = "~/Views/Shared/_LandingPageLayout.cshtml";
 }
 @section styles{
-    
-    
-<link href="~/Scripts/bower_components/dropzone/dist/min/basic.min.css" rel="stylesheet" />
-<link href="~/Scripts/bower_components/dropzone/dist/min/dropzone.min.css" rel="stylesheet" />
-    }
+
+
+    <link href="~/Scripts/bower_components/dropzone/dist/min/basic.min.css" rel="stylesheet" />
+    <link href="~/Scripts/bower_components/dropzone/dist/min/dropzone.min.css" rel="stylesheet" />
+}
 
 <h2>Media Upload in 1 Step</h2>
 
-<div id="my-awesome-dropzone" class="dropzone">
-    <div class="dropzone-previews"></div> <!-- this is were the previews should be shown. -->
-    <!-- Now setup your input fields -->
-    <input type="text" name="Title" id="Title" placeholder="Title" />
-    <input type="text" name="Description" id="Description" />
+        <div id="my-awesome-dropzone" class="dropzone col-xs-12">
+            <div class="dropzone-previews"></div> <!-- this is were the previews should be shown. -->
+            <!-- Now setup your input fields -->
+            <input type="text" name="Title" id="Title" placeholder="Title" />
+            <input type="text" name="Description" id="Description" />
 
-    <button type="submit">Submit data and files!</button>
-</div>
+            <button type="submit">Submit data and files!</button>
+        </div>
 
-<div class="alert alert-success hidden col-sm-offset-2 col-sm-4" id="picuploaded">
-    <strong>Success!</strong> <span></span>
-</div>
-@section scripts
+        <div class="alert alert-success hidden col-sm-offset-2 col-sm-4" id="picuploaded">
+            <strong>Success!</strong> <span></span>
+        </div>
+        @section scripts
 {
-    <script type="text/javascript">
+            <script type="text/javascript">
+            
+                tkj.page.startUp = function () {
+                    tkj.page.initializeDropzone();
+                   
+                    
+                };
 
-        tkj.page.startUp = function () {
-
-            tkj.page.initializeDropzone();
-        };
-
-        tkj.page.initializeDropzone = function () {
-            Dropzone.options.myAwesomeDropzone = { // The camelized version of the ID of the form element
-
-                // The configuration we've talked about above
-                autoProcessQueue: false,
-                uploadMultiple: false,
-                parallelUploads: 1,
-                maxFiles: 1,
-                maxFilesize: 5,
-                url: "/api/photouploader/",
-
-                // The setting up of the dropzone
-                init: function () {
-                    var myDropzone = this;
-
-                    // First change the button to actually tell Dropzone to process the queue.
-                    this.element.querySelector("button[type=submit]").addEventListener("click", function (e) {
-                        // Make sure that the form isn't actually being sent.
-                        e.preventDefault();
-                        e.stopPropagation();
-                        myDropzone.processQueue();
+                //console.log("What the fuck",latitude, longitude);
+                    //if (navigator.geolocation) {
+                        
+                    //} 
+                    
+       
+                tkj.page.initializeDropzone = function () {
+                    var latitude = null;
+                    var longitude = null;
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        latitude = position.coords.latitude;
+                        longitude = position.coords.longitude;
                     });
+                    Dropzone.options.myAwesomeDropzone = { // The camelized version of the ID of the form element
+                      
+                        // The configuration we've talked about above
+                        autoProcessQueue: false,
+                        uploadMultiple: false,
+                        parallelUploads: 1,
+                        maxFiles: 1,
+                        maxFilesize: 5,
+                        url: "/api/photouploader/UploadWithData/",
 
-                    this.on("sending", function (file, xhr, formData) {
-                        // Will send the filesize along with the file as POST data.
-                        formData.append("Title", $('#Title').val());
-                        formData.append("Description", $('#Description').val());
-                        //console.log("formdata is " + formData.Title)
-                    });
+                        // The setting up of the dropzone
+                        init: function () {
+                            var myDropzone = this;
 
-                    this.on("success", function (file, response) {
-                        console.log("id is " + response.item);
-                        tkj.page.uploaded(response.item);
+                            // First change the button to actually tell Dropzone to process the queue.
+                            this.element.querySelector("button[type=submit]").addEventListener("click", function (e) {
+                                // Make sure that the form isn't actually being sent.
+                                e.preventDefault();
+                                e.stopPropagation();
+                                myDropzone.processQueue();
+                            });
 
-                    })
-                }
+                            this.on("sending", function (file, xhr, formData) {
+                                // Will send the filesize along with the file as POST data.
+                                formData.append("Title", $('#Title').val());
+                                formData.append("Description", $('#Description').val());
+                                formData.append("Latitude", latitude);
+                                formData.append("Longitude", longitude);
+                                console.log(latitude, longitude, "Form!!");
+                               
+                            });
 
-            }
-        };
+                            this.on("success", function (file, response) {
+                                console.log("id is " + response.item);
+                                tkj.page.uploaded(response.item);
 
-        tkj.page.uploaded = function (item) {
+                            })
+                        }
 
-            $('#picuploaded').removeClass('hidden');
-            $('#picuploaded span').text('ID is' + item);
-            $('#picuploaded').show().delay(5000);
+                    }
+                };
 
-        };
+                tkj.page.uploaded = function (item) {
 
-    </script>
-}
+                    $('#picuploaded').removeClass('hidden');
+                    $('#picuploaded span').text('ID is' + item);
+                    $('#picuploaded').show().delay(5000);
+
+                };
+
+            </script>
+        }
 

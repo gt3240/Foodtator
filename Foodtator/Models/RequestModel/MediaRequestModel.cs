@@ -24,5 +24,9 @@ namespace Foodtator.Models.RequestModel
         public string Description { get; set; }
 
         public string ThumbnailPath { get; set; }
+
+        public string Latitude { get; set; }
+
+        public string Longitude { get; set; }
     }
 }

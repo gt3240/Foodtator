@@ -127,6 +127,8 @@ namespace Foodtator.Controllers.Api
                     mediaModel.MediaType = "1";
                     mediaModel.Title = httpRequest.Form["Title"];  // STACKOVER FLOW SAVES TE DAY!!
                     mediaModel.Description = httpRequest.Form["Description"];
+                    mediaModel.Latitude = httpRequest.Form["Latitude"];
+                    mediaModel.Longitude = httpRequest.Form["Longitude"];
                     string mimeType = System.Web.MimeMapping.GetMimeMapping(fileName);
                     mediaModel.FileType = mimeType;
 
