@@ -1,4 +1,4 @@
-﻿@model YelpSharp.Data.SearchResults
+﻿@model Foodtator.Models.ViewModels.YelpResultsViewModel
 @using Foodtator.Classes.Extensions
 
 @{
@@ -60,7 +60,7 @@
 </div>
 
 <script type="application/json" id="modelData">
-    @Html.RawJson(Model.businesses)
+    @Html.RawJson(Model.results.businesses)
 </script>
 
 @section scripts{

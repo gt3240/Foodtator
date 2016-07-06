@@ -13,6 +13,7 @@ using YelpSharp.Data;
 using YelpSharp.Data.Options;
 using Foodtator.Services;
 using Microsoft.Practices.Unity;
+using Foodtator.Models.ViewModels;
 
 namespace Foodtator.Controllers
 {
@@ -42,8 +43,10 @@ namespace Foodtator.Controllers
 
             if (selected.establishmentName == null)
             {
-                SearchResults results = _ResultsService.Results(location);
-                return View(results);
+                YelpResultsViewModel vm = new YelpResultsViewModel();
+                vm.results = _ResultsService.Results(location);
+
+                return View(vm);
             }
             else
             {

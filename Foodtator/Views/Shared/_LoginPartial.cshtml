@@ -1,5 +1,4 @@
-﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
+﻿@if (Model.IsLoggedIn == true)
 {
     <ul class="nav navbar-nav">
         <li><a href="/dashboard" id="homeBtn">Dashboard</a></li>
@@ -9,7 +8,7 @@
       
         <li>
             <a href="#" ng-click="pc.logOff()">
-                Log Out | @User.Identity.GetUserName()
+                Log Out | @Model.AppUser.FirstName
             </a>
         </li>
     </ul>
