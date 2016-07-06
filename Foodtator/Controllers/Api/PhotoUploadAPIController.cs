@@ -5,6 +5,7 @@ using Foodtator.Services;
 using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -86,7 +87,7 @@ namespace Foodtator.Controllers.Api
             return Request.CreateResponse(response);
         }
 
-        // post picture to s3 and sql with other form elements ***NOT WORKING YET****
+        // post picture to s3 and sql with other form elements 
         [Route("UploadWithData")]
         public HttpResponseMessage Upload()
         {
@@ -107,7 +108,7 @@ namespace Foodtator.Controllers.Api
                 {
                     var postedFile = httpRequest.Files[file];
 
-                    filePath = HttpContext.Current.Server.MapPath("~/Media/" + postedFile.FileName);
+                    filePath = HttpContext.Current.Server.MapPath("~/Content/images" + postedFile.FileName);
                     fileName = postedFile.FileName;
                     //fileTitle = postedFile.;
                     Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
@@ -134,6 +135,8 @@ namespace Foodtator.Controllers.Api
 
                     //MediaService.InsertMedia(mediaModel);
                     response.Item = _mediaUploadService.InsertMedia(mediaModel);
+
+                    File.Delete(filePath);
 
                 }
                 result = Request.CreateResponse(HttpStatusCode.Created, docfiles);
