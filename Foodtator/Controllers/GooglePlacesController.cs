@@ -1,4 +1,5 @@
 ﻿using Foodtator.Models.RequestModel;
+using Foodtator.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +10,14 @@ using YelpSharp;
 namespace Foodtator.Controllers
 {
     [RoutePrefix("dashboard")]
-    public class GooglePlacesController : Controller
+    public class GooglePlacesController : BaseController
     {
         // GET: GooglePlaces
         [Route("")]
-        public ActionResult Restaurants()
+        public ActionResult dashboard()
         {
-            
-            return View();
+            BaseViewModel vm = new BaseViewModel(); 
+            return View(vm);
         }
 
       

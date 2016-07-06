@@ -142,15 +142,16 @@
                 function _onSuccess(data) {
                     console.log("user added", data);
                     window.location.href = '/dashboard';
-                    vm.loading = false;
-                    vm.registerBtnText = "Register";
+                    //vm.loading = false;
+                    //vm.registerBtnText = "Register";
                 };
 
                 function _onErr(data) {
                     console.log("ajax err", data);
                     vm.loading = false;
                     vm.registerBtnText = "Register";
-                    vm.errMsg = data.Message;
+                    vm.errMsg = data.message;
+                    console.log("vm.errMsg", vm.errMsg);
                 };
 
 

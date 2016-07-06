@@ -11,7 +11,7 @@ using Tkj.Data;
 
 namespace Foodtator.Services
 {
-    public class AdminUserService:BaseService, IAdminUsersService
+    public class AdminUserService : BaseService, IAdminUsersService
     {
         //Update User by Id  //update website by userId put method service
         public void Update(AdminUsersRequestModel model, Guid Id)
@@ -26,9 +26,9 @@ namespace Foodtator.Services
                    paramCollection.AddWithValue("@Email", model.Email);
                    paramCollection.AddWithValue("@PhoneNumber", model.PhoneNumber);
                    paramCollection.AddWithValue("@RoleId", model.RoleId);
-                   
-                  
-                   
+
+
+
                });
 
             DataProvider.ExecuteNonQuery(GetConnection, "dbo.UserWebsite_DeleteByUserId"
@@ -42,8 +42,8 @@ namespace Foodtator.Services
            , inputParamMapper: delegate (SqlParameterCollection paramCollection)
            {
                paramCollection.AddWithValue("@UserId", Id.ToString());
-               
-               
+
+
 
            }, returnParameters: null);
         }
@@ -98,8 +98,8 @@ namespace Foodtator.Services
         {
             //UserDetails p = null;
             UserDetails p = new UserDetails();
-           
-            DataProvider.ExecuteCmd(GetConnection, "dbo.Users_Admin_Select_By_Id2"
+
+            DataProvider.ExecuteCmd(GetConnection, "dbo.Users_Select_By_Id"
               , inputParamMapper: delegate (SqlParameterCollection paramCollection)
               {
                   paramCollection.AddWithValue("@ID", id);
@@ -108,102 +108,23 @@ namespace Foodtator.Services
               map: (Action<IDataReader, short>)delegate (IDataReader reader, short set)
               {
 
-                  //if (set == 0)
-                  //{
+                  if (set == 0)
+                  {
+                      int startingIndex = 0; //startingOrdinal
 
-                     
-                  //    int startingIndex = 0; //startingOrdinal
+                      p.Id = reader.GetSafeString(startingIndex++);
+                      p.UserName = reader.GetSafeString(startingIndex++);
+                      p.FirstName = reader.GetSafeString(startingIndex++);
+                      p.LastName = reader.GetSafeString(startingIndex++);
+                      p.PhoneNumber = reader.GetSafeString(startingIndex++);
+                      p.Email = reader.GetSafeString(startingIndex++);
+                      p.DateAdded = reader.GetSafeDateTime(startingIndex++);
+                      p.DateModified = reader.GetSafeDateTime(startingIndex++);
+                      p.UserType = reader.GetSafeInt32(startingIndex++);
+                      p.redeemPoints = reader.GetSafeInt32(startingIndex++);
+                      p.rankingPoints = reader.GetSafeInt32(startingIndex++); ;
 
-                       //string idUsers = reader.GetSafeString(startingIndex++);
-                       //if (idUsers != null)
-                       //{
-                       //    p.Id = new Guid(idUsers);
-                       //}
-                       //else
-                       //{
-                       //    throw new Exception("UserId is not valid");
-                       //}
-                      // p.Id = reader.GetSafeString(startingIndex++);
-                      //p.UserName = reader.GetSafeString(startingIndex++);
-                      //p.FirstName = reader.GetSafeString(startingIndex++);
-                      //p.LastName = reader.GetSafeString(startingIndex++);
-                      //p.PhoneNumber = reader.GetSafeString(startingIndex++);
-                      //p.Email = reader.GetSafeString(startingIndex++);
-                      //p.DateAdded = reader.GetSafeDateTime(startingIndex++);
-                      //p.DateModified = reader.GetSafeDateTime(startingIndex++);
-                      //p.UserType = reader.GetSafeInt32(startingIndex++);
-                  //    int MediaId = reader.GetSafeInt32(startingIndex++);
-                  //    m.ID = reader.GetSafeInt32(startingIndex++);
-                  //    m.MediaType = reader.GetSafeString(startingIndex++);
-                  //    m.Path = reader.GetSafeString(startingIndex++);
-                  //    m.FileName = reader.GetSafeString(startingIndex++);
-                  //    m.FileType = reader.GetSafeString(startingIndex++);
-                  //    m.Title = reader.GetSafeString(startingIndex++);
-                  //    m.Description = reader.GetSafeString(startingIndex++);
-                  //    m.UserID = reader.GetSafeString(startingIndex++);
-                  //    m.CreatedDate = reader.GetSafeDateTime(startingIndex++);
-                  //    m.ModifiedDate = reader.GetSafeDateTime(startingIndex++);
-                  //    m.ThumbnailPath = reader.GetSafeString(startingIndex++);
-                  //    p.FollowersCount = reader.GetSafeInt32(startingIndex++);
-                  //    p.FollowedCount = reader.GetSafeInt32(startingIndex++);
-                  //    b.ID = reader.GetSafeInt32(startingIndex++);
-                  //    b.MediaType = reader.GetSafeString(startingIndex++);
-                  //    b.Path = reader.GetSafeString(startingIndex++);
-                  //    b.FileName = reader.GetSafeString(startingIndex++);
-                  //    b.FileType = reader.GetSafeString(startingIndex++);
-                  //    b.Title = reader.GetSafeString(startingIndex++);
-                  //    b.Description = reader.GetSafeString(startingIndex++);
-                  //    b.UserID = reader.GetSafeString(startingIndex++);
-                  //    b.CreatedDate = reader.GetSafeDateTime(startingIndex++);
-                  //    b.ModifiedDate = reader.GetSafeDateTime(startingIndex++);
-                  //    b.ThumbnailPath = reader.GetSafeString(startingIndex++);
-                  //     // m.BaseUrl = reader.GetSafeString(startingIndex++);
-                  //     if (m.ID == 0)
-                  //    {
-                  //        p.Avatar = null;
-                  //    }
-                  //    else
-                  //    {
-                  //        p.Avatar = m;
-                  //    }
-                  //    if (b.ID == 0)
-                  //    {
-                  //        p.BackGroundPhoto = null;
-                  //    }
-                  //    else
-                  //    {
-                  //        p.BackGroundPhoto = b;
-                  //    }
-
-                  //    p.Website = new List<Website>();
-                  //}
-                  //else if (set == 1)
-                  //{
-
-                  //    if (p != null)
-                  //    {
-                  //        Website site = new Website();
-                  //        int startingIndex = 0;
-                  //        site.ID = reader.GetSafeInt32(startingIndex++);
-                  //        site.Name = reader.GetSafeString(startingIndex++);
-                  //        site.Slug = reader.GetSafeString(startingIndex++);
-                  //        site.Url = reader.GetSafeString(startingIndex++);
-                  //        site.Theme = reader.GetSafeString(startingIndex++);
-                  //        site.Description = reader.GetSafeString(startingIndex++);
-                  //        site.Active = reader.GetSafeBool(startingIndex++);
-                  //        p.Website.Add(site);
-                  //    }
-
-                  //}
-
-                  //else if (set == 2)
-                  //{
-                  //    if (p != null)
-                  //    {
-                  //        int startingIndex = 0;
-                  //        p.RoleId = reader.GetSafeString(startingIndex++);
-                  //    }
-                  //}
+                  }
               });
 
             return p;

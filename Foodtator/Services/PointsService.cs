@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Foodtator.Interfaces;
+using Foodtator.Models.RequestModel;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -6,23 +8,30 @@ using System.Web;
 
 namespace Foodtator.Services
 {
-    public class PointsService: BaseService
+    public class PointsService: BaseService, IPointsService
     {
         //Our point system as of June 30 2016
+        private int NewUserPoints = 10;
         private int RestaurantAccepted = 5;
         private int Restaurantdenied = 1;
         private int PhotoUploaded = 10;
-        private int RestaurantPoints;
+        private int RestaurantPoints = 0;
         //Depending on what the user does different commands will get passed in
-        public int InsertPoints(string Points)
+
+        public int InsertPoints(PointsRecordRequestModel model)
         {
             int uid = 0;
+                   
+            string userId = UserService.GetCurrentUserId();
 
-            DataProvider.ExecuteNonQuery(GetConnection, "dbo.Users_InsertPoints"
+            DataProvider.ExecuteNonQuery(GetConnection, "dbo.Points_Insert"
                , inputParamMapper: delegate (SqlParameterCollection paramCollection)
                {
-                   switch (Points)
+                   switch (model.eventType)
                    {
+                       case "NewUser":
+                           RestaurantPoints = NewUserPoints;
+                           break;
                        case "RestaurantAccepted":
                            RestaurantPoints = RestaurantAccepted;
                            break;
@@ -34,41 +43,62 @@ namespace Foodtator.Services
                            break;
                    }
                    paramCollection.AddWithValue("@Points", RestaurantPoints);
-
-                   SqlParameter p = new SqlParameter("@Id", System.Data.SqlDbType.Int); //passing my output Id, Id is type int, so (System.Data.SqlDbType.Int)
-                   p.Direction = System.Data.ParameterDirection.Output;
-                   paramCollection.Add(p); //those three lines in the last, because in the store proc ID is the last one.
+                   paramCollection.AddWithValue("@UserId", userId);
 
                }, returnParameters: delegate (SqlParameterCollection param)
                {
-                   int.TryParse(param["@Id"].Value.ToString(), out uid);
                });
+
+            model.userId = userId;
+            model.points = RestaurantPoints;
+            model.locationName = "toms";
+            PointsService.insertPointsRecord(model);
+
             return uid;
         }
 
-        public int SubtractPoints(string Points)
+        public int dismissEstablishment(PointsRecordRequestModel model)
         {
             int uid = 0;
-
-            DataProvider.ExecuteNonQuery(GetConnection, "dbo.Users_SubtractPoints"
+            string userId = UserService.GetCurrentUserId();
+            DataProvider.ExecuteNonQuery(GetConnection, "dbo.Points_SubtractPoints"
                , inputParamMapper: delegate (SqlParameterCollection paramCollection)
                {
-                   if(Points== "RestaurantDenied")
+                   if(model.eventType == "RestaurantDenied")
                    {
                        RestaurantPoints = Restaurantdenied;
                    }
                    paramCollection.AddWithValue("@Points", RestaurantPoints);
-                   paramCollection.AddWithValue("@UserId", UserService.GetCurrentUserId());
+                   paramCollection.AddWithValue("@UserId", userId);
 
-                   SqlParameter p = new SqlParameter("@Id", System.Data.SqlDbType.Int); //passing my output Id, Id is type int, so (System.Data.SqlDbType.Int)
-                   p.Direction = System.Data.ParameterDirection.Output;
-                   paramCollection.Add(p); //those three lines in the last, because in the store proc ID is the last one.
+                
+               }, returnParameters: delegate (SqlParameterCollection param)
+               {
+               });
+
+            model.userId = userId;
+            model.points = RestaurantPoints;
+            model.locationName = "toms";
+            PointsService.insertPointsRecord(model);
+
+            return uid;
+        }
+
+        public static void insertPointsRecord(PointsRecordRequestModel model)
+        {
+            DataProvider.ExecuteNonQuery(GetConnection, "dbo.PointsHistory_Insert"
+               , inputParamMapper: delegate (SqlParameterCollection paramCollection)
+               {
+                  
+                   paramCollection.AddWithValue("@UserId", model.userId);
+                   paramCollection.AddWithValue("@Event", model.eventType);
+                   paramCollection.AddWithValue("@LocationName", model.locationName);
+                   paramCollection.AddWithValue("@Points", model.points);
+
 
                }, returnParameters: delegate (SqlParameterCollection param)
                {
-                   int.TryParse(param["@Id"].Value.ToString(), out uid);
                });
-            return uid;
         }
     }
 }

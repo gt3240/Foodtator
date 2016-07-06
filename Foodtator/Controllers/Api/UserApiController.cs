@@ -5,6 +5,7 @@ using Foodtator.Models.RequestModel;
 using Foodtator.Models.ResponseModel;
 using Foodtator.Services;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace Foodtator.Controllers.Api
     [RoutePrefix("api/user")]
     public class UserApiController : ApiController
     {
+        [Dependency]
+        public IPointsService _PointsService { get; set; }
 
         [Route("register"), HttpPost]
         public HttpResponseMessage Register(RegistrationModel model)
@@ -36,7 +39,7 @@ namespace Foodtator.Controllers.Api
             }
             catch (IdentityResultException ire)
             {
-
+               
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ire.Result.Errors.ElementAt(0));
 
             }
@@ -45,7 +48,17 @@ namespace Foodtator.Controllers.Api
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Something went wrong, contact admin.");
             }
 
-            return Request.CreateResponse(response);
+            bool signIn = UserService.Signin(model.email, model.password);
+
+            if (signIn == true)
+            {
+                //_PointsService.InsertPoints("NewUser");
+                return Request.CreateResponse(response);
+            } else
+            {
+                return Request.CreateResponse("Can't login");
+            }
+          
 
         }
 

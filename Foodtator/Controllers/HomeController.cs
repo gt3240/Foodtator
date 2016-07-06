@@ -1,4 +1,5 @@
 ﻿using Foodtator.Models.RequestModel;
+using Foodtator.Models.ViewModels;
 using Foodtator.Services;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,14 @@ using YelpSharp.Data;
 namespace Foodtator.Controllers
 {
     
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
      
         public ActionResult Index(BusinessSearchRequestModel model)
         {
 
-            
-            return View();
+            BaseViewModel vm = new BaseViewModel();
+            return View(vm);
             
         }
 

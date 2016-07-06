@@ -11,8 +11,12 @@
             }).when('/rate', {
                 templateUrl: '/Scripts/FoodTator/App/CheckIn/Templates/rate.html',
                 controller: 'rateController',
-                controllerAs: 'rc'  
-            });;
+                controllerAs: 'rc'
+            }).when('/myPoints', {
+                templateUrl: '/Scripts/FoodTator/App/CheckIn/Templates/myPoints.html',
+                controller: 'myPointsController',
+                controllerAs: 'mpc'
+            });
 
             $locationProvider.html5Mode(false);
 

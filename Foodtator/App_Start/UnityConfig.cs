@@ -25,12 +25,12 @@ namespace Foodtator
             // register all your components with the container here
             // it is NOT necessary to register your controllers
 
-           container.RegisterType<IResultsService, ResultsService>();
-           container.RegisterType<ICheckInService, CheckInService>();
-           container.RegisterType<IMediaService, MediaService>();
-           container.RegisterType<IFileUploadService, FileUploadService>();
+            container.RegisterType<IResultsService, ResultsService>();
+            container.RegisterType<ICheckInService, CheckInService>();
+            container.RegisterType<IMediaService, MediaService>();
+            container.RegisterType<IFileUploadService, FileUploadService>();
+            container.RegisterType<IPointsService, PointsService>();
 
-           
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
 

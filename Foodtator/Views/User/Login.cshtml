@@ -130,7 +130,14 @@
 
                 function _onSuccess(data) {
                     console.log("user logged in", data);
-                    window.location.href = '/dashboard';
+                    if (data.item == "externalAuthUser") {
+                        console.log("externalAuthUser");
+                        vm.loading = false;
+                        vm.registerBtnText = "Login";
+                        vm.errMsg = "Please sign in with Facebook";
+                    } else {
+                        window.location.href = '/dashboard';
+                    }
                     //vm.loading = false;
                     //vm.registerBtnText = "Login";
                 };

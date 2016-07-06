@@ -1,5 +1,6 @@
 ﻿using Foodtator.Domain;
 using Foodtator.Interfaces;
+using Foodtator.Models.RequestModel;
 using Foodtator.Models.ResponseModel;
 using Microsoft.Practices.Unity;
 using System;
@@ -19,6 +20,9 @@ namespace Foodtator.Controllers.Api
         [Dependency]
         public ICheckInService _CheckInService { get; set; }
 
+        [Dependency]
+        public IPointsService _PointsService { get; set; }
+
         [Route("Selected"), HttpPost]
         public HttpResponseMessage SelectEstablishment(Business model)
         {
@@ -29,6 +33,10 @@ namespace Foodtator.Controllers.Api
             }
 
             _CheckInService.EstablishmentSelected(model);
+
+            PointsRecordRequestModel pointsModel = new PointsRecordRequestModel();
+            pointsModel.eventType = "RestaurantAccepted";
+            _PointsService.InsertPoints(pointsModel);
 
             SuccessResponse response = new SuccessResponse();
 
@@ -66,6 +74,17 @@ namespace Foodtator.Controllers.Api
             return Request.CreateResponse(response);
         }
 
+        [Route("dismiss"), HttpPost]
+        public HttpResponseMessage DismissEstablishment()
+        {
+            PointsRecordRequestModel pointsModel = new PointsRecordRequestModel();
+            pointsModel.eventType = "RestaurantDenied";
+            _PointsService.dismissEstablishment(pointsModel);
+
+            SuccessResponse response = new SuccessResponse();
+
+            return Request.CreateResponse(response);
+        }
 
     }
 }
