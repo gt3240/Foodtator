@@ -87,7 +87,7 @@ namespace Foodtator.Controllers.Api
             return Request.CreateResponse(response);
         }
 
-        // post picture to s3 and sql with other form elements ***NOT WORKING YET****
+        // post picture to s3 and sql with other form elements 
         [Route("UploadWithData")]
         public HttpResponseMessage Upload()
         {
