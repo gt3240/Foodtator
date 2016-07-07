@@ -67,6 +67,7 @@
     <script src="~/Scripts/FoodTator/Services/ResultsService.js"></script>
     <script src="~/Scripts/FoodTator/Services/PointsServices.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
+    <script src="~/Scripts/bower_components/flip/dist/jquery.flip.min.js"></script>
     <script type="text/javascript">
 
         (function () {
@@ -110,6 +111,7 @@
                 init();
 
                 function init() {
+
                     vm.data = JSON.parse($("#modelData").html());
                     console.log("data is ", vm.data);
                     vm.activeLoc = vm.data[0];
