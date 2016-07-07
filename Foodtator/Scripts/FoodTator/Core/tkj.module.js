@@ -7,6 +7,7 @@
         ,'ngRoute'
         ,'ngAnimate'
         , '720kb.fx'
+        //, 'countTo'
         //,'toastr'
     ];
 

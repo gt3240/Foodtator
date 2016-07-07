@@ -108,7 +108,7 @@ namespace Foodtator.Controllers.Api
                 {
                     var postedFile = httpRequest.Files[file];
 
-                    filePath = HttpContext.Current.Server.MapPath("~/Content/images" + postedFile.FileName);
+                    filePath = HttpContext.Current.Server.MapPath("~/Content/images/" + postedFile.FileName);
                     fileName = postedFile.FileName;
                     //fileTitle = postedFile.;
                     Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;

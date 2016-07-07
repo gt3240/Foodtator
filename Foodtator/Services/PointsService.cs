@@ -13,6 +13,7 @@ namespace Foodtator.Services
         //Our point system as of June 30 2016
         private int NewUserPoints = 10;
         private int RestaurantAccepted = 5;
+        private int RestaurantCheckedIn = 10;
         private int Restaurantdenied = 1;
         private int PhotoUploaded = 10;
         private int RestaurantPoints = 0;
@@ -34,6 +35,9 @@ namespace Foodtator.Services
                            break;
                        case "RestaurantAccepted":
                            RestaurantPoints = RestaurantAccepted;
+                           break;
+                       case "RestaurantCheckedIn":
+                           RestaurantPoints = RestaurantCheckedIn;
                            break;
                        case "PhotoUploaded":
                            RestaurantPoints = PhotoUploaded;

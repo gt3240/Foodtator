@@ -71,6 +71,10 @@ namespace Foodtator.Controllers.Api
 
             _CheckInService.CheckIn(id);
 
+            PointsRecordRequestModel pointsModel = new PointsRecordRequestModel();
+            pointsModel.eventType = "RestaurantCheckedIn";
+            _PointsService.InsertPoints(pointsModel);
+
             return Request.CreateResponse(response);
         }
 
