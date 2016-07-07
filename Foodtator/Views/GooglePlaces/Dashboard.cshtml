@@ -1,4 +1,7 @@
-﻿@{
+﻿@model Foodtator.Models.ViewModels.BaseViewModel
+@using Foodtator.Classes.Extensions
+
+@{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_LandingPageLayout.cshtml";
 }
@@ -32,12 +35,18 @@
 
 </div>
 
+<script type="application/json" id="modelData">
+    @Html.RawJson(Model.AppUser)
+</script>
+
 @section scripts{
     <script type="text/javascript">
         var currentLocation = null;
 
         tkj.page.startUp = function () {
             $('#findLoc').on('click', tkj.page.handlers.onFindLoc);
+            var userData = JSON.parse($("#modelData").html());
+            console.log("user is ", userData);
             tkj.page.getPosition();
         }
         

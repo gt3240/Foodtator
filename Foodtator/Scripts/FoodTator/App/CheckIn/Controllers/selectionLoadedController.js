@@ -38,7 +38,9 @@
 
         function init() {
             console.log("SelectionLoadedController loaded");
-            vm.$checkInService.getSelected(vm.getSelectedSuccess, vm.getSelectedError)
+            vm.user = JSON.parse($("#modelData").html());
+            console.log("user is ", vm.user);
+            vm.$checkInService.getSelected(vm.getSelectedSuccess, vm.getSelectedError);
         }
 
         function _getSelectedSuccess(data) {
