@@ -1,0 +1,136 @@
+﻿@model Foodtator.Models.ViewModels.BaseViewModel
+@using Foodtator.Classes.Extensions
+
+@{
+    ViewBag.Title = "_LayoutUmega";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Foodtator Biz</title>
+    <!-- PACE-->
+    <link href="~/Content/umega/pace-theme-flash.css" rel="stylesheet" />
+    <script src="~/Scripts/Umega/pace.js"></script>
+    <!-- Bootstrap CSS-->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Fonts-->
+    <link href="~/Content/umega/themify-icons.css" rel="stylesheet" />
+    <!-- Malihu Scrollbar-->
+    <link href="~/Content/umega/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+    <!-- Animo.js-->
+    <link href="~/Content/umega/animate-animo.min.css" rel="stylesheet" />
+    <!-- Primary Style-->
+    <link href="~/Content/umega/first-layout.css" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    @RenderSection("Styles", required: false)
+
+</head>
+<body data-sidebar-color="sidebar-light" class="sidebar-light">
+    <!-- Header start-->
+    <header>
+        <div class="search-bar closed">
+            <form>
+                <div class="input-group input-group-lg">
+                    <input type="text" placeholder="Search for..." class="form-control"><span class="input-group-btn">
+                        <button type="button" class="btn btn-default search-bar-toggle"><i class="ti-close"></i></button>
+                    </span>
+                </div>
+            </form>
+        </div><a href="index.html" class="brand pull-left"><img src="~/Content/images/foodtator_logo_header.png" alt="" width="100"></a><a href="javascript:;" role="button" class="hamburger-menu pull-left"><span></span></a>
+
+        <ul class="notification-bar list-inline pull-right">
+            <li class="dropdown visible-lg visible-md">
+                <a id="dropdownMenu2" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle header-icon lh-1 pt-15 pb-15">
+                    <div class="media mt-0">
+                        <div class="media-left avatar"><img src="~/Content/images/mac.png" alt="" class="media-object img-circle"><span class="status bg-success"></span></div>
+
+                    </div>
+                </a>
+                <ul aria-labelledby="dropdownMenu2" class="dropdown-menu fs-12 animated fadeInDown">
+                    <li><a href="profile.html"><i class="ti-user mr-5"></i> My Profile</a></li>
+                    <li><a href="profile.html"><i class="ti-settings mr-5"></i> Account Settings</a></li>
+                    <li><a href="login-v2.html"><i class="ti-power-off mr-5"></i> Logout</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <div class="media-right media-middle pl-0">
+                    <p class="fs-12 mb-0" style="color: #ffffff; padding: 25px 20px;">Hi, Matthew</p>
+                </div>
+            </li>
+        </ul>
+    </header>
+    <!-- Header end-->
+    <div class="main-container">
+        <!-- Main Sidebar start-->
+        <aside data-mcs-theme="minimal-dark" class="main-sidebar mCustomScrollbar">
+            <div class="user">
+                <div id="esp-user-profile" data-percent="65" style="height: 130px; width: 130px; line-height: 100px; padding: 15px;" class="easy-pie-chart"><img src="~/Content/images/mac.png" alt="" class="avatar img-circle"></div>
+                <h4 class="fs-16 text-muted mt-15 mb-5 fw-300">Matthew Gonzalez</h4>
+                <p class="mb-0 text-muted">Designer</p>
+            </div>
+            <ul class="list-unstyled navigation mb-0">
+                <li class="sidebar-category pt-0">Main</li>
+                <li><a href=""><i class="ti-home"></i><span class="sidebar-title">Dashboard</span></a></li>
+                <li><a href=""><i class="ti-gift"></i><span class="sidebar-title">Coupons</span></a></li>
+
+            </ul>
+        </aside>
+        <!-- Main Sidebar end-->
+        <div class="page-container">
+
+            <div class="page-content container-fluid">
+
+                @RenderBody()
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- jQuery-->
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <!-- Bootstrap JavaScript-->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!-- Malihu Scrollbar-->
+    <script src="~/Scripts/Umega/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- Animo.js-->
+    <script src="~/Scripts/Umega/animo.min.js"></script>
+    <!-- Custom JS-->
+    <script type="text/javascript" src="~/Scripts/Umega/app.js"></script>
+
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/bower_components/angular/angular.min.js"></script>
+    <script src="~/Scripts/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="~/Scripts/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="~/Scripts/bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="~/Scripts/bower_components/angular-fx/src/js/angular-fx.js"></script>
+
+    <script src="~/Scripts/tkj.js"></script>
+
+    @RenderSection("pageInitScripts", required: false)
+    <script src="~/Scripts/FoodTator/Core/tkj.module.js"></script>
+
+    @*ng js*@
+    <script type="text/javascript">
+        var APPNAME = 'FoodtatorApp';
+    </script>
+
+    <script src="~/Scripts/FoodTator/Services/PublicService.js"></script>
+    <script src="~/Scripts/FoodTator/Core/services/base.service.js"></script>
+    <script src="~/Scripts/FoodTator/App/Public/Controllers/PublicController.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

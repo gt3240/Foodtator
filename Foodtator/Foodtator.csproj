@@ -253,6 +253,7 @@
     <Compile Include="Controllers\Api\UserApiController.cs" />
     <Compile Include="Controllers\Api\YelpApiController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\bizController.cs" />
     <Compile Include="Controllers\BusinessController.cs" />
     <Compile Include="Controllers\CheckInController.cs" />
     <Compile Include="Controllers\CouponController.cs" />
@@ -338,6 +339,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fonts\themify.svg" />
     <Content Include="Content\foodtator.css" />
     <Content Include="Content\images\background1.jpg" />
     <Content Include="Content\images\bgmobile.jpg" />
@@ -371,8 +373,14 @@
     <Content Include="Content\images\icons\ms-icon-70x70.png" />
     <Content Include="Content\images\loader.gif" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\mac.png" />
     <Content Include="Content\jquery.fullPage.css" />
     <Content Include="Content\SliderStyle.css" />
+    <Content Include="Content\umega\animate-animo.min.css" />
+    <Content Include="Content\umega\first-layout.css" />
+    <Content Include="Content\umega\jquery.mCustomScrollbar.min.css" />
+    <Content Include="Content\umega\pace-theme-flash.css" />
+    <Content Include="Content\umega\themify-icons.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -466,6 +474,9 @@
     <Content Include="Scripts\bower_components\angular-animate\LICENSE.md" />
     <Content Include="Scripts\bower_components\angular-animate\package.json" />
     <Content Include="Scripts\bower_components\angular-animate\README.md" />
+    <Content Include="Content\fonts\themify.eot" />
+    <Content Include="Content\fonts\themify.ttf" />
+    <Content Include="Content\fonts\themify.woff" />
     <None Include="Properties\PublishProfiles\FoodTator %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\FoodTator.pubxml" />
     <Content Include="Scripts\bower_components\dropzone\.bower.json" />
@@ -629,6 +640,11 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\tkj.js" />
+    <Content Include="Scripts\Umega\animo.min.js" />
+    <Content Include="Scripts\Umega\app.js" />
+    <Content Include="Scripts\Umega\demo.js" />
+    <Content Include="Scripts\Umega\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="Scripts\Umega\pace.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -677,6 +693,8 @@
     <Content Include="Views\Shared\alreadySelected.cshtml" />
     <Content Include="Views\PhotoUpload\Index.cshtml" />
     <Content Include="Views\MyPoints\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutUmega.cshtml" />
+    <Content Include="Views\biz\Index.cshtml" />
     <Content Include="Views\Coupon\CouponView.cshtml" />
   </ItemGroup>
   <ItemGroup>
