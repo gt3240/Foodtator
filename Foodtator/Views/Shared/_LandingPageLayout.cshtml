@@ -40,7 +40,6 @@
     <link href="~/Scripts/bower_components/angular-fx/src/css/angular-fx.css" rel="stylesheet" />
 
     <!-- Fonts and icons-->
-    <link href="~/Scripts/bower_components/dropzone/dist/dropzone.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/af23b8d863.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Lobster|Arbutus+Slab|Comfortaa' rel='stylesheet' type='text/css'>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
@@ -60,24 +59,9 @@
 <body ng-app="FoodtatorApp">
 
     @* Nav *@
-    <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    <img alt="Brand" src="~/Content/images/foodtator_logo_header.png" height="35" />
-                </a>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
-                
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
+
+
+    @Html.Partial("_LoginPartial")
 
     @* End Nav *@
 
@@ -92,11 +76,11 @@
     <script src="~/Scripts/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="~/Scripts/bower_components/angular-animate/angular-animate.min.js"></script>
     <script src="~/Scripts/bower_components/angular-fx/src/js/angular-fx.js"></script>
+    <script src="~/Scripts/count-to.js"></script>
 
     <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/tkj.js"></script>
     <script src="~/Scripts/FoodTator/Core/tkj.module.js"></script>
-    <script src="~/Scripts/bower_components/dropzone/dist/min/dropzone.min.js"></script>
     @RenderSection("pageInitScripts", required: false)
 
     @*ng js*@
@@ -110,10 +94,6 @@
 
     @RenderSection("scripts", required: false)
 
-
-
+   
 </body>
 </html>
-
-
-

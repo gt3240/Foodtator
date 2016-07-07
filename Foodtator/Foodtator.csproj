@@ -335,7 +335,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\foodtator.css" />
     <Content Include="Content\images\background1.jpg" />
-    <Content Include="Content\images\bg1.jpg" />
     <Content Include="Content\images\bgmobile.jpg" />
     <Content Include="Content\images\foodtator_logo.png" />
     <Content Include="Content\images\foodtator_logo_header.png" />
@@ -426,6 +425,11 @@
     <Content Include="Scripts\bower_components\dropzone\bower.json" />
     <Content Include="Scripts\bower_components\dropzone\dist\basic.css" />
     <Content Include="Scripts\bower_components\dropzone\dist\dropzone.css" />
+    <Content Include="Scripts\bower_components\dropzone\dist\dropzone.js" />
+    <Content Include="Scripts\bower_components\dropzone\dist\min\basic.min.css" />
+    <Content Include="Scripts\bower_components\dropzone\dist\min\dropzone-amd-module.min.js" />
+    <Content Include="Scripts\bower_components\dropzone\dist\min\dropzone.min.css" />
+    <Content Include="Scripts\bower_components\dropzone\dist\min\dropzone.min.js" />
     <Content Include="Scripts\bower_components\dropzone\dist\readme.md" />
     <Content Include="Content\images\icons\manifest.json" />
     <None Include="Properties\PublishProfiles\FoodTator.pubxml" />
@@ -524,12 +528,11 @@
     <Content Include="Scripts\bower_components\animate.css\source\zooming_exits\zoomOutRight.css" />
     <Content Include="Scripts\bower_components\animate.css\source\zooming_exits\zoomOutUp.css" />
     <Content Include="Scripts\bower_components\animate.css\source\_base.css" />
+    <Content Include="Scripts\count-to.js" />
     <Content Include="Scripts\FoodTator\App\CheckIn\CheckInConfig.js" />
-    <Content Include="Scripts\FoodTator\App\CheckIn\Controllers\myPointsController.js" />
-    <Content Include="Scripts\FoodTator\App\CheckIn\Controllers\rateController.js" />
+    <Content Include="Scripts\FoodTator\App\CheckIn\Controllers\shareController.js" />
     <Content Include="Scripts\FoodTator\App\CheckIn\Controllers\selectionLoadedController.js" />
-    <Content Include="Scripts\FoodTator\App\CheckIn\Templates\myPoints.html" />
-    <Content Include="Scripts\FoodTator\App\CheckIn\Templates\rate.html" />
+    <Content Include="Scripts\FoodTator\App\CheckIn\Templates\share.html" />
     <Content Include="Scripts\FoodTator\App\CheckIn\Templates\selectionLoaded.html" />
     <Content Include="Scripts\FoodTator\App\MyPoints\MyPointsConfig.js" />
     <Content Include="Scripts\FoodTator\App\MyPoints\Controllers\myPointsController.js" />

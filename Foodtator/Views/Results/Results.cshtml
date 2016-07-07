@@ -46,7 +46,7 @@
             </div>
         </div>
 
-        <div class="row" ng-show="rc.successMsgBox">
+        @*<div class="row" ng-show="rc.successMsgBox">
             <div class="feedContainer col-md-6 col-md-offset-3">
                 <div class="feedTitleBox text-center">
                     <h2 style="color:#0099CC;">{{rc.activeLoc.name}}</h2>
@@ -54,7 +54,7 @@
                     <h3>Don't forget to check in to earn more points.</h3>
                 </div>
             </div>
-        </div>
+        </div>*@
 
     </div>
 </div>
@@ -159,12 +159,12 @@
 
                 function _Success(data) {
                     console.log("Data passed", data);
-
-                    vm.$scope.$apply(function () {
-                        vm.showPictureBox = false;
-                        vm.successMsgBox = true;
-                        vm.successMsg = "";
-                    });
+                    window.location.replace('/checkin#/share/selected');
+                    //vm.$scope.$apply(function () {
+                    //    vm.showPictureBox = false;
+                    //    vm.successMsgBox = true;
+                    //    vm.successMsg = "";
+                    //});
 
                 }
 

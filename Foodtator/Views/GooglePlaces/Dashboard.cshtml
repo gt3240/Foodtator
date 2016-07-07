@@ -5,7 +5,6 @@
 
 @section Styles
 {
-    <link href="~/Content/jquery.fullPage.css" rel="stylesheet" />
     <style>
         .btn {
             height: 100px;
@@ -16,14 +15,17 @@
 
 <div class="container">
     <div class="row">
-        <div class="feedContainer col-md-6 col-md-offset-3">
+        <div class="feedContainer col-md-6 col-md-offset-3 col-xs-12">
 
             <div class="feedControlBox text-center">
                 <a class="fa fa-cutlery btn-block" id="findLoc" style="margin-top:20px;"><br /><span class="icon_text locText">Find a Restaurant</span></a>
                 <hr />
-                <a class="fa fa-map-marker btn-block" id="checkIn" href="/checkin"><br /><span class="icon_text">Check In</span></a>
+                <a class="fa fa-map-marker btn-block" id="checkIn" href="/checkin#/selectionLoaded"><br /><span class="icon_text">Check In</span></a>
+                <hr />
+                <a class="fa fa-camera btn-block" id="sharePictures" href="/photoupload"><br /><span class="icon_text">Share Pictures</span></a>
                 <hr />
                 <a class="fa fa-money btn-block" id="myPoints" href="/myPoints"><br /><span class="icon_text">My Points</span></a>
+                
             </div>
         </div>
     </div>

@@ -20,13 +20,11 @@
 
         vm.checkInClicked = _checkInClicked;
         vm.mapCallback = _mapCallback;
-        vm.rateClicked = _rateClicked;
         vm.getSelectedSuccess = _getSelectedSuccess;
         vm.getSelectedError = _getSelectedError;
         vm.checkedInSuccess = _checkedInSuccess;
         vm.checkInError = _checkInError;
 
-        vm.showRateBtn = false;
         vm.checkInResult = false;
         vm.showCheckInBtn = true;
         vm.CHECK_DISTANCE = 100000;
@@ -90,19 +88,12 @@
         }
 
         function _checkedInSuccess(data) {
-            vm.checkInResultText = "How was your meal?";
-            vm.showRateBtn = true;
-            vm.showCheckInBtn = false;
+            window.location.replace('/checkin#/share/checkin');
         }
 
         function _checkInError() {
             console.log("check in error");
         }
-
-        function _rateClicked() {
-            window.location.replace('/checkin#/rate');
-        }
-
 
 
 

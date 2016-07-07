@@ -74,7 +74,6 @@ a {
 }
 
 /* Desktop */
-
 @media (min-width: 768px) {
     .userbg {
         width: 100%;
@@ -123,6 +122,8 @@ a {
         padding: 10px 80px;
         font-size: 56px;
     }
+
+    .xsOffset{display:none;}
 }
 
 /* All */
@@ -202,3 +203,8 @@ label {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
 }
+
+.dropzoneSubmitBtn{
+  margin-bottom: 20px;
+}
+

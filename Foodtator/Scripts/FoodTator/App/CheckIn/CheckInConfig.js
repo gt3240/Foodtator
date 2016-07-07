@@ -8,10 +8,10 @@
                 templateUrl: '/Scripts/FoodTator/App/CheckIn/Templates/selectionLoaded.html',
                 controller: 'selectionLoadedController',
                 controllerAs: 'slc'
-            }).when('/rate', {
-                templateUrl: '/Scripts/FoodTator/App/CheckIn/Templates/rate.html',
-                controller: 'rateController',
-                controllerAs: 'rc'
+            }).when('/share/:event', {
+                templateUrl: '/Scripts/FoodTator/App/CheckIn/Templates/share.html',
+                controller: 'shareController',
+                controllerAs: 'sc'
             }).when('/myPoints', {
                 templateUrl: '/Scripts/FoodTator/App/CheckIn/Templates/myPoints.html',
                 controller: 'myPointsController',
