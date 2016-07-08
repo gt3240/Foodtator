@@ -78,6 +78,7 @@
 
             ResultsController.$inject = ['$scope', '$resultsService', '$timeout', '$pointsService'];
 
+     
             function ResultsController(
                 $scope
                 , $resultsService
@@ -111,7 +112,7 @@
                 init();
 
                 function init() {
-
+         
                     vm.data = JSON.parse($("#modelData").html());
                     console.log("data is ", vm.data);
                     vm.activeLoc = vm.data[0];

@@ -71,6 +71,10 @@ a {
         padding: 10px 80px;
         font-size: 56px;
     }
+
+    .bizFormTitle {
+        text-align: left;
+    }
 }
 
 /* Desktop */
@@ -123,7 +127,13 @@ a {
         font-size: 56px;
     }
 
-    .xsOffset{display:none;}
+    .xsOffset {
+        display: none;
+    }
+
+    .bizFormTitle {
+        text-align: right;
+    }
 }
 
 /* All */
@@ -204,7 +214,24 @@ label {
     font-size: 16px;
 }
 
-.dropzoneSubmitBtn{
-  margin-bottom: 20px;
+.dropzoneSubmitBtn {
+    margin-bottom: 20px;
 }
 
+.bigBtn {
+    color: #ffffff;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    background-color: #17A88B;
+    border-radius: 4px;
+    padding: 8px 15px;
+    box-shadow: 0 3px 0 0 #0e6553;
+    cursor: pointer;
+    padding: 15px;
+}
+
+    .bigBtn:active {
+        box-shadow: inset 0 3px 0 0 #0e6553;
+        position: relative;
+        top: 1px;
+    }
