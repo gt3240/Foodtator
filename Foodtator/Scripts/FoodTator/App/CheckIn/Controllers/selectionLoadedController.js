@@ -27,7 +27,7 @@
 
         vm.checkInResult = false;
         vm.showCheckInBtn = true;
-        vm.CHECK_DISTANCE = 100000;
+        vm.CHECK_DISTANCE = 10000000;
         vm.showNoSelected = false;
         vm.showSelected = false;
 
