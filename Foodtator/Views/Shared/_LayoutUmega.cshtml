@@ -8,10 +8,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="apple-touch-icon" sizes="57x57" href="~/Content/images/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/Content/images/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/Content/images/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Content/images/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/Content/images/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/Content/images/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/Content/images/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/Content/images/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Content/images/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="~/Content/images/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/Content/images/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/images/icons/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
     <title>Foodtator Biz</title>
+
+    <!-- Fonts and icons-->
+    <script src="https://use.fontawesome.com/af23b8d863.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Lobster|Arbutus+Slab|Comfortaa' rel='stylesheet' type='text/css'>
     <!-- PACE-->
     <link href="~/Content/umega/pace-theme-flash.css" rel="stylesheet" />
     <script src="~/Scripts/Umega/pace.js"></script>
@@ -25,6 +47,8 @@
     <link href="~/Content/umega/animate-animo.min.css" rel="stylesheet" />
     <!-- Primary Style-->
     <link href="~/Content/umega/first-layout.css" rel="stylesheet" />
+    <!-- Foodtator Style-->
+    <link href="~/Content/foodtator.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
     <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
     <!--[if lt IE 9]>
@@ -35,7 +59,7 @@
     @RenderSection("Styles", required: false)
 
 </head>
-<body data-sidebar-color="sidebar-light" class="sidebar-light">
+<body data-sidebar-color="sidebar-light" class="sidebar-light" ng-app="FoodtatorApp">
     <!-- Header start-->
     <header>
         <div class="search-bar closed">
@@ -81,9 +105,15 @@
             </div>
             <ul class="list-unstyled navigation mb-0">
                 <li class="sidebar-category pt-0">Main</li>
-                <li><a href=""><i class="ti-home"></i><span class="sidebar-title">Dashboard</span></a></li>
-                <li><a href=""><i class="ti-gift"></i><span class="sidebar-title">Coupons</span></a></li>
-
+                <li><a href="#/dashboard"><i class="fa fa-tachometer"></i><span class="sidebar-title">Dashboard</span></a></li>
+                <li class="panel">
+                    <a role="button" data-toggle="collapse" data-parent=".navigation" href="#collapse2" aria-expanded="false" aria-controls="collapse2" class="collapsed"><i class="fa fa-ticket"></i><span class="sidebar-title">Coupons</span></a>
+                    <ul id="collapse2" class="list-unstyled collapse">
+                        <li><a href="#/coupon">My Coupons</a></li>
+                        <li><a href="#/coupon/new">New Coupon</a></li>
+                        
+                    </ul>
+                </li>
             </ul>
         </aside>
         <!-- Main Sidebar end-->

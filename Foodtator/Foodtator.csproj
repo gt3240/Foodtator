@@ -377,6 +377,7 @@
     <Content Include="Content\jquery.fullPage.css" />
     <Content Include="Content\SliderStyle.css" />
     <Content Include="Content\umega\animate-animo.min.css" />
+    <Content Include="Content\umega\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\umega\first-layout.css" />
     <Content Include="Content\umega\jquery.mCustomScrollbar.min.css" />
     <Content Include="Content\umega\pace-theme-flash.css" />
@@ -455,6 +456,31 @@
     <Content Include="Scripts\bower_components\angular-timer\test\e2e\scenarios.js" />
     <Content Include="Scripts\bower_components\angular-timer\test\unit\directivesSpec.js" />
     <Content Include="Scripts\bower_components\angular-timer\test\unit\timerSetTimeTest.js" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\assets\js\index.js" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\dist\angular-datepicker.min.css" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\dist\angular-datepicker.min.js" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\Gruntfile.js" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\index.html" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\index.js" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\src\css\angular-datepicker.css" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\src\js\angular-datepicker.js" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\tasks\concurrent.js" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\tasks\confs.js" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\tasks\connect.js" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\tasks\csslint.js" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\tasks\cssmin.js" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\tasks\eslint.js" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\tasks\jscs.js" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\tasks\uglify.js" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\tasks\watch.js" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\twitter-bootstrap.html" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\ui-bootstrap\assets\js\index.js" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\ui-bootstrap\index.html" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\ui-bootstrap\template\datepicker\datepicker.html" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\ui-bootstrap\template\datepicker\day.html" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\ui-bootstrap\template\datepicker\month.html" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\ui-bootstrap\template\datepicker\popup.html" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\ui-bootstrap\template\datepicker\year.html" />
     <Content Include="Scripts\bower_components\angular\.bower.json" />
     <Content Include="Scripts\bower_components\angular\angular.min.js.gzip" />
     <Content Include="Scripts\bower_components\angular\angular.min.js.map" />
@@ -520,6 +546,12 @@
     <Content Include="Scripts\bower_components\flip\LICENSE" />
     <Content Include="Scripts\bower_components\flip\package.json" />
     <Content Include="Scripts\bower_components\flip\README.md" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\.bower.json" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\bower.json" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\dist\angular-datepicker.sourcemap.map" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\package.json" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\README.md" />
+    <Content Include="Scripts\bower_components\angularjs-datepicker\themes\README.md" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bower_components\angular\angular-csp.css" />
     <Content Include="Scripts\bower_components\angular\angular.js" />
@@ -605,6 +637,13 @@
     <Content Include="Scripts\bower_components\animate.css\source\zooming_exits\zoomOutUp.css" />
     <Content Include="Scripts\bower_components\animate.css\source\_base.css" />
     <Content Include="Scripts\count-to.js" />
+    <Content Include="Scripts\FoodTator\App\Biz\BizConfig.js" />
+    <Content Include="Scripts\FoodTator\App\Biz\Controllers\couponController.js" />
+    <Content Include="Scripts\FoodTator\App\Biz\Controllers\couponManageController.js" />
+    <Content Include="Scripts\FoodTator\App\Biz\Controllers\dashboardController.js" />
+    <Content Include="Scripts\FoodTator\App\Biz\Templates\coupon.html" />
+    <Content Include="Scripts\FoodTator\App\Biz\Templates\couponManage.html" />
+    <Content Include="Scripts\FoodTator\App\Biz\Templates\dashboard.html" />
     <Content Include="Scripts\FoodTator\App\CheckIn\CheckInConfig.js" />
     <Content Include="Scripts\FoodTator\App\CheckIn\Controllers\shareController.js" />
     <Content Include="Scripts\FoodTator\App\CheckIn\Controllers\selectionLoadedController.js" />
@@ -616,8 +655,10 @@
     <Content Include="Scripts\FoodTator\App\Public\Controllers\PublicController.js" />
     <Content Include="Scripts\FoodTator\App\Restaurants\Templates\RestaurantsMain.html" />
     <Content Include="Scripts\FoodTator\App\Users\Controllers\FacebookLoginController.js" />
+    <Content Include="Scripts\FoodTator\controllerTemplate.js" />
     <Content Include="Scripts\FoodTator\Core\services\base.service.js" />
     <Content Include="Scripts\FoodTator\Core\tkj.module.js" />
+    <Content Include="Scripts\FoodTator\Modules\720kb.datepicker.js" />
     <Content Include="Scripts\FoodTator\Modules\CountToModule.js" />
     <Content Include="Scripts\FoodTator\Modules\VelocityModule.js" />
     <Content Include="Scripts\FoodTator\Services\CheckInService.js" />
@@ -642,11 +683,16 @@
     <Content Include="Scripts\tkj.js" />
     <Content Include="Scripts\Umega\animo.min.js" />
     <Content Include="Scripts\Umega\app.js" />
+    <Content Include="Scripts\Umega\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\Umega\datetime-picker.js" />
     <Content Include="Scripts\Umega\demo.js" />
     <Content Include="Scripts\Umega\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="Scripts\Umega\moment.min.js" />
     <Content Include="Scripts\Umega\pace.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

@@ -8,6 +8,8 @@
 *.sln.docstates
 
 #config files
+Foodtator/*.config
+web.config
 *.config
 
 # User-specific files (MonoDevelop/Xamarin Studio)

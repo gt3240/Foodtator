@@ -1,8 +1,43 @@
-﻿
+﻿@model Foodtator.Models.ViewModels.BaseViewModel
+@using Foodtator.Classes.Extensions
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutUmega.cshtml";
 }
 
-<h2>Biz Index</h2>
+@section Styles
+{
+    <link href="~/Scripts/bower_components/angularjs-datepicker/src/css/angular-datepicker.css" rel="stylesheet" />
+}
+
+<div ng-view></div>
+
+<script type="application/json" id="modelData">
+    @Html.RawJson(Model.AppUser)
+</script>
+
+@section pageInitScripts{
+
+    <script src="~/Scripts/bower_components/angularjs-datepicker/src/js/angular-datepicker.js"></script>
+    <script src="~/Scripts/FoodTator/Modules/720kb.datepicker.js"></script>
+}
+
+@section Scripts{
+    <script src="~/Scripts/FoodTator/App/Biz/BizConfig.js"></script>
+    <script src="~/Scripts/FoodTator/App/Biz/Controllers/couponController.js"></script>
+    <script src="~/Scripts/FoodTator/App/Biz/Controllers/couponManageController.js"></script>
+    <script src="~/Scripts/FoodTator/App/Biz/Controllers/dashboardController.js"></script>
+
+
+    <script type="text/javascript">
+        tkj.page.startUp = function () {
+            console.log("biz loaded");
+
+        }
+
+    </script>
+
+
+}
 

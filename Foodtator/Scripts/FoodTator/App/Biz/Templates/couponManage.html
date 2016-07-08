@@ -1,0 +1,110 @@
+﻿<div class="widget">
+    <div class="widget-heading">
+        <h3 class="widget-title">{{cmc.pageTitle}}</h3>
+    </div>
+    <div class="widget-body">
+        <form id="form-horizontal" class="form-horizontal">
+
+            <div class="row">
+                <h3 class="col-md-4 bizFormTitle">Basic Infomation</h3>
+            </div>
+
+            <fieldset>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-2">
+                        <div class="form-group">
+                            <label for="couponName" class="col-sm-3 col-md-4 control-label">Name</label>
+                            <div class="col-sm-9 col-md-8">
+                                <input id="couponName" name="couponName" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-md-offset-2">
+                        <div class="form-group">
+                            <label for="couponCode" class="col-sm-3 col-md-4 control-label">Coupe Code</label>
+                            <div class="col-sm-9 col-md-8">
+                                <input id="couponCode" name="couponCode" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-md-offset-2">
+                        <div class="form-group">
+                            <label for="couponDiscounts" class="col-sm-3 col-md-4 control-label">Discounts</label>
+                            <div class="col-sm-9 col-md-8">
+                                <input id="couponDiscounts" name="couponDiscounts" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-md-offset-2">
+                        <div class="form-group">
+                            <label for="couponDescription" class="col-sm-3 col-md-4 control-label">Description</label>
+                            <div class="col-sm-9 col-md-8">
+                                <textarea id="couponDescription" name="couponDescription" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-md-offset-2">
+                        <div class="form-group">
+                            <label for="availabilityCheckBoxLabel" class="col-sm-3 col-md-4 control-label">Availability</label>
+                            <div class="col-sm-6 col-md-7 checkbox-custom" style="margin-left:15px;">
+                                <input id="availabilityCheckBox" type="checkbox" value="option1">
+                                <label for="availabilityCheckBox">If this box is checked the coupon is available for use.</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <hr />
+
+            <div class="row">
+                <h3 class="col-md-4 bizFormTitle">Options</h3>
+            </div>
+            <fieldset>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-2">
+                        <div class="form-group">
+                            <label for="activationDateLabel" class="col-sm-3 col-md-4 control-label">Activation Date</label>
+                            <div id="minimum-dtpicker" class="input-group date col-sm-9 col-md-8">
+                                <datepicker date-format="M/d/yy">
+                                    <input ng-model="date" type="text" class="form-control">
+                                </datepicker>
+                                <span class="input-group-addon"><span class="ti-calendar"></span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-md-offset-2">
+                        <div class="form-group">
+                            <label for="expirationDateLabel" class="col-sm-3 col-md-4 control-label">Expiration Date</label>
+                            <div id="minimum-dtpicker" class="input-group date col-sm-9 col-md-8">
+                                <datepicker date-format="M/d/yy">
+                                    <input ng-model="date" type="text" class="form-control">
+                                </datepicker>
+                                <span class="input-group-addon"><span class="ti-calendar"></span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-md-offset-2">
+                        <div class="form-group">
+                            <label for="maxRedemptionsLable" class="col-sm-3 col-md-4 control-label">Max Redemptions</label>
+                            <div class="col-sm-9 col-md-8">
+                                <input id="maxRedemptions" name="maxRedemptions" type="number" class="form-control">
+                                <span>The number of times a coupon can be used.  Set to 0 or empty for unlimited redemptions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4 text-center bigBtn">
+                    Create Coupon
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
