@@ -8,8 +8,8 @@
 
     function ShareController(
          $scope
-        ,$timeout
-        ,$routeParams
+        , $timeout
+        , $routeParams
         ) {
 
         var vm = this;
@@ -21,11 +21,13 @@
         vm.user = null;
         vm.showCameraBtn = false;
         vm.showSelectedMsg = false;
+        vm.showPoints = false;
         vm.event = vm.$routeParams.event;
         vm.startRP = null;
         vm.startXP = null;
         vm.countToRP = null;
         vm.countToXP = null;
+        vm.earnedPoints = 0;
 
         init();
 
@@ -37,29 +39,37 @@
             console.log("user is ", vm.user);
 
             if (vm.event == "selected") {
-                vm.countToRP = vm.user.redeemPoints;
-                vm.countToXP = vm.user.rankingPoints;
-                vm.startRP = vm.countToRP - 5;
-                vm.startXP = vm.countToXP - 5;
+                vm.earnedPoints = 5;
+
+                vm.$timeout(function () {
+                    vm.showPoints = true;
+                    vm.countToRP = vm.user.redeemPoints;
+                    vm.countToXP = vm.user.rankingPoints;
+                    vm.startRP = vm.countToRP - 5;
+                    vm.startXP = vm.countToXP - 5;
+                }, 1000);
 
                 vm.$timeout(function () {
                     vm.showSelectedMsg = true;
-                   
-                }, 1000);
+                }, 3000);
             } else {
                 // since the user is not updated so need to do this calculation.
                 // simple refresh will show 10 more points than the db.
-               
-                vm.countToRP = vm.user.redeemPoints + 10;
-                vm.countToXP = vm.user.rankingPoints + 10;
-                vm.startRP = vm.countToRP - 10;
-                vm.startXP = vm.countToXP - 10;
+                vm.earnedPoints = 10;
 
-                vm.$timeout(function () {               
-                    vm.showCameraBtn = true;
+                vm.$timeout(function () {
+                    vm.showPoints = true;
+                    vm.countToRP = vm.user.redeemPoints + 10;
+                    vm.countToXP = vm.user.rankingPoints + 10;
+                    vm.startRP = vm.countToRP - 10;
+                    vm.startXP = vm.countToXP - 10;
                 }, 1000);
+
+                vm.$timeout(function () {
+                    vm.showCameraBtn = true;
+                }, 3000);
             }
-    
+
         }
 
 
