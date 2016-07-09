@@ -107,13 +107,20 @@
                 <li class="sidebar-category pt-0">Main</li>
                 <li><a href="#/dashboard"><i class="fa fa-tachometer"></i><span class="sidebar-title">Dashboard</span></a></li>
                 <li class="panel">
-                    <a role="button" data-toggle="collapse" data-parent=".navigation" href="#collapse2" aria-expanded="false" aria-controls="collapse2" class="collapsed"><i class="fa fa-ticket"></i><span class="sidebar-title">Coupons</span></a>
+                    <a role="button" data-toggle="collapse" data-parent=".navigation" href="" aria-expanded="false" aria-controls="collapse2" class="collapsed"><i class="fa fa-ticket"></i><span class="sidebar-title">Locations</span></a>
                     <ul id="collapse2" class="list-unstyled collapse">
-                        <li><a href="#/coupon">My Coupons</a></li>
-                        <li><a href="#/coupon/new">New Coupon</a></li>
-                        
+                        <li><a href="#/location">My Locations</a></li>
+                        <li><a href="#/location/new">New Location</a></li>
                     </ul>
                 </li>
+                <li class="panel">
+                    <a role="button" data-toggle="collapse" data-parent=".navigation" href="" aria-expanded="false" aria-controls="collapse2" class="collapsed"><i class="fa fa-ticket"></i><span class="sidebar-title">Coupons</span></a>
+                    <ul id="collapse2" class="list-unstyled collapse">
+                        <li><a href="#/coupon">My Coupons</a></li>
+                        <li><a href="#/coupon/new">New Coupon</a></li>              
+                    </ul>
+                </li>
+                
             </ul>
         </aside>
         <!-- Main Sidebar end-->
@@ -162,5 +169,16 @@
     <script src="~/Scripts/FoodTator/App/Public/Controllers/PublicController.js"></script>
 
     @RenderSection("scripts", required: false)
+
+    <script>
+        tkj.page.startUp = function () {
+            $('a, .collapsed').on('click', menuCollapseClicked);
+        }
+
+        var menuCollapseClicked = function () {
+            $(this).next().slideToggle();
+        }
+
+    </script>
 </body>
 </html>

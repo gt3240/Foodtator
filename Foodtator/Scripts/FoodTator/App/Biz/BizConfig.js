@@ -16,6 +16,14 @@
                 templateUrl: '/Scripts/FoodTator/App/Biz/Templates/couponManage.html',
                 controller: 'couponManageController',
                 controllerAs: 'cmc'
+            }).when('/location', {
+                templateUrl: '/Scripts/FoodTator/App/Biz/Templates/location.html',
+                controller: 'locationController',
+                controllerAs: 'lc'
+            }).when('/location/:event', {
+                templateUrl: '/Scripts/FoodTator/App/Biz/Templates/locationManage.html',
+                controller: 'locationManageController',
+                controllerAs: 'lmc'
             });
 
             $locationProvider.html5Mode(false);
