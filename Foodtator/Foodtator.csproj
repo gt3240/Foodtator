@@ -247,6 +247,7 @@
     <Compile Include="Classes\Extensions\EnumExt.cs" />
     <Compile Include="Classes\Extensions\HtmlHelperExt.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\BizApiController.cs" />
     <Compile Include="Controllers\Api\CheckInApiController.cs" />
     <Compile Include="Controllers\Api\PhotoUploadAPIController.cs" />
     <Compile Include="Controllers\Api\SearchApiController.cs" />
@@ -661,6 +662,7 @@
     <Content Include="Scripts\FoodTator\Modules\720kb.datepicker.js" />
     <Content Include="Scripts\FoodTator\Modules\CountToModule.js" />
     <Content Include="Scripts\FoodTator\Modules\VelocityModule.js" />
+    <Content Include="Scripts\FoodTator\Services\BizService.js" />
     <Content Include="Scripts\FoodTator\Services\CheckInService.js" />
     <Content Include="Scripts\FoodTator\Services\FacebookServices.js" />
     <Content Include="Scripts\FoodTator\Services\GoogleMapService.js" />

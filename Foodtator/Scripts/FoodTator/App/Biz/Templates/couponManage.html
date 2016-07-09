@@ -15,7 +15,7 @@
                         <div class="form-group">
                             <label for="couponName" class="col-sm-3 col-md-4 control-label">Name</label>
                             <div class="col-sm-9 col-md-8">
-                                <input id="couponName" name="couponName" type="text" class="form-control">
+                                <input id="couponName" name="Name" type="text" class="form-control" ng-model="cmc.newCoupon.Name">
                             </div>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
                         <div class="form-group">
                             <label for="couponCode" class="col-sm-3 col-md-4 control-label">Coupe Code</label>
                             <div class="col-sm-9 col-md-8">
-                                <input id="couponCode" name="couponCode" type="text" class="form-control">
+                                <input id="couponCode" name="CouponCode" type="text" class="form-control" ng-model="cmc.newCoupon.CouponCode">
                             </div>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <label for="couponDiscounts" class="col-sm-3 col-md-4 control-label">Discounts</label>
                             <div class="col-sm-9 col-md-8">
-                                <input id="couponDiscounts" name="couponDiscounts" type="text" class="form-control">
+                                <input id="couponDiscounts" name="Discounts" type="text" class="form-control" ng-model="cmc.newCoupon.couponDiscounts">
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                         <div class="form-group">
                             <label for="couponDescription" class="col-sm-3 col-md-4 control-label">Description</label>
                             <div class="col-sm-9 col-md-8">
-                                <textarea id="couponDescription" name="couponDescription" class="form-control"></textarea>
+                                <textarea id="couponDescription" name="Description" class="form-control" ng-model="cmc.newCoupon.Description" ></textarea>
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                             <label for="expirationDateLabel" class="col-sm-3 col-md-4 control-label">Expiration Date</label>
                             <div id="minimum-dtpicker" class="input-group date col-sm-9 col-md-8">
                                 <datepicker date-format="M/d/yy">
-                                    <input ng-model="date" type="text" class="form-control">
+                                    <input type="text" class="form-control" ng-model="cmc.newCoupon.Expires" name="Expires">
                                 </datepicker>
                                 <span class="input-group-addon"><span class="ti-calendar"></span></span>
                             </div>
@@ -90,7 +90,7 @@
                         <div class="form-group">
                             <label for="maxRedemptionsLable" class="col-sm-3 col-md-4 control-label">Max Redemptions</label>
                             <div class="col-sm-9 col-md-8">
-                                <input id="maxRedemptions" name="maxRedemptions" type="number" class="form-control">
+                                <input id="maxRedemptions" name="MaxRedemptions" type="number" class="form-control" ng-model="cmc.newCoupon.maxRedemptions">
                                 <span>The number of times a coupon can be used.  Set to 0 or empty for unlimited redemptions</span>
                             </div>
                         </div>
@@ -99,10 +99,10 @@
             </fieldset>
             <br />
             <div class="row">
-                <div class="col-md-4 col-md-offset-4 text-center bigBtn">
+                <div class="col-md-4 col-md-offset-4 text-center bigBtn" ng-click="cmc.createCoupon()">
                     Create Coupon
                 </div>
-            </div>
+            </div> 
 
 
         </form>

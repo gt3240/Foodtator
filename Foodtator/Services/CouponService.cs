@@ -1,4 +1,5 @@
-﻿using Foodtator.Models.RequestModel;
+﻿using Foodtator.Interfaces;
+using Foodtator.Models.RequestModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,7 +10,7 @@ using Tkj.Data;
 
 namespace Foodtator.Services
 {
-    public class CouponService:BaseService
+    public class CouponService:BaseService, ICouponService
     {
         public int CreateCoupon(CouponRequestModel model)
         {

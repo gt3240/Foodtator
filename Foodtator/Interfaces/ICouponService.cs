@@ -12,5 +12,6 @@ namespace Foodtator.Interfaces
         int CreateCoupon(CouponRequestModel model);
         List<Domain.Coupon> GetCouponsByUserID();
         int UpdateCoupon(CouponRequestModel model);
+        void DeleteCouponById(CouponRequestModel model);
     }
 }
