@@ -1229,15 +1229,20 @@ lesshat-selector {
 }
 
 .nav-tabs {
-    border-bottom: 1px solid #e6e6e6;
+    border-bottom: 1px solid #5f5f5f;
 }
 
+    .nav-tabs > li.active > a {
+        background-color: #FAFAFA;
+    }
+
     .nav-tabs > li > a:hover {
-        border-color: #e6e6e6 #e6e6e6 transparent;
+        border-color: #5f5f5f #5f5f5f transparent;
+        background-color: #FAFAFA;
     }
 
     .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
-        border: 1px solid #e6e6e6;
+        border: 1px solid #5f5f5f;
         border-bottom-color: transparent;
         box-shadow: 3px -1px 3px rgba(0,0,0,.05);
         color: #1f364f;

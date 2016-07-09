@@ -1,0 +1,31 @@
+﻿<div class="widget">
+    <div class="widget-heading">
+        <h3 class="widget-title">Account Settings</h3>
+    </div>
+    <div class="widget-body">
+
+        <ul class="nav nav-tabs" ng-controller="accountTabController as main">
+            <li ng-class="main.tabClass(tab)" ng-repeat="tab in main.tabs">
+                <a href="{{tab.link}}" ng-click="main.setSelectedTab(tab)">{{tab.label}}</a>
+            </li>
+        </ul>
+
+        <h1>Avatar</h1>
+
+        <!-- Initialize ngDropzone directive -->
+        <div class="dropzone"
+             method="post"
+             enctype="multipart/form-data"
+             ng-dropzone
+             dropzone="aac.dropzone"
+             dropzone-config="aac.dzConfig"
+             event-handlers="{
+                              'addedfile': aac.dzAddedFile,
+                              'error': aac.dzError,
+                              'sending': aac.dzOnSending,
+                              'success': aac.dzOnSuccess,
+                             }">
+
+        </div>
+    </div>
+</div>

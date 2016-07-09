@@ -18,20 +18,43 @@
 
 <div class="container">
     <div class="row">
-        <div class="feedContainer col-md-6 col-md-offset-3 col-xs-12">
+
+        <div class="col-xs-12 fullWidthButton" style="background-color:#9CB4F0; margin-top:70px;">
+            <span class="fa fa-cutlery"><span class="icon_text ">Find a Restaurant</span></span>
+        </div>
+
+        <div class="col-xs-12 fullWidthButton" style="background-color:#F3BA71;">
+            <span class="fa fa-map-marker"><span class="icon_text ">Check In</span></span>      
+        </div>
+
+        <div class="col-xs-12 fullWidthButton" style="background-color:#FF84A7;">
+            <span class="fa fa-camera"><span class="icon_text ">Share Picture</span></span>
+            
+        </div>
+
+        <div class="col-xs-12 fullWidthButton" style="background-color:#7BECED;">
+           
+            <span class="fa fa-money"><span class="icon_text">My Points</span></span>
+        </div>
+
+        <div class="col-xs-12 fullWidthButton" style="background-color:#BD84D6;">
+            <span class="fa fa-user"><span class="icon_text ">My Profile</span></span>
+            
+        </div>
+        @*<div class="feedContainer col-md-6 col-md-offset-3 col-xs-12">
 
             <div class="feedControlBox text-center">
-                <a class="fa fa-cutlery btn-block" id="findLoc" style="margin-top:20px;"><br /><span class="icon_text locText">Find a Restaurant</span></a>
+                <a class="fa fa-cutlery btn btn-block" id="findLoc" style="margin-top:20px;"><br /><span class="icon_text ">Find a Restaurant</span></a>
                 <hr />
-                <a class="fa fa-map-marker btn-block" id="checkIn" href="/checkin#/selectionLoaded"><br /><span class="icon_text">Check In</span></a>
+                <a class="fa fa-map-marker btn btn-block" id="checkIn" href="/checkin#/selectionLoaded"><br /><span class="icon_text">Check In</span></a>
                 <hr />
-                <a class="fa fa-camera btn-block" id="sharePictures" href="/photoupload"><br /><span class="icon_text">Share Pictures</span></a>
+                <a class="fa fa-camera btn btn-block" id="sharePictures" href="/photoupload"><br /><span class="icon_text">Share Pictures</span></a>
                 <hr />
-                <a class="fa fa-money btn-block" id="myPoints" href="/myPoints"><br /><span class="icon_text">My Points</span></a>
-                
-            </div>
-        </div>
+                <a class="fa fa-money btn btn-block" id="myPoints" href="/myPoints"><br /><span class="icon_text">My Points</span></a>
+
+            </div>*@
     </div>
+</div>
 
 </div>
 
@@ -49,9 +72,9 @@
             console.log("user is ", userData);
             tkj.page.getPosition();
         }
-        
+
         tkj.page.getPosition = function () {
-            if (navigator.geolocation) {             
+            if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     $.ajax({
                         type: 'GET',
@@ -73,13 +96,13 @@
             var str = data.results[1].address_components[1].long_name;
             currentLocation = str.replace(/\s+/g, '-');
             if (currentLocation != null) {
-                $('.locText').text("Find a Restaurant in " + currentLocation);
+                $('.').text("Find a Restaurant in " + currentLocation);
             } else {
                 $('#findLoc').prop('disabled', true);
             }
-            
+
             currentLocation = currentLocation.toLowerCase();
-            console.log("location is ", currentLocation);        
+            console.log("location is ", currentLocation);
         }
 
         tkj.page.handlers.error = function (data) {
