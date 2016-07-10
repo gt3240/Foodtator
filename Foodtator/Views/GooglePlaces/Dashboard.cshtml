@@ -8,38 +8,38 @@
 
 @section Styles
 {
-
+    
 }
 
 @*full screen loading spinner, add .loading in JS to activate*@
-<div id="loadingDiv">
-    
+<div class="loader">
+    <img src="~/Content/images/spin.svg"/>
 </div>
 
 <div class="container">
     <div class="row mobileDashboard">
 
         <ul id="btnList">
-            <li class="col-xs-12 fullWidthButton swing" style="background-color:#9CB4F0; margin-top:40px;">
-                <span class="fa fa-cutlery"><span class="icon_text findLoc" class="findLoc">Find a Restaurant</span></span>
+            <li class="col-xs-12 fullWidthButton swing" style="background-color:#9CB4F0; margin-top:65px;">
+                <a class="fa fa-cutlery"><span class="icon_text findLoc">Find a Restaurant</span></a>
             </li>
 
             <li class="col-xs-12 fullWidthButton swing" style="background-color:#F3BA71;">
-                <span class="fa fa-map-marker"><span class="icon_text ">Check In</span></span>
+                <a class="fa fa-map-marker" href="/checkin#/selectionLoaded" style="margin-left:10px;"><span class="icon_text">Check In</span></a>
             </li>
 
             <li class="col-xs-12 fullWidthButton swing" style="background-color:#FF84A7;">
-                <span class="fa fa-camera"><span class="icon_text ">Share Picture</span></span>
+                <a class="fa fa-camera" href="/photoupload"><span class="icon_text ">Share Picture</span></a>
 
             </li>
 
             <li class="col-xs-12 fullWidthButton swing" style="background-color:#7BECED;">
 
-                <span class="fa fa-money"><span class="icon_text">My Points</span></span>
+                <a class="fa fa-money" href="/myPoints"><span class="icon_text">My Points</span></a>
             </li>
 
             <li class="col-xs-12 fullWidthButton swing" style="background-color:#BD84D6;">
-                <span class="fa fa-user"><span class="icon_text ">My Profile</span></span>
+                <a class="fa fa-user"><span class="icon_text ">My Profile</span></a>
 
             </li>
         </ul>
@@ -49,15 +49,15 @@
         <div class="feedContainer col-md-6 col-md-offset-3">
 
             <div class="feedControlBox text-center">
-                <a class="fa fa-cutlery btn btn-block findLoc" style="margin-top:20px;"><br /><span class="icon_text findLoc" >Find a Restaurant</span></a>
+                <a class="fa fa-cutlery" style="margin-top:20px;"><br /><span class="icon_text findLoc" >Find a Restaurant</span></a>
                 <hr />
-                <a class="fa fa-map-marker btn btn-block" id="checkIn" href="/checkin#/selectionLoaded"><br /><span class="icon_text">Check In</span></a>
+                <a class="fa fa-map-marker" id="checkIn" href="/checkin#/selectionLoaded"><br /><span class="icon_text">Check In</span></a>
                 <hr />
-                <a class="fa fa-camera btn btn-block" id="sharePictures" href="/photoupload"><br /><span class="icon_text">Share Pictures</span></a>
+                <a class="fa fa-camera" id="sharePictures" href="/photoupload"><br /><span class="icon_text">Share Pictures</span></a>
                 <hr />
-                <a class="fa fa-money btn btn-block" id="myPoints" href="/myPoints"><br /><span class="icon_text">My Points</span></a>
+                <a class="fa fa-money" id="myPoints" href="/myPoints"><br /><span class="icon_text">My Points</span></a>
                 <hr />
-                <a class="fa fa-user btn btn-block" id="myPoints" href="/myPoints"><br /><span class="icon_text">My Profile</span></a>
+                <a class="fa fa-user" id="myPoints" href="/myPoints"><br /><span class="icon_text">My Profile</span></a>
 
             </div>
         </div>
@@ -78,6 +78,7 @@
 
         tkj.page.startUp = function () {
             tkj.page.dashButtons();
+            $('a').on('click', tkj.page.handlers.showLoader);
             $('.findLoc').on('click', tkj.page.handlers.onFindLoc);
             var userData = JSON.parse($("#modelData").html());
             console.log("user is ", userData);
@@ -87,7 +88,7 @@
         tkj.page.dashButtons = function () {
             $('#btnList li').each(function (i) {
                 setTimeout(function () {
-                    $('#btnList li').eq(i).addClass('show');
+                    $('#btnList li').eq(i).addClass('showSwing');
                 }, 300 * i);
             });
         }
@@ -108,8 +109,12 @@
 
         tkj.page.handlers.onFindLoc = function () {
             console.log("find loc clicked");
-            $('#loadingDiv').addClass('loading');
+            
             window.location.replace("/Results/location/" + currentLocation);
+        }
+
+        tkj.page.handlers.showLoader = function () {
+            $('.loader').show();
         }
 
         tkj.page.handlers.success = function (data) {

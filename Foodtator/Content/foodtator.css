@@ -133,7 +133,7 @@ a {
         transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
     }
 
-    .show {
+    .showSwing {
         opacity: 1;
         transform: none;
         -webkit-transform: none;
@@ -144,6 +144,10 @@ a {
         -moz-transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
         -o-transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
         transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
+    }
+
+    #btnList a{
+        color: #ffffff;
     }
 }
 
