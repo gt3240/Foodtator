@@ -292,6 +292,7 @@
     <Compile Include="Interfaces\ICheckInService.cs" />
     <Compile Include="Interfaces\ICouponService.cs" />
     <Compile Include="Interfaces\IFileUploadService.cs" />
+    <Compile Include="Interfaces\ILocationService.cs" />
     <Compile Include="Interfaces\IMediaService.cs" />
     <Compile Include="Interfaces\IPointsService.cs" />
     <Compile Include="Interfaces\IResultsService.cs" />
@@ -304,6 +305,7 @@
     <Compile Include="Models\RequestModel\BusinessSearchRequestModel.cs" />
     <Compile Include="Models\RequestModel\CouponRequestModel.cs" />
     <Compile Include="Models\RequestModel\ExternalAuthRequestModel.cs" />
+    <Compile Include="Models\RequestModel\LocationRequestModel.cs" />
     <Compile Include="Models\RequestModel\LogIn.cs" />
     <Compile Include="Models\RequestModel\LogInRequestModel.cs" />
     <Compile Include="Models\RequestModel\MediaRequestModel.cs" />
@@ -328,6 +330,7 @@
     <Compile Include="Services\ConfigService.cs" />
     <Compile Include="Services\CouponService.cs" />
     <Compile Include="Services\FileUploadService.cs" />
+    <Compile Include="Services\LocationService.cs" />
     <Compile Include="Services\MediaService.cs" />
     <Compile Include="Services\PointsService.cs" />
     <Compile Include="Services\ResultsService.cs" />
