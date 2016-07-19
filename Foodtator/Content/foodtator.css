@@ -3,7 +3,7 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #FAFAFA;
+    background-color: #fafafa;
     font-family: 'Comfortaa', cursive;
 }
 
@@ -32,6 +32,15 @@ a {
 
     .navbar-default .navbar-toggle {
         margin-top: 15px;
+    }
+
+    .navbar {
+        transition-duration: 0.2s;
+    }
+
+    .navbar-scroll-custom {
+        transform: translateY(-52px);
+        transition-duration: 0.6s;
     }
 
     .registerWindow {
@@ -81,7 +90,65 @@ a {
         font-size: 40px;
     }
 
-   
+    .fullWidthButton {
+        padding: 50px 0px;
+        color: #ffffff;
+    }
+
+        .fullWidthButton .fa {
+            padding: 0px 40px;
+            font-size: 40px;
+            width: 100%;
+        }
+
+    .icon_text {
+        font-size: 30px;
+        font-weight: bolder;
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
+        width: 70%;
+        float: right;
+        margin-top: 10px;
+    }
+
+    .mobileDashboard {
+        background-color: #84ffdc;
+    }
+
+    .deskTopDashboard {
+        display: none;
+    }
+
+    .swing {
+        opacity: 0;
+        transform: rotateX(-90deg);
+        -webkit-transform: rotateX(-90deg);
+        -moz-transform: rotateX(-90deg);
+        -ms-transform: rotateX(-90deg);
+        -o-transform: rotateX(-90deg);
+        -webkit-transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
+        -moz-transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
+        -o-transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
+        transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
+    }
+
+    .showSwing {
+        opacity: 1;
+        transform: none;
+        -webkit-transform: none;
+        -moz-transform: none;
+        -ms-transform: none;
+        -o-transform: none;
+        -webkit-transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
+        -moz-transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
+        -o-transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
+        transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
+    }
+
+    #btnList a{
+        color: #ffffff;
+    }
 }
 
 /* Desktop */
@@ -134,12 +201,20 @@ a {
         font-size: 56px;
     }
 
+        .feedControlBox a:hover {
+            color: rgba(0,0,0,0.5);
+        }
+
     .xsOffset {
         display: none;
     }
 
     .bizFormTitle {
         text-align: right;
+    }
+
+    .mobileDashboard {
+        display: none;
     }
 }
 
@@ -149,7 +224,7 @@ label {
 }
 
 .navbar-default {
-    background-color: rgba(0,0,0,0.5);
+    background-color: #428bca;
     border: none;
 }
 
@@ -260,3 +335,9 @@ label {
         position: relative;
         top: 1px;
     }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}

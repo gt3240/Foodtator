@@ -33,7 +33,7 @@
 
         vm.selectedLoc = null;
         vm.checkInResultText = null;
-
+        vm.notify = vm.$checkInService.getNotifier($scope);
         init();
 
         function init() {
@@ -76,7 +76,7 @@
             } else {
                 var distance = response.rows[0].elements[0].distance.value;
                 vm.checkInResult = true;
-                vm.$scope.$apply(function () {
+                vm.notify(function () {
                     if (distance > vm.CHECK_DISTANCE) {
                         console.log("too far");
                         vm.checkInResultText = "Sorry, you are too far away =(";

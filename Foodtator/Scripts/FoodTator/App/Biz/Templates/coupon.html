@@ -19,26 +19,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>19942</td>
-                                <td>Major Discount</td>
-                                <td>90% Off</td>
+                            <tr data-ng-repeat="Coupon in cc.Coupon">
+                                <td>{{Coupon.id}}</td>
+                                <td>{{Coupon.name}}</td>
+                                <td>{{Coupon.description}}</td>
                                 <td>9/8/2016</td>
                                 <td>10/8/2016</td>
                                 <td>Active</td>
-                                <td><button class="btn btn-warning"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
+                                <td><a class="btn btn-warning" ng-href="/biz/Index#/coupon/{{Coupon.id}}"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
                             </tr>
-                            <tr>
-                                <td>19942</td>
-                                <td>Major Discount</td>
-                                <td>90% Off</td>
-                                <td>9/8/2016</td>
-                                <td>10/8/2016</td>
-                                <td>Active</td>
-                                <td><button class="btn btn-warning"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                            </tr>
-
-                       
+                            
                             
                         </tbody>
                     </table>

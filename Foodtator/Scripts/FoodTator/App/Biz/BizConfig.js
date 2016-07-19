@@ -24,6 +24,30 @@
                 templateUrl: '/Scripts/FoodTator/App/Biz/Templates/locationManage.html',
                 controller: 'locationManageController',
                 controllerAs: 'lmc'
+            }).when('/account', {
+                templateUrl: '/Scripts/FoodTator/App/Biz/Templates/account.html',
+                controller: 'accountController',
+                controllerAs: 'ac'
+            }).when('/account', {
+                templateUrl: '/Scripts/FoodTator/App/Biz/Templates/account.html',
+                controller: 'accountController',
+                controllerAs: 'ac'
+            }).when('/account/avatar', {
+                templateUrl: '/Scripts/FoodTator/App/Biz/Templates/accountAvatar.html',
+                controller: 'accountAvatarController',
+                controllerAs: 'aac'
+            }).when('/account/email', {
+                templateUrl: '/Scripts/FoodTator/App/Biz/Templates/accountEmail.html',
+                controller: 'accountEmailController',
+                controllerAs: 'aec'
+            }).when('/account/password', {
+                templateUrl: '/Scripts/FoodTator/App/Biz/Templates/accountPassword.html',
+                controller: 'accountPasswordController',
+                controllerAs: 'ac'
+            }).when('/profile/', {
+                templateUrl: '/Scripts/FoodTator/App/Biz/Templates/profile.html',
+                controller: 'profileController',
+                controllerAs: 'pc'
             });
 
             $locationProvider.html5Mode(false);

@@ -8,32 +8,65 @@
 
 @section Styles
 {
-    <style>
-        .btn {
-            height: 100px;
-            margin: 20px auto;
-        }
-    </style>
+    
 }
 
+@*full screen loading spinner, add .loading in JS to activate*@
+<div class="loader">
+    <img src="~/Content/images/spin.svg"/>
+</div>
+
 <div class="container">
-    <div class="row">
-        <div class="feedContainer col-md-6 col-md-offset-3 col-xs-12">
+    <div class="row mobileDashboard">
+
+        <ul id="btnList">
+            <li class="col-xs-12 fullWidthButton swing" style="background-color:#9CB4F0; margin-top:65px;">
+                <a class="fa fa-cutlery"><span class="icon_text findLoc">Find a Restaurant</span></a>
+            </li>
+
+            <li class="col-xs-12 fullWidthButton swing" style="background-color:#F3BA71;">
+                <a class="fa fa-map-marker" href="/checkin#/selectionLoaded" style="margin-left:10px;"><span class="icon_text">Check In</span></a>
+            </li>
+
+            <li class="col-xs-12 fullWidthButton swing" style="background-color:#FF84A7;">
+                <a class="fa fa-camera" href="/photoupload"><span class="icon_text ">Share Picture</span></a>
+
+            </li>
+
+            <li class="col-xs-12 fullWidthButton swing" style="background-color:#7BECED;">
+
+                <a class="fa fa-money" href="/myPoints"><span class="icon_text">My Points</span></a>
+            </li>
+
+            <li class="col-xs-12 fullWidthButton swing" style="background-color:#BD84D6;">
+                <a class="fa fa-user"><span class="icon_text ">My Profile</span></a>
+
+            </li>
+        </ul>
+    </div>
+
+    <div class="row deskTopDashboard">
+        <div class="feedContainer col-md-6 col-md-offset-3">
 
             <div class="feedControlBox text-center">
-                <a class="fa fa-cutlery btn-block" id="findLoc" style="margin-top:20px;"><br /><span class="icon_text locText">Find a Restaurant</span></a>
+                <a class="fa fa-cutlery" style="margin-top:20px;"><br /><span class="icon_text findLoc" >Find a Restaurant</span></a>
                 <hr />
-                <a class="fa fa-map-marker btn-block" id="checkIn" href="/checkin#/selectionLoaded"><br /><span class="icon_text">Check In</span></a>
+                <a class="fa fa-map-marker" id="checkIn" href="/checkin#/selectionLoaded"><br /><span class="icon_text">Check In</span></a>
                 <hr />
-                <a class="fa fa-camera btn-block" id="sharePictures" href="/photoupload"><br /><span class="icon_text">Share Pictures</span></a>
+                <a class="fa fa-camera" id="sharePictures" href="/photoupload"><br /><span class="icon_text">Share Pictures</span></a>
                 <hr />
-                <a class="fa fa-money btn-block" id="myPoints" href="/myPoints"><br /><span class="icon_text">My Points</span></a>
-                
+                <a class="fa fa-money" id="myPoints" href="/myPoints"><br /><span class="icon_text">My Points</span></a>
+                <hr />
+                <a class="fa fa-user" id="myPoints" href="/myPoints"><br /><span class="icon_text">My Profile</span></a>
+
             </div>
         </div>
     </div>
 
+    
 </div>
+
+
 
 <script type="application/json" id="modelData">
     @Html.RawJson(Model.AppUser)
@@ -44,14 +77,24 @@
         var currentLocation = null;
 
         tkj.page.startUp = function () {
-            $('#findLoc').on('click', tkj.page.handlers.onFindLoc);
+            tkj.page.dashButtons();
+            $('a').on('click', tkj.page.handlers.showLoader);
+            $('.findLoc').on('click', tkj.page.handlers.onFindLoc);
             var userData = JSON.parse($("#modelData").html());
             console.log("user is ", userData);
             tkj.page.getPosition();
         }
-        
+
+        tkj.page.dashButtons = function () {
+            $('#btnList li').each(function (i) {
+                setTimeout(function () {
+                    $('#btnList li').eq(i).addClass('showSwing');
+                }, 300 * i);
+            });
+        }
+
         tkj.page.getPosition = function () {
-            if (navigator.geolocation) {             
+            if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     $.ajax({
                         type: 'GET',
@@ -65,7 +108,13 @@
         }
 
         tkj.page.handlers.onFindLoc = function () {
+            console.log("find loc clicked");
+            
             window.location.replace("/Results/location/" + currentLocation);
+        }
+
+        tkj.page.handlers.showLoader = function () {
+            $('.loader').show();
         }
 
         tkj.page.handlers.success = function (data) {
@@ -73,13 +122,11 @@
             var str = data.results[1].address_components[1].long_name;
             currentLocation = str.replace(/\s+/g, '-');
             if (currentLocation != null) {
-                $('.locText').text("Find a Restaurant in " + currentLocation);
-            } else {
-                $('#findLoc').prop('disabled', true);
-            }
-            
+                $('.findLoc').text("Find a Restaurant in " + currentLocation);
+            } 
+
             currentLocation = currentLocation.toLowerCase();
-            console.log("location is ", currentLocation);        
+            console.log("location is ", currentLocation);
         }
 
         tkj.page.handlers.error = function (data) {

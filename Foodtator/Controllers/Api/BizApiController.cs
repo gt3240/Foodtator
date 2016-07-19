@@ -52,29 +52,33 @@ namespace Foodtator.Controllers.Api
         [Route("GetCoupon"), HttpGet]
         public HttpResponseMessage GetCoupon()
         {
-            if (!ModelState.IsValid)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-            }
+            ItemsResponse<Domain.Coupon> response = new ItemsResponse<Domain.Coupon>();
 
-            _couponService.GetCouponsByUserID();
-
-            SuccessResponse response = new SuccessResponse();
+            response.Items = _couponService.GetCouponsByUserID();
 
             return Request.CreateResponse(response);
         }
 
-        [Route ("DeleteCoupon"), HttpDelete]
-        public HttpResponseMessage DeleteCoupon(CouponRequestModel model)
+        [Route("{couponId:int}"), HttpGet]
+        public HttpResponseMessage GetCouponById(int couponId)
+        {
+            ItemResponse<Domain.Coupon> response = new ItemResponse<Domain.Coupon>();
+
+            response.Item = _couponService.GetCouponById(couponId);
+
+            return Request.CreateResponse(response);
+        }
+
+        [Route ("{couponId:int}"), HttpDelete]
+        public HttpResponseMessage DeleteCoupon(int couponId)
         {
             if (!ModelState.IsValid)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
-
-            _couponService.DeleteCouponById(model);
-
             SuccessResponse response = new SuccessResponse();
+
+             _couponService.DeleteCouponById(couponId);
 
             return Request.CreateResponse(response);
 
