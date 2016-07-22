@@ -30,6 +30,8 @@ namespace Foodtator
             container.RegisterType<IMediaService, MediaService>();
             container.RegisterType<IFileUploadService, FileUploadService>();
             container.RegisterType<IPointsService, PointsService>();
+            container.RegisterType<ICouponService, CouponService>();
+            container.RegisterType<ILocationService, LocationService>();
 
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));

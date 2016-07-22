@@ -1,4 +1,5 @@
-﻿using Foodtator.Models.RequestModel;
+﻿using Foodtator.Interfaces;
+using Foodtator.Models.RequestModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,7 +10,7 @@ using Tkj.Data;
 
 namespace Foodtator.Services
 {
-    public class CouponService:BaseService
+    public class CouponService:BaseService, ICouponService
     {
         public int CreateCoupon(CouponRequestModel model)
         {
@@ -21,7 +22,10 @@ namespace Foodtator.Services
                    paramCollection.AddWithValue("@UserId", UserService.GetCurrentUserId());
                    paramCollection.AddWithValue("@Name", model.Name);
                    paramCollection.AddWithValue("@CouponCode", model.CouponCode);
+                   paramCollection.AddWithValue("@Location", "Atom");
+                   paramCollection.AddWithValue("@Discount", model.Discounts) ;
                    paramCollection.AddWithValue("@Description", model.Description);
+                   paramCollection.AddWithValue("@Activation", model.Activation);
                    paramCollection.AddWithValue("@Expires", model.Expires);
                    paramCollection.AddWithValue("@MaxRedemptions", model.MaxRedemptions);
 
@@ -56,7 +60,10 @@ namespace Foodtator.Services
                    p.Id = reader.GetSafeInt32(startingIndex++);
                    p.Name = reader.GetSafeString(startingIndex++);
                    p.CouponCode = reader.GetSafeString(startingIndex++);
+                   p.Locations = reader.GetSafeString(startingIndex++);
+                   p.Discounts = reader.GetSafeString(startingIndex++);
                    p.Description = reader.GetSafeString(startingIndex++);
+                   p.Activation = reader.GetSafeDateTime(startingIndex++);
                    p.Expires = reader.GetSafeDateTime(startingIndex++);
                    p.MaxRedemptions = reader.GetSafeInt32(startingIndex++);
                    
@@ -72,6 +79,36 @@ namespace Foodtator.Services
             return list;
         }
 
+        
+        public Domain.Coupon GetCouponById(int Id)
+        {
+            Domain.Coupon p = null;
+
+            DataProvider.ExecuteCmd(GetConnection, "dbo.Coupon_SelectById"
+               , inputParamMapper: delegate (SqlParameterCollection paramCollection)
+               {
+                   paramCollection.AddWithValue("@Id", Id);
+
+               }, map: (Action<IDataReader, short>)delegate (IDataReader reader, short set)
+               {
+                   p = new Domain.Coupon();
+                   int startingIndex = 0; //startingOrdinal
+
+                   p.Id = reader.GetSafeInt32(startingIndex++);
+                   p.Name = reader.GetSafeString(startingIndex++);
+                   p.CouponCode = reader.GetSafeString(startingIndex++);
+                   p.Locations = reader.GetSafeString(startingIndex++);
+                   p.Discounts = reader.GetSafeString(startingIndex++);
+                   p.Description = reader.GetSafeString(startingIndex++);
+                   p.Activation = reader.GetSafeDateTime(startingIndex++);
+                   p.Expires = reader.GetSafeDateTime(startingIndex++);
+                   p.MaxRedemptions = reader.GetSafeInt32(startingIndex);
+
+               });
+
+            return p;
+        }
+
 
         public int UpdateCoupon(CouponRequestModel model)
         {
@@ -80,10 +117,14 @@ namespace Foodtator.Services
             DataProvider.ExecuteNonQuery(GetConnection, "dbo.Coupon_Update"
                , inputParamMapper: delegate (SqlParameterCollection paramCollection)
                {
+                   paramCollection.AddWithValue("@Id", model.Id);
                    paramCollection.AddWithValue("@UserId", UserService.GetCurrentUserId());
                    paramCollection.AddWithValue("@Name", model.Name);
                    paramCollection.AddWithValue("@CouponCode", model.CouponCode);
+                   paramCollection.AddWithValue("@Location", "Atom");
+                   paramCollection.AddWithValue("@Discount", model.Discounts);
                    paramCollection.AddWithValue("@Description", model.Description);
+                   paramCollection.AddWithValue("@Activation", model.Activation);
                    paramCollection.AddWithValue("@Expires", model.Expires);
                    paramCollection.AddWithValue("@MaxRedemptions", model.MaxRedemptions);
 
@@ -100,12 +141,12 @@ namespace Foodtator.Services
             return uid;
         }
 
-        public void DeleteCouponById(CouponRequestModel model)
+        public void DeleteCouponById(int Id)
         {
             DataProvider.ExecuteNonQuery(GetConnection, "dbo.Coupon_Delete"
             , inputParamMapper: delegate (SqlParameterCollection paramCollection)
             {
-                paramCollection.AddWithValue("@Id", model.Id);
+                paramCollection.AddWithValue("@Id", Id);
             }, returnParameters: delegate (SqlParameterCollection param)
             {
             });
