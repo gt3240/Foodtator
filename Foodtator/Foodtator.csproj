@@ -342,6 +342,7 @@
     <Content Include="Content\fonts\themify.svg" />
     <Content Include="Content\foodtator.css" />
     <Content Include="Content\images\background1.jpg" />
+    <Content Include="Content\images\bg1.jpg" />
     <Content Include="Content\images\bgmobile.jpg" />
     <Content Include="Content\images\foodtator_logo.png" />
     <Content Include="Content\images\foodtator_logo_header.png" />
@@ -406,6 +407,7 @@
     <Content Include="Scripts\bower_components\angular-bootstrap\ui-bootstrap-tpls.min.js" />
     <Content Include="Scripts\bower_components\angular-bootstrap\ui-bootstrap.js" />
     <Content Include="Scripts\bower_components\angular-bootstrap\ui-bootstrap.min.js" />
+    <Content Include="Scripts\bower_components\angular-dropzone\lib\angular-dropzone.js" />
     <Content Include="Scripts\bower_components\angular-fx\assets\js\index.js" />
     <Content Include="Scripts\bower_components\angular-fx\dist\angular-fx.min.css" />
     <Content Include="Scripts\bower_components\angular-fx\dist\angular-fx.min.js" />
@@ -555,6 +557,11 @@
     <Content Include="Scripts\bower_components\angularjs-datepicker\package.json" />
     <Content Include="Scripts\bower_components\angularjs-datepicker\README.md" />
     <Content Include="Scripts\bower_components\angularjs-datepicker\themes\README.md" />
+    <Content Include="Scripts\bower_components\angular-dropzone\.bower.json" />
+    <Content Include="Scripts\bower_components\angular-dropzone\bower.json" />
+    <Content Include="Scripts\bower_components\angular-dropzone\CHANGELOG.md" />
+    <Content Include="Scripts\bower_components\angular-dropzone\LICENSE" />
+    <Content Include="Scripts\bower_components\angular-dropzone\README.md" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bower_components\angular\angular-csp.css" />
     <Content Include="Scripts\bower_components\angular\angular.js" />
@@ -677,6 +684,7 @@
     <Content Include="Scripts\FoodTator\Core\services\base.service.js" />
     <Content Include="Scripts\FoodTator\Core\tkj.module.js" />
     <Content Include="Scripts\FoodTator\Modules\720kb.datepicker.js" />
+    <Content Include="Scripts\FoodTator\Modules\AngularDropzone.js" />
     <Content Include="Scripts\FoodTator\Modules\CountToModule.js" />
     <Content Include="Scripts\FoodTator\Modules\VelocityModule.js" />
     <Content Include="Scripts\FoodTator\Services\CheckInService.js" />

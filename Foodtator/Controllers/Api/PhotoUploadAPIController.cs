@@ -125,7 +125,7 @@ namespace Foodtator.Controllers.Api
                     MediaRequestModel mediaModel = new MediaRequestModel();
                     mediaModel.FileName = fileName;
                     mediaModel.Path = ConfigService.uploadFileS3Prefix;
-                    mediaModel.MediaType = "1";
+                    mediaModel.MediaType = httpRequest.Form["MediaType"]; //MediaType 1 = food pictures, MediaType 2 = avatar
                     mediaModel.Title = httpRequest.Form["Title"];  // STACKOVER FLOW SAVES TE DAY!!
                     mediaModel.Description = httpRequest.Form["Description"];
                     mediaModel.Latitude = httpRequest.Form["Latitude"];
@@ -135,6 +135,12 @@ namespace Foodtator.Controllers.Api
 
                     //MediaService.InsertMedia(mediaModel);
                     response.Item = _mediaUploadService.InsertMedia(mediaModel);
+
+                    // if avatar, update user table
+                    if(mediaModel.MediaType == "2")
+                    {
+                        UserService.updateUserAvatar(response.Item);
+                    }
 
                     File.Delete(filePath);
 

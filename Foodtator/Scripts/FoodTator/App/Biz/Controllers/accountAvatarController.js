@@ -21,7 +21,7 @@
             parallelUploads: 1,
             maxFiles: 1,
             maxFileSize: 5,
-            url: "/api/MediaUploader/UploadWithData"
+            url: "/api/photouploader/UploadWithData"
         };
 
 
@@ -31,6 +31,7 @@
         vm.dzError = _dzError;
         vm.dzOnSending = _dzOnSending;
         vm.dzOnSuccess = _dzOnSuccess;
+        vm.onUpdateImage = _onUpdateImage;
 
         init();
 
@@ -51,7 +52,7 @@
             //console.log("photo sent to database");
             formData.append("Title", $('#Title').val());
             formData.append("Description", $('#Description').val());
-            console.log("formdata is " + formData.Title)
+            formData.append("MediaType", 2);
         };
 
         function _dzOnSuccess(file, response) {
@@ -60,6 +61,10 @@
             vm.onUpdateImage(vm.mediaId);
             vm.dropzone.removeFile(file);
         };
+
+        function _onUpdateImage(id) {
+            console.log("media id is ", id);
+        }
 
 
     }

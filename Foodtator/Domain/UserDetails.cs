@@ -21,5 +21,6 @@ namespace Foodtator.Domain
         public String RoleId { get; set; }
         public int redeemPoints { get; set; }
         public int rankingPoints { get; set; }
+        public string avatarFileName { get; set; }
     }
 }

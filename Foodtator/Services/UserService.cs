@@ -374,5 +374,21 @@ namespace Foodtator.Services
             return p;
         }
 
+        // update user media
+        public static void updateUserAvatar(int mediaID)
+        {
+            DataProvider.ExecuteNonQuery(GetConnection, "dbo.User_Update_Media"
+               , inputParamMapper: delegate (SqlParameterCollection paramCollection)
+               {
+                   paramCollection.AddWithValue("@UserId", GetCurrentUserId());
+                   paramCollection.AddWithValue("@MediaID", mediaID);
+                   
+               }, returnParameters: delegate (SqlParameterCollection param)
+               {
+
+               }
+               );
+        }
+
     }
 }

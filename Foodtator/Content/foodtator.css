@@ -78,7 +78,6 @@ a {
         }
 
     .feedControlBox {
-        padding: 10px 80px;
         font-size: 56px;
     }
 
@@ -146,7 +145,7 @@ a {
         transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
     }
 
-    #btnList a{
+    #btnList a {
         color: #ffffff;
     }
 }
@@ -185,7 +184,7 @@ a {
     }
 
     .feedImgBox {
-        max-height: 480px;
+        height: 480px;
         overflow: hidden;
         border-top: 1px solid rgba(0,0,0,0.1);
         border-bottom: 1px solid rgba(0,0,0,0.1);
@@ -197,7 +196,6 @@ a {
         }
 
     .feedControlBox {
-        padding: 10px 80px;
         font-size: 56px;
     }
 
@@ -340,4 +338,22 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+
+.feedBtnBox {
+    width: 50%;
+    height: 80px;
+}
+
+    .feedBtnBox a {
+        color: #fff;
+        margin: auto auto;
+    }
+
+.blueBox {
+    background-color: #428BCA;
+}
+
+.redBox {
+    background-color: #FF84A7;
 }
