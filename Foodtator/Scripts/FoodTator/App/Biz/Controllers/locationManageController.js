@@ -18,8 +18,9 @@
         /****  Variables ***/
         vm.pageTitle = null;
         vm.pageEvent = vm.$routeParams.event
-
+        vm.newLocation = null;
         /****  Functions ***/
+        vm.createLocation = _createLocation;
 
         init();
 
@@ -31,6 +32,15 @@
             } else {
                 console.log("This is an update");
                 vm.pageTitle = "Update Location"
+            }
+
+        }
+
+        function _createLocation() {
+            if (vm.newLocation.id) {
+                vm.$bizService.updateLocation(vm.newLocation, vm.createdSuccess, vm.createdError);
+            } else {
+                vm.$bizService.CreateLocation(vm.newLocation, vm.createdSuccess, vm.createdError);
             }
 
         }

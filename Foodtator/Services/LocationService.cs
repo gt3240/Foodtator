@@ -12,12 +12,12 @@ namespace Foodtator.Services
 {
     public class LocationService:BaseService,ILocationService
     {
-        public int createLocation(LocationRequestModel model)
+        public int CreateLocation(LocationRequestModel model)
         {
 
             int uid = 0;
 
-            DataProvider.ExecuteNonQuery(GetConnection, "dbo.Coupon_Insert"
+            DataProvider.ExecuteNonQuery(GetConnection, "dbo.Location_Insert"
                , inputParamMapper: delegate (SqlParameterCollection paramCollection)
                {
                    paramCollection.AddWithValue("@UserId", UserService.GetCurrentUserId());

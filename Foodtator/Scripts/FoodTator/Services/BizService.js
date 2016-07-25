@@ -15,6 +15,8 @@
         svc.GetCoupon = _GetCoupon;
         svc.GetCouponById = _GetCouponById;
         svc.DeleteCoupon = _DeleteCoupon;
+        svc.CreateLocation = _CreateLocation;
+
         function _createCoupon(payload,onSuccess, onError) {
             $http.post("/api/Biz/CreateCoupon",payload).success(onSuccess).error(onError);
         };
@@ -37,6 +39,9 @@
             $http.delete("/api/Biz/" + Id).success(onSuccess).error(onError);
         }
 
+        function _CreateLocation(payload, onSuccess, onError) {
+            $http.post("/api/Biz/CreateLocation", payload).success(onSuccess).error(onError);
+        };
 
 
 

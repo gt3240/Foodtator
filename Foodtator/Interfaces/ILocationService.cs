@@ -9,7 +9,7 @@ namespace Foodtator.Interfaces
 {
     public interface ILocationService
     {
-        int createLocation(LocationRequestModel model);
+        int CreateLocation(LocationRequestModel model);
         List<Domain.Location> GetLocationsByUserID();
         Domain.Location GetLocationById(int Id);
         int UpdateLocation(LocationRequestModel model);

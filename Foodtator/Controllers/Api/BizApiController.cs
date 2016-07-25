@@ -16,6 +16,8 @@ namespace Foodtator.Controllers.Api
     {
         [Dependency]
         public ICouponService _couponService { get; set; }
+        [Dependency]
+        public ILocationService _locationService { get; set; }
 
         [Route("CreateCoupon"), HttpPost]
         public HttpResponseMessage CreateCoupon(CouponRequestModel model)
@@ -84,5 +86,22 @@ namespace Foodtator.Controllers.Api
 
 
         }
+        [Route("CreateLocation"), HttpPost]
+        public HttpResponseMessage CreateLocation(LocationRequestModel model)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+
+            _locationService.CreateLocation(model);
+
+            SuccessResponse response = new SuccessResponse();
+
+
+            return Request.CreateResponse(response);
+        }
+
     }
 }

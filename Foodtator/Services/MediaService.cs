@@ -44,7 +44,7 @@ namespace Foodtator.Services
             return uid;
         }
 
-        // update a update
+        //Update a Media
         public void UpdateMedia(MediaRequestModel model)
         {
             DataProvider.ExecuteNonQuery(GetConnection, "dbo.Media_Update"
@@ -60,7 +60,7 @@ namespace Foodtator.Services
 
         }
 
-        // get media by userID
+        // Get media by userID
         public List<Domain.Media> GetMediaByUserID(int UserID)
         {
             List<Domain.Media> list = null;
@@ -123,7 +123,7 @@ namespace Foodtator.Services
             return item;
         }
 
-        // delete a website
+        //Delete Media
         public void DeleteMedia(int id)
         {
             DataProvider.ExecuteNonQuery(GetConnection, "dbo.Media_Delete"

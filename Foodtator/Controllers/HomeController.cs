@@ -12,16 +12,16 @@ using YelpSharp.Data;
 
 namespace Foodtator.Controllers
 {
-    
+
     public class HomeController : BaseController
     {
-     
+
         public ActionResult Index(BusinessSearchRequestModel model)
         {
 
             BaseViewModel vm = new BaseViewModel();
             return View(vm);
-            
+
         }
 
         public ActionResult About()
@@ -45,8 +45,6 @@ namespace Foodtator.Controllers
 
             return View();
         }
-
-
 
     }
 }
