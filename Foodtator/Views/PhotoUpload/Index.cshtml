@@ -104,6 +104,7 @@
                     this.on("sending", function (file, xhr, formData) {
                         // Will send the filesize along with the file as POST data.
                         formData.append("Title", $('#Title').val());
+                        formData.append("MediaType", 1);
                         formData.append("Description", $('#Description').val());
                         formData.append("Latitude", latitude);
                         formData.append("Longitude", longitude);

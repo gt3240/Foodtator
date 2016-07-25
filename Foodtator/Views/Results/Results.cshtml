@@ -22,13 +22,16 @@
                     <span class="pull-left" ng-repeat="item in rc.activeLoc.location.display_address">  {{item}}  </span>
                     <div id="clear"></div>
                 </div>
-                <div class="feedImgBox" style="max-height: 480px;">
-                    <div style="visibility:hidden; height: 500px; z-index:-20;">image holder</div>
-                    <img style="z-index:99; margin-top:-500px;" ng-src="{{rc.activeLoc.image_url}}" ngfx-fade-in-right="rc.showPicture" ngfx-fade-out-down="rc.hidePicture" />
+                <div class="feedImgBox">
+                    <img ng-src="{{rc.activeLoc.image_url}}" ngfx-fade-in-right="rc.showPicture" ngfx-fade-out-down="rc.hidePicture" />
                 </div>
                 <div class="feedControlBox">
-                    <a class="pull-left fa fa-trash text-danger" ng-click="rc.nextSlide()"></a>
-                    <a class="pull-right fa fa-cutlery text-success" ng-click="rc.selectSlide(rc.activeLoc)"></a>
+                    <div class="pull-left feedBtnBox redBox text-center">
+                        <a class="fa fa-trash text-danger" ng-click="rc.nextSlide()"></a>
+                    </div>
+                    <div class="pull-right feedBtnBox blueBox text-center">
+                        <a class="fa fa-cutlery text-success" ng-click="rc.selectSlide(rc.activeLoc)"></a>
+                    </div>
                     <div id="clear"></div>
                 </div>
             </div>
@@ -47,14 +50,14 @@
         </div>
 
         @*<div class="row" ng-show="rc.successMsgBox">
-            <div class="feedContainer col-md-6 col-md-offset-3">
-                <div class="feedTitleBox text-center">
-                    <h2 style="color:#0099CC;">{{rc.activeLoc.name}}</h2>
-                    <h3>is waiting for you.</h3>
-                    <h3>Don't forget to check in to earn more points.</h3>
+                <div class="feedContainer col-md-6 col-md-offset-3">
+                    <div class="feedTitleBox text-center">
+                        <h2 style="color:#0099CC;">{{rc.activeLoc.name}}</h2>
+                        <h3>is waiting for you.</h3>
+                        <h3>Don't forget to check in to earn more points.</h3>
+                    </div>
                 </div>
-            </div>
-        </div>*@
+            </div>*@
 
     </div>
 </div>
@@ -78,7 +81,7 @@
 
             ResultsController.$inject = ['$scope', '$resultsService', '$timeout', '$pointsService'];
 
-     
+
             function ResultsController(
                 $scope
                 , $resultsService
@@ -112,7 +115,7 @@
                 init();
 
                 function init() {
-         
+
                     vm.data = JSON.parse($("#modelData").html());
                     console.log("data is ", vm.data);
                     vm.activeLoc = vm.data[0];

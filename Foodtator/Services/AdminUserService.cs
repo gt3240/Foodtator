@@ -122,8 +122,8 @@ namespace Foodtator.Services
                       p.DateModified = reader.GetSafeDateTime(startingIndex++);
                       p.UserType = reader.GetSafeInt32(startingIndex++);
                       p.redeemPoints = reader.GetSafeInt32(startingIndex++);
-                      p.rankingPoints = reader.GetSafeInt32(startingIndex++); ;
-
+                      p.rankingPoints = reader.GetSafeInt32(startingIndex++);
+                      p.avatarFileName = reader.GetSafeString(startingIndex++);
                   }
               });
 
