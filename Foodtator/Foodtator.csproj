@@ -768,10 +768,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Media\" />
     <Folder Include="Scripts\FoodTator\App\Restaurants\Controllers\" />
     <Folder Include="Scripts\FoodTator\Core\controller\" />
-    <Folder Include="Views\Coupon\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
